@@ -67,22 +67,31 @@ def pump_HTML(request):
 
 @login_required
 def user_HTML(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        password = request.POST.get("password")
-        Household_name = request.POST.get("Household")
-        area = request.POST.get("area")
-        if name and password and Household_name and area:
-            create_user = User.objects.create_user(name, password=password)
-            create_user.is_staff = True
-            create_user.save()
-            create_info = Manager_User(user=name, password=password, Household_Name=Household_name, Area=area)
-            create_info.save()
-        return redirect('/user_HTML/')
-    user_ = Manager_User.objects.all()
-    user = request.user  # Lấy giá trị user từ request
-    filtered_data = Manager_User.objects.all().filter(user=user)
-    return render(request, "user.html", {'user_list': user_, 'filter':filtered_data})
+    user_role = request.user
+    finter = Manager_User.objects.all().filter(user=user_role)
+    for x in finter:
+        if x.Area == "Giám sát" or x.Area == "Quản trị":
+            print("Là quản trị hoặc giám sát")
+            if request.method == "POST":
+                name = request.POST.get("name")
+                password = request.POST.get("password")
+                Household_name = request.POST.get("Household")
+                area = request.POST.get("area")
+                if name and password and Household_name and area:
+                    create_user = User.objects.create_user(name, password=password)
+                    create_user.is_staff = True
+                    create_user.save()
+                    create_info = Manager_User(user=name, password=password, Household_Name=Household_name, Area=area)
+                    create_info.save()
+                return redirect('/user_HTML/')
+            user_ = Manager_User.objects.all()
+            user = request.user  # Lấy giá trị user từ request
+            filtered_data = Manager_User.objects.all().filter(user=user)
+            return render(request, "user.html", {'user_list': user_, 'filter':filtered_data})
+        else:
+            print("Không phải")
+            return render(request, '404.html')
+    
 
 @login_required
 def manager_Delete(request, id):
