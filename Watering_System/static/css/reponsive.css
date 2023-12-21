@@ -1,0 +1,36 @@
+/* Extra small devices (portrait phones, less than 576px)
+No media query for `xs` since this is the default in Bootstrap
+
+Small devices (landscape phones, 576px and up)
+*/
+@media (max-width: 575.98px) {
+
+    #pump-img {
+        margin-top: 10px;
+        display: block;
+        width: 100% !important;
+        height: auto;
+    }
+
+    .row-footer {
+        width: 100% !important;
+    }
+
+    .mr40 {
+        margin-right: 0px !important;
+    }
+
+}
+
+/*Medium devices (tablets, 768px and up) */
+@media (max-width: 767.98px) {
+    .mr40 {
+        margin-right: 0px !important;
+    }
+}
+
+/*Large devices (desktops, 992px and up) */
+@media (max-width: 991.98px) {}
+
+/*Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1199.98px) {}

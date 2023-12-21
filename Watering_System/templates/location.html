@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-10 pl-5" style="height:100%;" id="Sys_info">
+    <div class="container pt-4" style="padding-left:0px !important; margin-left:0px !important;">
+        <h4 class="text-left">
+            <i class="fa fa-map-marked" aria-hidden="true"></i>&nbsp; Danh sách khu vực
+        </h4>
+    </div>
+    <div class="row row-cols-sm-4">
+        <a href="#" class="col-sm-3 mb-2 location">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#D92027 !important">
+                    <p class="card-text float-end" style="font-size:33px;" id="temperature_data"></p>
+                    <span>
+                        <i class="fa fa-map fa-4x float-sm-left" aria-hidden="true"></i>
+                        <p class="card-text" style="font-size: 20px;"><br>Hợp tác xã chè Hảo Đạt</p>
+                    </span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="col-sm-3 mb-2 location">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#FF9A00 !important">
+                    <p class="card-text float-end" id="light_data" style="font-size: 23px; font-weight: bold;"></p>
+                    <span>
+                        <i class="fa fa-map fa-4x float-sm-left" aria-hidden="true"></i>
+                        <p class="card-text" style="font-size: 20px;"><br>Hợp tác xã chè Thái Minh</p>
+                    </span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="col-sm-3 mb-2 location">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#23364b !important">
+                    <p class="card-text float-end" id="tank_data" style="font-size:33px;"></p>
+                    <span>
+                        <i class="fa fa-map fa-4x float-sm-left" aria-hidden="true"></i>
+                        <p class="card-text" style="font-size: 20px;"><br>Hợp tác xã chè Khe Cốc</p>
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock content %}

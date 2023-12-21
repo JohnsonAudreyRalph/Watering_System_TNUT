@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="moel" id="blur"
+    style="z-index: -1; position:absolute; height: 104%; width:110vw; margin-left:10px;">
+</div>
+<div class="col-10 pl-5" style="height:100%; min-height:501px;" id="Sys_info">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thay đổi chế độ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn đang dùng chế độ ..., ấn xác nhận để chuyển sang chế độ
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="confirm-mode">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-sm-3">
+        <div class="moel" id="hideall"
+            style="z-index: -1; position:absolute; min-height: 100%; width:110vw; margin-left:0px" hidden>
+        </div>
+        <div class="col-sm-4">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog" aria-hidden="true"></i>&nbsp; Cài đặt nhiệt độ
+                </h4>
+            </div>
+            <div class="gauge-dual-card" id="temp">
+                <div class="gauge-dual">
+                    <div class="gauge-frame" style=" background-color: #c5a5a2 !important;">
+                        <div class="outer-gauge circle-container">
+                            <div class="circle" style=" border-color: #9c2d23 !important;"></div>
+                        </div>
+                        <div class="inner-gauge circle-container small-circle">
+                            <div class="circle" style=" border-color: #e63905 !important;"></div>
+                        </div>
+                        <div class="gauge__cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <label class="p-3">Min <input id="nhiet_do_min" type="number" min="0" max="100"></label>
+                    <label class="p-3">Max <input id="nhiet_do_max" type="number" min="0" max="100"></label>
+                    <button type="button" class="btn btn-danger" id="submit-temp">Xác nhận</button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="temp-alert"
+                    style="display:none">
+                    <strong id="temp-alert-text">Đã thiết lập thành công!</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog" aria-hidden="true"></i>&nbsp; Cài đặt độ ẩm không khí
+                </h4>
+            </div>
+            <div class="gauge-dual-card" id="air-humid">
+                <div class="gauge-dual">
+                    <div class="gauge-frame" style=" background-color: #abc0c2 !important;">
+                        <div class="outer-gauge circle-container">
+                            <div class="circle" style=" border-color: #0bc1d1 !important;"></div>
+                        </div>
+                        <div class="inner-gauge circle-container small-circle">
+                            <div class="circle" style=" border-color: #005cb3 !important;"></div>
+                        </div>
+                        <div class="gauge__cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <label class="p-3">Min <input id="khong_khi_min" type="number" min="0" max="100"></label>
+                    <label class="p-3">Max <input id="khong_khi_max" type="number" min="0" max="100"></label>
+                    <button type="button" class="btn btn-danger" id="air-humid-submit">Xác nhận</button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="air-humid-alert"
+                    style="display:none">
+                    <strong id="air-humid-alert-text">Đã thiết lập thành công!</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog" aria-hidden="true"></i>&nbsp;Hệ thống làm mát
+                </h4>
+            </div>
+            <div class="card shadow-lg p-3 rounded w-80" style="background-color:#a8b7c5 !important">
+                <div class="card-body">
+                    <label for="cool" class="p-3" style="margin-right:45px;">Quạt</label>
+                    <label class="switch">
+                        <input type="checkbox" id="cool">
+                        <span class="slider round"></span>
+                    </label>
+                    <label for="cool_ps" class="p-3">Phun sương</label>
+                    <label class="switch">
+                        <input type="checkbox" id="cool_ps">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

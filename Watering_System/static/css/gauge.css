@@ -1,0 +1,31 @@
+.chart-gauge {
+    width: 220px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    height:120px;
+}
+
+.chart-color1 {
+    fill: #42789cf8;
+}
+
+.chart-color2 {
+    fill: #1857aaf6;
+}
+
+.chart-color3 {
+    fill: #310fc9;
+}
+
+.needle,
+.needle-center,
+.gauge1,
+.gauge3 {
+    fill: #2c2e31;
+}
+
+.prose {
+    text-align: center;
+}
+

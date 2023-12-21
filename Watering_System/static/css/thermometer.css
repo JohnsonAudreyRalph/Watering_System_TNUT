@@ -1,0 +1,184 @@
+.gauge-dual-card {
+    --gauge-card-width: 400px;
+    --outer-value: 0;
+    --inner-value: 0;
+    --inner-color: #134586;
+    --outer-color: #5270d4;
+
+    --outer-angle: calc(-180deg + (var(--outer-value) * 1.8deg));
+    --inner-angle: calc(-180deg + (var(--inner-value) * 1.8deg));
+    --gauge-width: calc(var(--gauge-card-width) / 10.5);
+    --value-font-size: calc(var(--gauge-card-width) / 18);
+    --label-font-size: calc(var(--gauge-card-width) / 14);
+
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.75);
+    width: 80%;
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 6px;
+}
+
+.gauge-dual-card div {
+    box-sizing: border-box;
+}
+
+.gauge-dual {
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+}
+
+.gauge-frame {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background-color: #9098acde;
+    position: relative;
+    border-top-left-radius: 100% 100%;
+    border-top-right-radius: 100% 100%;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    border-radius: 100%;
+    /* border: 38px solid; */
+    border-style: solid;
+    border-width: 24px;
+}
+
+.circle-container {
+    position: absolute;
+    transform-origin: 50% 100%;
+    top: 0;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.small-circle .circle {
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 160%;
+}
+
+.gauge-title {
+    position: absolute;
+    bottom: 50%;
+    margin-bottom: 0.1em;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+}
+
+.gauge-value,
+.gauge-label {
+    position: absolute;
+    bottom: 50%;
+    margin-bottom: 2.3em;
+    width: 81%;
+    text-align: center;
+}
+
+.gauge-value {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20%;
+}
+
+.gauge-value-outer,
+.gauge-label-outer {
+    color: var(--outer-color);
+    padding-bottom: 10%;
+    padding-right: 50px;
+}
+
+.gauge-value-outer:empty:before {
+    counter-increment: outervalue var(--outer-value);
+    content: counter(outervalue) "°C";
+}
+
+.gauge-value-inner,
+.gauge-label-inner {
+    right: 0;
+    color: var(--inner-color);
+    padding-bottom: 10%;
+    padding-left: 50px;
+}
+
+.gauge-value-inner:empty:before {
+    counter-increment: innervalue var(--inner-value);
+    content: counter(innervalue) "°C";
+}
+
+.outer-gauge {
+    transform: rotate(var(--outer-angle));
+}
+
+.outer-gauge .circle {
+    border-color: var(--outer-color);
+}
+
+.inner-gauge {
+    transform: rotate(var(--inner-angle));
+}
+
+.inner-gauge .circle {
+    border-color: var(--inner-color);
+}
+
+.gauge__cover {
+    width: 61%;
+    height: 61%;
+    background: #cfcbc4;
+    border-radius: 50%;
+    position: absolute;
+    top: 19%;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+}
+
+@media (max-width: 575.98px) {
+
+    .circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        border-radius: 100%;
+        /* border: 38px solid; */
+        border-style: solid;
+        border-width: 20px;
+    }
+
+}
+
+/*Medium devices (tablets, 768px and up) */
+@media (max-width: 769px) {
+    .circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        border-radius: 100%;
+        border-style: solid;
+        border-width: 20px;
+    }
+}
+
+/*Large devices (desktops, 992px and up) */
+@media (max-width: 991.98px) {}
+
+/*Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1199.98px) {}

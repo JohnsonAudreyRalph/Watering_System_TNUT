@@ -1,0 +1,479 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-10 pl-5" style="height:100%;" id="Sys_info">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thay đổi chế độ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn đang dùng chế độ ..., ấn xác nhận để chuyển sang chế độ
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="confirm-mode">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-sm-1" style="display:flex;justify-content:center;align-items:center;">
+        <div class="col-xl-10 col-lg-12 col-sm-12  mt-2">
+            <div class="card shadow-lg rounded" style="background-color:#a8b7c5 !important">
+                <div class="card-body">
+                    <div class="container"
+                        style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                        <h4 class="text-left">
+                            <i class="fas fa-cog" aria-hidden="true"></i>&nbsp;Khu vực 1 - 2&nbsp;
+                            <input type="checkbox" name="kv1_check" id="kv1_check" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>
+                        </h4>
+                    </div>
+                    <div class="row row-cols-sm-3" id="card_kv1_content">
+                        <div class="col-sm-4 col-lg-4 col-xl-3 border-dark">
+                            <div class="gauge-dual-card">
+                                <div class="chart-gauge" id="gauge1"></div>
+                                <div class="prose">
+                                    <label for="kv1_humid" class="range-label">Cài đặt độ ẩm:</label>
+                                    <input type="number" id="kv1_humid" name="kv1_humid" style="width: 50px;">
+                                    <label class="range-label">%</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <p style="margin-bottom:10px; font-size:16px;">Thời gian bắt đầu</p>
+                            <input type="checkbox" name="kv1_check_l1" id="kv1_check_l1" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="start_time1" class="range-label">Lần 1:&nbsp;</label>
+                            <input type="time" id="kv1_time1" name="kv1_time1" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv1_check_l2" id="kv1_check_l2" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv1_time2" class="range-label">Lần 2:&nbsp;</label>
+                            <input type="time" id="kv1_time2" name="kv1_time2" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv1_check_l3" id="kv1_check_l3" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv1_time3" class="range-label">Lần 3:&nbsp;</label>
+                            <input type="time" id="kv1_time3" name="kv1_time3" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv1_check_l4" id="kv1_check_l4" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv1_time4" class="range-label">Lần 4:&nbsp;</label>
+                            <input type="time" id="kv1_time4" name="kv1_time4" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv1_check_l5" id="kv1_check_l5" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv1_time5" class="range-label">Lần 5:&nbsp;</label>
+                            <input type="time" id="kv1_time5" name="kv1_time5" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv1_check_l6" id="kv1_check_l6" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv1_time6" class="range-label">Lần 6:&nbsp;</label>
+                            <input type="time" id="kv1_time6" name="kv1_time6" min="00:00" max="24:00">
+                        </div>
+                        <div class="col-sm-5" style="padding:0 !important;">
+                            <table class="table table-sm" style="margin: 0 auto !important;overflow:auto;">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Khoảng</th>
+                                        <th class="text-center">Độ ẩm min</th>
+                                        <th class="text-center">Độ ẩm max</th>
+                                        <th class="text-center">Thời lượng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv1_check1" class="range-label">1:</p>
+                                        </th>
+
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_min_1" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_max_1" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_length1" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv1_check2" class="range-label">2:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_min_2" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_max_2" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_length2" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv1_check3" class="range-label">3:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_min_3" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_max_3" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_length3" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv1_check4" class="range-label">4:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_min_4" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_max_4" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_length4" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p class="range-label">5:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_min_5" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_max_5" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_length5" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p class="range-label">6:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_min_6" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_range_max_6" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv1_length6" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="container mt-3" style="display:flex;justify-content:center;align-items:center;">
+                        <button type="button" class="btn btn-danger mt-4" id="kv1-humid-submit"
+                            style="width: 100px;">Xác
+                            nhận</button>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert"
+                        id="kv1-humid-alert" style="display: none; margin-top:10px;">
+                        <strong id="kv1-humid-alert-text">Đã thiết lập thành công!</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-sm-1" style="display:flex;justify-content:center;align-items:center;">
+        <div class="col-xl-10 col-lg-12 col-sm-12  mt-2">
+            <div class="card shadow-lg rounded" style="background-color:#a8b7c5 !important">
+                <div class="card-body">
+                    <div class="container"
+                        style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                        <h4 class="text-left">
+                            <i class="fas fa-cog" aria-hidden="true"></i>&nbsp;Khu vực 3 - 4&nbsp;
+                            <input type="checkbox" name="kv3_check" id="kv3_check" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>
+                        </h4>
+                    </div>
+                    <div class="row row-cols-sm-3" id="card_kv3_content">
+                        <div class="col-sm-4 col-lg-4 col-xl-3 border-dark">
+                            <div class="gauge-dual-card">
+                                <div class="chart-gauge" id="gauge3"></div>
+                                <div class="prose">
+                                    <label for="kv3_humid" class="range-label">Cài đặt độ ẩm:</label>
+                                    <input type="number" id="kv3_humid" name="kv3_humid" style="width: 50px;">
+                                    <label class="range-label">%</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <p style="margin-bottom:10px; font-size:16px;">Thời gian bắt đầu</p>
+                            <input type="checkbox" name="kv3_check_l1" id="kv3_check_l1" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label class="range-label">Lần 1:&nbsp;</label>
+                            <input type="time" id="kv3_time1" name="kv3_time1" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv3_check_l2" id="kv3_check_l2" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv3_time2" class="range-label">Lần 2:&nbsp;</label>
+                            <input type="time" id="kv3_time2" name="kv3_time2" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv3_check_l3" id="kv3_check_l3" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv3_time3" class="range-label">Lần 3:&nbsp;</label>
+                            <input type="time" id="kv3_time3" name="kv3_time3" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv3_check_l4" id="kv3_check_l4" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv3_time4" class="range-label">Lần 4:&nbsp;</label>
+                            <input type="time" id="kv3_time4" name="kv3_time4" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv3_check_l5" id="kv3_check_l5" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv3_time5" class="range-label">Lần 5:&nbsp;</label>
+                            <input type="time" id="kv3_time5" name="kv3_time5" min="00:00" max="24:00"><br><br>
+
+                            <input type="checkbox" name="kv3_check_l6" id="kv3_check_l6" class="range-checkbox"
+                                style="width: 15px; height:15px;" checked>&nbsp;
+                            <label for="kv3_time6" class="range-label">Lần 6:&nbsp;</label>
+                            <input type="time" id="kv3_time6" name="kv3_time6" min="00:00" max="24:00">
+                        </div>
+                        <div class="col-sm-5" style="padding:0 !important;">
+                            <table class="table table-sm" style="margin: 0 auto !important;overflow:auto;">
+                                <tbody>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Khoảng</th>
+                                            <th class="text-center">Độ ẩm min</th>
+                                            <th class="text-center">Độ ẩm max</th>
+                                            <th class="text-center">Thời lượng</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv3_check1" class="range-label">1:</p>
+                                        </th>
+
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_min_1" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_max_1" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_length1" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv3_check2" class="range-label">2:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_min_2" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_max_2" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_length2" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv3_check3" class="range-label">3:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_min_3" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_max_3" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_length3" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p for="kv3_check4" class="range-label">4:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_min_4" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_max_4" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_length4" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p class="range-label">5:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_min_5" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_max_5" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_length5" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-center">
+                                            <p class="range-label">6:</p>
+                                        </th>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_min_6" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_range_max_6" style="width: 50px;">
+                                            <label class="range-label">%</label>
+                                        </td>
+                                        <td scope="row" class="text-center">
+                                            <input type="number" id="kv3_length6" style="width: 50px;"
+                                                class="timelenght">
+                                            <label class="range-label">Phút</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="container mt-3" style="display:flex;justify-content:center;align-items:center;">
+                        <button type="button" class="btn btn-danger mt-4" id="kv3-humid-submit"
+                            style="width: 100px;">Xác
+                            nhận</button>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert"
+                        id="kv3-humid-alert" style="display: none; margin-top:10px;">
+                        <strong id="kv3-humid-alert-text">Đã thiết lập thành công!</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-sm-3" style="display:flex;justify-content:center;align-items:center;">
+        <div class="col-sm-3 mr40">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog" aria-hidden="true"></i>&nbsp;Chế độ phun sương
+                </h4>
+            </div>
+            <div class="card shadow-lg p-3 rounded w-80" style="background-color:#a8b7c5 !important">
+                <div class="card-body">
+                    <label class="p-3">Khu vực 1,2</label>
+                    <label class="switch">
+                        <input type="checkbox" id="phun_suong_kv12">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="p-3">Khu vực 3,4</label>
+                    <label class="switch">
+                        <input type="checkbox" id="phun_suong_kv34">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mr40">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog" aria-hidden="true"></i>&nbsp;Chế độ nhỏ giọt
+                </h4>
+            </div>
+            <div class="card shadow-lg p-3 rounded w-80" style="background-color:#a8b7c5 !important">
+                <div class="card-body">
+                    <label for="nho_giot_kv12" class="p-3">Khu vực 1,2</label>
+                    <label class="switch">
+                        <input type="checkbox" id="nho_giot_kv12">
+                        <span class="slider round"></span>
+                    </label>
+                    <label for="nho_giot_kv34" class="p-3">Khu vực 3,4</label>
+                    <label class="switch">
+                        <input type="checkbox" id="nho_giot_kv34">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3" id="phunmua">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog" aria-hidden="true"></i>&nbsp;Chế độ phun mưa
+                </h4>
+            </div>
+            <div class="card shadow-lg p-3 rounded w-80" style="background-color:#a8b7c5 !important">
+                <div class="card-body">
+                    <label class="p-3">Khu vực 1,2</label>
+                    <label class="switch">
+                        <input type="checkbox" id="pm1" disabled>
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="p-3">Khu vực 3,4</label>
+                    <label class="switch">
+                        <input type="checkbox" id="pm3" disabled>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

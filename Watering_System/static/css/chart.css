@@ -1,0 +1,33 @@
+/* Extra small devices (portrait phones, less than 576px)
+No media query for `xs` since this is the default in Bootstrap
+
+Small devices (landscape phones, 576px and up)
+*/
+.active-btn{
+    background-color: darkolivegreen;
+    color:white;
+}
+.active-option{
+    background-color: rgb(60, 138, 190);
+    color:black;
+}
+
+@media (max-width: 575.98px) {
+    .container{
+        height: 100% !important;
+        width: 100% !important;
+    }
+    h4{
+        font-size:14px !important;
+    }
+
+}
+
+/*Medium devices (tablets, 768px and up) */
+@media (max-width: 767.98px) {}
+
+/*Large devices (desktops, 992px and up) */
+@media (max-width: 991.98px) {}
+
+/*Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1199.98px) {}
