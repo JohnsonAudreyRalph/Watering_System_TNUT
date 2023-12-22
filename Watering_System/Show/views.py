@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.contrib import messages
@@ -20,8 +20,13 @@ class Login(View):
             if user is not None:
                 # Kiểm tra điều kiện hợp lệ ==> Đăng nhập thành công
                 login(request, user)
-                return redirect('/Stats_HTML/')
-                # return render(request, 'Stats.html')
+                user_role = request.user
+                finter = Manager_User.objects.all().filter(user=user_role)
+                for x in finter:
+                    if x.Area == "Giám sát" or x.Area == "Quản trị":
+                        return redirect('/location_HTML/')
+                    else:
+                        return redirect('/info_HTML/')
             else:
                 try:
                     # Kiểm tra điều kiện tên người dùng nhập vào có tồn tại hay không
@@ -39,8 +44,6 @@ def Stats_HTML(request):
     filtered_data = Manager_User.objects.all().filter(user=user)
     return render(request, "Stats.html", {'filter':filtered_data})
 
-# def cool_HTML(request):
-#     return render(request, "cool.html")
 @login_required
 def info_HTML(request):
     user = request.user  # Lấy giá trị user từ request
@@ -70,7 +73,7 @@ def user_HTML(request):
     user_role = request.user
     finter = Manager_User.objects.all().filter(user=user_role)
     for x in finter:
-        if x.Area == "Giám sát" or x.Area == "Quản trị":
+        if x.Area == "Quản trị":
             print("Là quản trị hoặc giám sát")
             if request.method == "POST":
                 name = request.POST.get("name")
@@ -126,7 +129,7 @@ def manager_Update(request, id):
             save_info.save()
             return redirect('/user_HTML/')
     user = request.user  # Lấy giá trị user từ request
-    filtered_data = manager_Delete.objects.all().filter(userName=user)
+    filtered_data = Manager_User.objects.all().filter(userName=user)
     return render(request, 'user.html', {'filter':filtered_data})
 
 @login_required
@@ -139,3 +142,39 @@ def Logout(request):
     logout(request)
     messages.error(request, "Bạn đã đăng xuất")
     return redirect('/')
+
+def Show_HaoDat_info(request):
+    user = request.user  # Lấy giá trị user từ request
+    filtered_data = Manager_User.objects.all().filter(user=user)
+    area = 'HaoDat'
+    return render(request, "HaoDat/info_HaoDat.html", {'filter_area':area, 'filter':filtered_data})
+
+def Show_HaoDat_stats(request):
+    user = request.user  # Lấy giá trị user từ request
+    filtered_data = Manager_User.objects.all().filter(user=user)
+    area = 'HaoDat'
+    return render(request, "HaoDat/Stats_HaoDat.html", {'filter_area':area, 'filter':filtered_data})
+
+def Show_ThaiMinh_info(request):
+    user = request.user  # Lấy giá trị user từ request
+    filtered_data = Manager_User.objects.all().filter(user=user)
+    area = 'ThaiMinh'
+    return render(request, "ThaiMinh/info_ThaiMinh.html", {'filter_area':area, 'filter':filtered_data})
+
+def Show_ThaiMinh_status(request):
+    user = request.user  # Lấy giá trị user từ request
+    filtered_data = Manager_User.objects.all().filter(user=user)
+    area = 'ThaiMinh'
+    return render(request, "ThaiMinh/Stats_ThaiMinh.html", {'filter_area':area, 'filter':filtered_data})
+
+def Show_KheCoc_info(request):
+    user = request.user  # Lấy giá trị user từ request
+    filtered_data = Manager_User.objects.all().filter(user=user)
+    area = 'KheCoc'
+    return render(request, "KheCoc/info_KheCoc.html", {'filter_area':area, 'filter':filtered_data})
+
+def Show_KheCoc_status(request):
+    user = request.user  # Lấy giá trị user từ request
+    filtered_data = Manager_User.objects.all().filter(user=user)
+    area = 'KheCoc'
+    return render(request, "KheCoc/Stats_KheCoc.html", {'filter_area':area, 'filter':filtered_data})

@@ -26,15 +26,13 @@
         .dc {
             pointer-events: none;
         }
-
-        
     </style>
     {% block link_css %}{% endblock link_css %}
 </head>
 <body>
     <div class="jumbotron" style="background-color: #81b214">
         <h2 class="pt-4 text-center pull-left">
-           HỆ THỐNG GIÁM SÁT VÀ TƯỚI CHÈ TRÊN CÁC ĐỊA BÀN TỈNH THÁI NGUYÊN
+            HỆ THỐNG GIÁM SÁT VÀ TƯỚI CHÈ CỦA <span id="title" style="text-transform: uppercase;"></span>
         </h2>
         <hr class="my-4" />
         <h5 class="pb-4 text-center" style="margin: 0">
@@ -58,17 +56,20 @@
                                     </span>
                                 </div>
                             </a>
-                            <hr style="margin-top: 0" />
-                            <li class=" list-group-item sidebar-separator-title text-muted d-flex align-items-center border-0 menu-collapsed">
-                                <span style="font-size: 16px; color: #111010a4 !important">CHỌN KHU VỰC</span>
-                            </li>
-                            <a href="{% url "location_HTML" %}" aria-expanded="false" class=" bg-dark list-group-item list-group-item-action flex-column align-items-start mb-2 border-0">
-                                <div class=" d-flex w-100 justify-content-start align-items-center">
-                                    &nbsp;&nbsp;<span class="fa fa-map-marked fa-2x mr-3"></span>
-                                    <span class="menu-collapsed"> &nbsp;&nbsp;Danh Sách khu vực</spaZn>
-                                    <span class="submenu-icon ml-auto"></span>
-                                </div>
-                            </a>
+                            <!--
+                                <hr style="margin-top: 0" />
+                                <li class=" list-group-item sidebar-separator-title text-muted d-flex align-items-center border-0 menu-collapsed">
+                                    <span style="font-size: 16px; color: #111010a4 !important">CHỌN KHU VỰC</span>
+                                </li>
+                                <a href="{% url "location_HTML" %}" aria-expanded="false" class=" bg-dark list-group-item list-group-item-action flex-column align-items-start mb-2 border-0">
+                                    <div class=" d-flex w-100 justify-content-start align-items-center">
+                                        &nbsp;&nbsp;<span class="fa fa-map-marked fa-2x mr-3"></span>
+                                        <span class="menu-collapsed"> &nbsp;&nbsp;Danh Sách khu vực</spaZn>
+                                        <span class="submenu-icon ml-auto"></span>
+                                    </div>
+                                </a>
+                            -->
+                            
                             <!-- Info -->
                             <hr style="margin-top: 0" />
                             <li class=" list-group-item sidebar-separator-title text-muted d-flex align-items-center border-0 menu-collapsed">
@@ -140,20 +141,22 @@
                             </a>
 
 
-
-                            <div id="acc_user">
-                                <hr style="margin-top: 0" />
-                                <li class=" list-group-item sidebar-separator-title text-muted d-flex align-items-center border-0 menu-collapsed">
-                                    <span style="font-size: 16px; color: #111010a4 !important;">TÀI KHOẢN</span>
-                                </li>
-                                <a href="{% url "user_HTML" %}" aria-expanded="false" class=" bg-dark list-group-item list-group-item-action flex-column align-items-start mb-2 border-0">
-                                    <div class=" d-flex w-100 justify-content-start align-items-center">
-                                        &nbsp;&nbsp;<span class="fa fa-user fa-2x mr-3"></span>
-                                        <span class="menu-collapsed"> &nbsp;&nbsp;Quản lý tài khoản</span>
-                                        <span class="submenu-icon ml-auto"></span>
-                                    </div>
-                                </a>
-                            </div>
+                            <!--
+                                <div id="acc_user">
+                                    <hr style="margin-top: 0" />
+                                    <li class=" list-group-item sidebar-separator-title text-muted d-flex align-items-center border-0 menu-collapsed">
+                                        <span style="font-size: 16px; color: #111010a4 !important;">TÀI KHOẢN</span>
+                                    </li>
+                                    <a href="{% url "user_HTML" %}" aria-expanded="false" class=" bg-dark list-group-item list-group-item-action flex-column align-items-start mb-2 border-0">
+                                        <div class=" d-flex w-100 justify-content-start align-items-center">
+                                            &nbsp;&nbsp;<span class="fa fa-user fa-2x mr-3"></span>
+                                            <span class="menu-collapsed"> &nbsp;&nbsp;Quản lý tài khoản</span>
+                                            <span class="submenu-icon ml-auto"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            -->
+                            
                             
                             <hr style="margin-top: 0" />
                             <a href="{% url "logout" %}" class="list-group-item list-group-item-action border-0"
@@ -174,14 +177,8 @@
         </div>
 
         <script>
-            var acc_user_ = document.getElementById("acc_user");
-
             {% for item in filter %}
-                {% if item.Area == "Quản trị" or item.Area == "Giám sát"%}
-                    acc_user_.style.display = "block";
-                {% else %}
-                    acc_user_.style.display = "none";
-                {% endif %}
+                document.getElementById("title").innerHTML = '{{item.Area}}'
             {% endfor %}
         </script>
         

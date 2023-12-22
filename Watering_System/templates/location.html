@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% extends "base_Monitoring_&_Control.html" %}
+
+{% block title %}HỆ THỐNG GIÁM SÁT VÀ TƯỚI CHÈ TRÊN CÁC ĐỊA BÀN TỈNH THÁI NGUYÊN{% endblock title %}
 
 {% block content %}
 <div class="col-10 pl-5" style="height:100%;" id="Sys_info">
@@ -8,7 +10,7 @@
         </h4>
     </div>
     <div class="row row-cols-sm-4">
-        <a href="#" class="col-sm-3 mb-2 location">
+        <a href="{% url "Show_HaoDat_info" %}" class="col-sm-3 mb-2 location">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color:#D92027 !important">
                     <p class="card-text float-end" style="font-size:33px;" id="temperature_data"></p>
@@ -19,7 +21,7 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="col-sm-3 mb-2 location">
+        <a href="{% url "Show_ThaiMinh_info" %}" class="col-sm-3 mb-2 location">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color:#FF9A00 !important">
                     <p class="card-text float-end" id="light_data" style="font-size: 23px; font-weight: bold;"></p>
@@ -30,7 +32,7 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="col-sm-3 mb-2 location">
+        <a href="{% url "Show_KheCoc_info" %}" class="col-sm-3 mb-2 location">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color:#23364b !important">
                     <p class="card-text float-end" id="tank_data" style="font-size:33px;"></p>

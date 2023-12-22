@@ -1,0 +1,102 @@
+{% extends "base_Monitoring_&_Control.html" %}
+{% block title %}
+    HỆ THỐNG GIÁM SÁT VÀ TƯỚI CHÈ CỦA THÁI MINH
+{% endblock title %}
+{% block content %}
+<div class="col-10 pl-5" style="height: 100%" id="Sys_info">
+    <div class=" d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom pt-4" style="padding-left: 0px !important; margin-left: 0px !important">
+        <h4 class="text-left">
+            <i class="fas fa-chart-line" aria-hidden="true"></i>&nbsp; Biểu đồ
+            trạng thái môi trường
+        </h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group m-1" style="margin-right: 20px">
+                <button class="btn btn-sm btn-outline-dark active-btn" id="temp">
+                    Nhiệt độ
+                </button>
+                <button class="btn btn-sm btn-outline-dark" id="light">
+                    Độ Ph
+                </button>
+                <button class="btn btn-sm btn-outline-dark" id="air_humid">
+                    Độ ẩm không khí
+                </button>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-dark m-1 dropdown-toggle" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Chọn Tháng
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="list-months1">
+                    <a class="dropdown-item">1</a>
+                    <a class="dropdown-item">2</a>
+                    <a class="dropdown-item">3</a>
+                    <a class="dropdown-item">4</a>
+                    <a class="dropdown-item">5</a>
+                    <a class="dropdown-item">6</a>
+                    <a class="dropdown-item">7</a>
+                    <a class="dropdown-item">8</a>
+                    <a class="dropdown-item">9</a>
+                    <a class="dropdown-item">10</a>
+                    <a class="dropdown-item">11</a>
+                    <a class="dropdown-item">12</a>
+                </div>
+            </div>
+            <button class="btn btn-sm btn-outline-dark m-1 active-btn" id="year1">
+                Cả năm
+            </button>
+        </div>
+    </div>
+    <div class="container m-1 border border-primary"
+        style="width: auto; height: auto; overflow: scroll; margin-left: 0 !important;">
+        <canvas id="myChart" style="overflow: auto;"></canvas>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom pt-4"
+        style="padding-left: 0px !important; margin-left: 0px !important">
+        <h4 class="text-left">
+            <i class="fas fa-chart-line" aria-hidden="true"></i>&nbsp; Biểu đồ độ ẩm các khu vực
+        </h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group m-1" style="margin-right: 20px">
+                <button class="btn btn-sm btn-outline-dark active-btn" id="kv1_btn">
+                    Khu vực 1
+                </button>
+                <button class="btn btn-sm btn-outline-dark" id="kv2_btn">
+                    Khu vực 2
+                </button>
+                <button class="btn btn-sm btn-outline-dark" id="kv3_btn">
+                    Khu vực 3
+                </button>
+                <button class="btn btn-sm btn-outline-dark" id="kv4_btn">
+                    Khu vực 4
+                </button>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-dark m-1 dropdown-toggle" type="button"
+                    id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Chọn Tháng
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" id="list-months2">
+                    <a class="dropdown-item">1</a>
+                    <a class="dropdown-item">2</a>
+                    <a class="dropdown-item">3</a>
+                    <a class="dropdown-item">4</a>
+                    <a class="dropdown-item">5</a>
+                    <a class="dropdown-item">6</a>
+                    <a class="dropdown-item">7</a>
+                    <a class="dropdown-item">8</a>
+                    <a class="dropdown-item">9</a>
+                    <a class="dropdown-item">10</a>
+                    <a class="dropdown-item">11</a>
+                    <a class="dropdown-item">12</a>
+                </div>
+            </div>
+            <button class="btn btn-sm btn-outline-dark m-1 active-btn" id="year2">
+                Cả năm
+            </button>
+        </div>
+    </div>
+    <div class="container m-1 border border-primary" style="width: auto;height: auto;overflow: scroll;margin-left: 0 !important;">
+        <canvas id="AreaChart" style="overflow: auto;"></canvas>
+    </div>
+</div>
+{% endblock content %}

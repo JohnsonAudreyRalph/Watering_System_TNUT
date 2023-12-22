@@ -13,5 +13,11 @@ urlpatterns = [
     path('manager_Delete/<int:id>/', manager_Delete, name='manager_Delete'),
     path('manager_Update/<str:id>', manager_Update, name='manager_Update'),
     path('location_HTML/', location_HTML, name='location_HTML'),
-    path('logout/', Logout, name='logout')
+    path('logout/', Logout, name='logout'),
+    path('Show_HaoDat_info', Show_HaoDat_info, name='Show_HaoDat_info'),
+    path('Show_HaoDat_stats', Show_HaoDat_stats, name='Show_HaoDat_stats'),
+    path('Show_ThaiMinh_info', Show_ThaiMinh_info, name='Show_ThaiMinh_info'),
+    path('Show_ThaiMinh_status', Show_ThaiMinh_status, name='Show_ThaiMinh_status'),
+    path('Show_KheCoc_info', Show_KheCoc_info, name='Show_KheCoc_info'),
+    path('Show_KheCoc_status', Show_KheCoc_status, name='Show_KheCoc_status'),
 ]
