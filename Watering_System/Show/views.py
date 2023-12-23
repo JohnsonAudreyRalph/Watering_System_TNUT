@@ -94,7 +94,7 @@ def user_HTML(request):
         else:
             print("Không phải")
             return render(request, '404.html')
-    
+
 
 @login_required
 def manager_Delete(request, id):
@@ -177,4 +177,5 @@ def Show_KheCoc_status(request):
     user = request.user  # Lấy giá trị user từ request
     filtered_data = Manager_User.objects.all().filter(user=user)
     area = 'KheCoc'
+    
     return render(request, "KheCoc/Stats_KheCoc.html", {'filter_area':area, 'filter':filtered_data})
