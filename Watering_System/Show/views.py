@@ -4,10 +4,10 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import Manager_User, API_ThaiMinh, API_HaoDat, API_KheCoc
+from .models import Manager_User, API_ThaiMinh_read, API_ThaiMinh_R_W, API_HaoDat_read, API_HaoDat_R_W, API_KheCoc_read, API_KheCoc_R_W
 
 from rest_framework import status
-from .serializers import Data_Serializer_HaoDat, Data_Serializer_KheCoc, Data_Serializer_ThaiMinh
+from .serializers import Data_Serializer_HaoDat_R_W, Data_Serializer_HaoDat_read, Data_Serializer_KheCoc_R_W, Data_Serializer_KheCoc_read, Data_Serializer_ThaiMinh_R_W, Data_Serializer_ThaiMinh_read
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
@@ -18,15 +18,15 @@ from django.http import JsonResponse
 # Create your views here.
 
 @api_view(['GET'])
-def Create_API_HaoDat(request):
-    serializer = Data_Serializer_HaoDat(data=request.query_params)
+def Create_API_HaoDat_read(request):
+    serializer = Data_Serializer_HaoDat_read(data=request.query_params)
     if serializer.is_valid():
 
         if serializer.is_valid():
             serializer.save()
 
             return JsonResponse({
-                'message': 'Tạo mới API Hảo Đạt thành công!'
+                'message': 'Tạo mới API Hảo Đạt read thành công!'
             }, status=status.HTTP_200_OK)
 
         return JsonResponse({
@@ -36,19 +36,19 @@ def Create_API_HaoDat(request):
         return Response(serializer.errors, status=400)
 
 @api_view(['GET'])
-def Show_API_HaoDat(request):
-    data = API_HaoDat.objects.all()
-    serializer = Data_Serializer_HaoDat(data, many=True)
+def Show_API_HaoDat_read(request):
+    data = API_HaoDat_read.objects.all()
+    serializer = Data_Serializer_HaoDat_read(data, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-def Update_API_Hao_Dat(request):
-    data = get_object_or_404(API_HaoDat, pk=1)
-    serializer = Data_Serializer_HaoDat(data, data=request.GET.dict())
+def Update_API_Hao_Dat_read(request):
+    data = get_object_or_404(API_HaoDat_read, pk=1)
+    serializer = Data_Serializer_HaoDat_read(data, data=request.GET.dict())
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://127.0.0.1:8000/Show_API_HaoDat?format=json'
+        url = 'http://mrduck.id.vn/Show_API_HaoDat_read?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -59,18 +59,64 @@ def Update_API_Hao_Dat(request):
         return JsonResponse({'message': 'Cập nhật thành công!'}, status=status.HTTP_200_OK)
 
     return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
+
+# ===================================
+@api_view(['GET'])
+def Create_API_HaoDat_R_W(request):
+    serializer = Data_Serializer_HaoDat_R_W(data=request.query_params)
+    if serializer.is_valid():
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse({
+                'message': 'Tạo mới API Hảo Đạt R & W thành công!'
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({
+            'message': 'Lỗi, tạo API thành công!'
+        }, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(serializer.errors, status=400)
+
+@api_view(['GET'])
+def Show_API_HaoDat_R_W(request):
+    data = API_HaoDat_R_W.objects.all()
+    serializer = Data_Serializer_HaoDat_R_W(data, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def Update_API_Hao_Dat_R_W(request):
+    data = get_object_or_404(API_HaoDat_R_W, pk=1)
+    serializer = Data_Serializer_HaoDat_R_W(data, data=request.GET.dict())
+
+    if serializer.is_valid():
+        serializer.save()
+        url = 'http://mrduck.id.vn/Show_API_HaoDat_R_W?format=json'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            return JsonResponse({
+                'message': json.dumps(response.json()) 
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({'message': 'Cập nhật thành công!'}, status=status.HTTP_200_OK)
+
+    return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 # ===========================================================
 @api_view(['GET'])
-def Create_API_KheCoc(request):
-    serializer = Data_Serializer_KheCoc(data=request.query_params)
+def Create_API_KheCoc_read(request):
+    serializer = Data_Serializer_KheCoc_read(data=request.query_params)
     if serializer.is_valid():
 
         if serializer.is_valid():
             serializer.save()
 
             return JsonResponse({
-                'message': 'Tạo mới API Khê Cốc thành công!'
+                'message': 'Tạo mới API Khê Cốc read thành công!'
             }, status=status.HTTP_200_OK)
 
         return JsonResponse({
@@ -80,19 +126,19 @@ def Create_API_KheCoc(request):
         return Response(serializer.errors, status=400)
 
 @api_view(['GET'])
-def Show_API_KheCoc(request):
-    data = API_KheCoc.objects.all()
-    serializer = Data_Serializer_KheCoc(data, many=True)
+def Show_API_KheCoc_read(request):
+    data = API_KheCoc_read.objects.all()
+    serializer = Data_Serializer_KheCoc_read(data, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-def Update_API_KheCoc(request):
-    data = get_object_or_404(API_KheCoc, pk=1)
-    serializer = Data_Serializer_KheCoc(data, data=request.GET.dict())
+def Update_API_KheCoc_read(request):
+    data = get_object_or_404(API_KheCoc_read, pk=1)
+    serializer = Data_Serializer_KheCoc_read(data, data=request.GET.dict())
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://127.0.0.1:8000/Show_API_KheCoc?format=json'
+        url = 'http://mrduck.id.vn/Show_API_KheCoc_read?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -104,17 +150,60 @@ def Update_API_KheCoc(request):
 
     return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET'])
+def Create_API_KheCoc_R_W(request):
+    serializer = Data_Serializer_KheCoc_R_W(data=request.query_params)
+    if serializer.is_valid():
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse({
+                'message': 'Tạo mới API Khê Cốc R & W thành công!'
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({
+            'message': 'Lỗi, tạo API thành công!'
+        }, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(serializer.errors, status=400)
+
+@api_view(['GET'])
+def Show_API_KheCoc_R_W(request):
+    data = API_KheCoc_R_W.objects.all()
+    serializer = Data_Serializer_KheCoc_R_W(data, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def Update_API_KheCoc_R_W(request):
+    data = get_object_or_404(API_KheCoc_R_W, pk=1)
+    serializer = Data_Serializer_KheCoc_R_W(data, data=request.GET.dict())
+
+    if serializer.is_valid():
+        serializer.save()
+        url = 'http://mrduck.id.vn/Show_API_KheCoc_R_W?format=json'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            return JsonResponse({
+                'message': json.dumps(response.json()) 
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({'message': 'Cập nhật thành công!'}, status=status.HTTP_200_OK)
+
+    return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
 # ===========================================================
 @api_view(['GET'])
-def Create_API_ThaiMinh(request):
-    serializer = Data_Serializer_ThaiMinh(data=request.query_params)
+def Create_API_ThaiMinh_read(request):
+    serializer = Data_Serializer_ThaiMinh_read(data=request.query_params)
     if serializer.is_valid():
 
         if serializer.is_valid():
             serializer.save()
 
             return JsonResponse({
-                'message': 'Tạo mới API Thái Minh thành công!'
+                'message': 'Tạo mới API Thái Minh read thành công!'
             }, status=status.HTTP_200_OK)
 
         return JsonResponse({
@@ -124,19 +213,19 @@ def Create_API_ThaiMinh(request):
         return Response(serializer.errors, status=400)
 
 @api_view(['GET'])
-def Show_API_ThaiMinh(request):
-    data = API_ThaiMinh.objects.all()
-    serializer = Data_Serializer_ThaiMinh(data, many=True)
+def Show_API_ThaiMinh_read(request):
+    data = API_ThaiMinh_read.objects.all()
+    serializer = Data_Serializer_ThaiMinh_read(data, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-def Update_API_ThaiMinh(request):
-    data = get_object_or_404(API_ThaiMinh, pk=1)
-    serializer = Data_Serializer_ThaiMinh(data, data=request.GET.dict())
+def Update_API_ThaiMinh_read(request):
+    data = get_object_or_404(API_ThaiMinh_read, pk=1)
+    serializer = Data_Serializer_ThaiMinh_read(data, data=request.GET.dict())
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://127.0.0.1:8000/Show_API_ThaiMinh?format=json'
+        url = 'http://mrduck.id.vn/Show_API_ThaiMinh_read?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -149,6 +238,48 @@ def Update_API_ThaiMinh(request):
     return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['GET'])
+def Create_API_ThaiMinh_R_W(request):
+    serializer = Data_Serializer_ThaiMinh_R_W(data=request.query_params)
+    if serializer.is_valid():
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse({
+                'message': 'Tạo mới API Thái Minh R & W thành công!'
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({
+            'message': 'Lỗi, tạo API thành công!'
+        }, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(serializer.errors, status=400)
+
+@api_view(['GET'])
+def Show_API_ThaiMinh_R_W(request):
+    data = API_ThaiMinh_R_W.objects.all()
+    serializer = Data_Serializer_ThaiMinh_R_W(data, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def Update_API_ThaiMinh_R_W(request):
+    data = get_object_or_404(API_ThaiMinh_R_W, pk=1)
+    serializer = Data_Serializer_ThaiMinh_R_W(data, data=request.GET.dict())
+
+    if serializer.is_valid():
+        serializer.save()
+        url = 'http://mrduck.id.vn/Show_API_ThaiMinh_R_W?format=json'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            return JsonResponse({
+                'message': json.dumps(response.json()) 
+            }, status=status.HTTP_200_OK)
+
+        return JsonResponse({'message': 'Cập nhật thành công!'}, status=status.HTTP_200_OK)
+
+    return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -168,6 +299,7 @@ class Login(View):
             if user is not None:
                 # Kiểm tra điều kiện hợp lệ ==> Đăng nhập thành công
                 login(request, user)
+                # return redirect('/location_HTML/')
                 user_role = request.user
                 finter = Manager_User.objects.all().filter(user=user_role)
                 for x in finter:

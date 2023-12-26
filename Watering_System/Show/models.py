@@ -7,10 +7,20 @@ class Manager_User(models.Model):
     Area = models.CharField(max_length=255)
     Creat_day = models.DateField(auto_now_add=True)
 
-class API_HaoDat(models.Model):
+# ===========================================================================================
+class API_HaoDat_read(models.Model):
+    update_time = models.TimeField(auto_now=True)
     nhiet_do_dat = models.FloatField(blank=True, null=True)
     do_am_dat = models.FloatField(blank=True, null=True)
     do_ph = models.FloatField(blank=True, null=True)
+    trang_thai_van_khu_vuc_1 = models.BooleanField(default=False)
+    trang_thai_van_khu_vuc_2 = models.BooleanField(default=False)
+    trang_thai_van_khu_vuc_3 = models.BooleanField(default=False)
+    trang_thai_bom = models.BooleanField(default=False)
+
+class API_HaoDat_R_W(models.Model):
+    change_status = models.BooleanField(default=False)
+    update_time = models.TimeField(auto_now=True)
     che_do_dieu_khien_van_KV_1 = models.BooleanField(default=False)
     che_do_dieu_khien_van_KV_2 = models.BooleanField(default=False)
     che_do_dieu_khien_van_KV_3 = models.BooleanField(default=False)
@@ -43,7 +53,6 @@ class API_HaoDat(models.Model):
     che_do_hang_ngay_dieu_khien_KV_4_1 = models.BooleanField(default=False)
     che_do_hang_ngay_dieu_khien_KV_4_2 = models.BooleanField(default=False)
     che_do_hang_ngay_dieu_khien_KV_4_3 = models.BooleanField(default=False)
-    che_do_hang_ngay_dieu_khien_KV_4_4 = models.BooleanField(default=False)
     che_do_xac_nhan_khu_vuc = models.BooleanField(default=False)
     che_do_xac_nhan_lan_tuoi_1 = models.BooleanField(default=False)
     che_do_xac_nhan_lan_tuoi_2 = models.BooleanField(default=False)
@@ -71,10 +80,20 @@ class API_HaoDat(models.Model):
     che_do_tu_dong_thoi_gian_tuoi_4 = models.IntegerField(blank=True, null=True)
     che_do_tu_dong_cai_dat_do_am = models.IntegerField(blank=True, null=True)
 
-class API_KheCoc(models.Model):
+# ===========================================================================================
+class API_KheCoc_read(models.Model):
+    update_time = models.TimeField(auto_now=True)
     nhiet_do_dat = models.FloatField(blank=True, null=True)
     do_am_dat = models.FloatField(blank=True, null=True)
     do_ph = models.FloatField(blank=True, null=True)
+    trang_thai_van_khu_vuc_1 = models.BooleanField(default=False)
+    trang_thai_van_khu_vuc_2 = models.BooleanField(default=False)
+    trang_thai_van_khu_vuc_3 = models.BooleanField(default=False)
+    trang_thai_bom = models.BooleanField(default=False)
+
+class API_KheCoc_R_W(models.Model):
+    change_status = models.BooleanField(default=False)
+    update_time = models.TimeField(auto_now=True)
     che_do_dieu_khien_van_KV_1 = models.BooleanField(default=False)
     che_do_dieu_khien_van_KV_2 = models.BooleanField(default=False)
     che_do_dieu_khien_van_KV_3 = models.BooleanField(default=False)
@@ -107,7 +126,6 @@ class API_KheCoc(models.Model):
     che_do_hang_ngay_dieu_khien_KV_4_1 = models.BooleanField(default=False)
     che_do_hang_ngay_dieu_khien_KV_4_2 = models.BooleanField(default=False)
     che_do_hang_ngay_dieu_khien_KV_4_3 = models.BooleanField(default=False)
-    che_do_hang_ngay_dieu_khien_KV_4_4 = models.BooleanField(default=False)
     che_do_xac_nhan_khu_vuc = models.BooleanField(default=False)
     che_do_xac_nhan_lan_tuoi_1 = models.BooleanField(default=False)
     che_do_xac_nhan_lan_tuoi_2 = models.BooleanField(default=False)
@@ -135,10 +153,20 @@ class API_KheCoc(models.Model):
     che_do_tu_dong_thoi_gian_tuoi_4 = models.IntegerField(blank=True, null=True)
     che_do_tu_dong_cai_dat_do_am = models.IntegerField(blank=True, null=True)
 
-class API_ThaiMinh(models.Model):
+# ===========================================================================================
+class API_ThaiMinh_read(models.Model):
+    update_time = models.TimeField(auto_now=True)
     nhiet_do_dat = models.FloatField(blank=True, null=True)
     do_am_dat = models.FloatField(blank=True, null=True)
     do_ph = models.FloatField(blank=True, null=True)
+    trang_thai_van_khu_vuc_1 = models.BooleanField(default=False)
+    trang_thai_van_khu_vuc_2 = models.BooleanField(default=False)
+    trang_thai_van_khu_vuc_3 = models.BooleanField(default=False)
+    trang_thai_bom = models.BooleanField(default=False)
+
+class API_ThaiMinh_R_W(models.Model):
+    change_status = models.BooleanField(default=False)
+    update_time = models.TimeField(auto_now=True)
     che_do_dieu_khien_van_KV_1 = models.BooleanField(default=False)
     che_do_dieu_khien_van_KV_2 = models.BooleanField(default=False)
     che_do_dieu_khien_van_KV_3 = models.BooleanField(default=False)
@@ -171,7 +199,6 @@ class API_ThaiMinh(models.Model):
     che_do_hang_ngay_dieu_khien_KV_4_1 = models.BooleanField(default=False)
     che_do_hang_ngay_dieu_khien_KV_4_2 = models.BooleanField(default=False)
     che_do_hang_ngay_dieu_khien_KV_4_3 = models.BooleanField(default=False)
-    che_do_hang_ngay_dieu_khien_KV_4_4 = models.BooleanField(default=False)
     che_do_xac_nhan_khu_vuc = models.BooleanField(default=False)
     che_do_xac_nhan_lan_tuoi_1 = models.BooleanField(default=False)
     che_do_xac_nhan_lan_tuoi_2 = models.BooleanField(default=False)

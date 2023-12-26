@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', Login.as_view(), name='Login'),
@@ -20,15 +21,24 @@ urlpatterns = [
     path('Show_KheCoc_info', Show_KheCoc_info, name='Show_KheCoc_info'),
     path('Show_KheCoc_status', Show_KheCoc_status, name='Show_KheCoc_status'),
     # ======================================================
-    path('Show_API_HaoDat', Show_API_HaoDat, name='Show_API_HaoDat'),
-    # path('Create_API_HaoDat', Create_API_HaoDat, name='Create_API_HaoDat'),
-    path('Update_API_Hao_Dat', Update_API_Hao_Dat, name='Update_API_Hao_Dat'),
-
-    path('Show_API_KheCoc', Show_API_KheCoc, name='Show_API_KheCoc'),
-    # path('Create_API_KheCoc', Create_API_KheCoc, name='Create_API_KheCoc'),
-    path('Update_API_KheCoc', Update_API_KheCoc, name='Update_API_KheCoc'),
-
-    path('Show_API_ThaiMinh', Show_API_ThaiMinh, name='Show_API_ThaiMinh'),
-    # path('Create_API_ThaiMinh', Create_API_ThaiMinh, name='Create_API_ThaiMinh'),
-    path('Update_API_ThaiMinh', Update_API_ThaiMinh, name='Update_API_ThaiMinh')
+    path('Show_API_HaoDat_read', Show_API_HaoDat_read, name='Show_API_HaoDat_read'),
+    # path('Create_API_HaoDat_read', Create_API_HaoDat_read, name='Create_API_HaoDat_read'),
+    path('Update_API_Hao_Dat_read', Update_API_Hao_Dat_read, name='Update_API_Hao_Dat_read'),
+    path('Show_API_HaoDat_R_W', Show_API_HaoDat_R_W, name='Show_API_HaoDat_R_W'),
+    # path('Create_API_HaoDat_R_W', Create_API_HaoDat_R_W, name='Create_API_HaoDat_R_W'),
+    path('Update_API_Hao_Dat_R_W', Update_API_Hao_Dat_R_W, name='Update_API_Hao_Dat_R_W'),
+    path('Show_API_KheCoc_read', Show_API_KheCoc_read, name='Show_API_KheCoc_read'),
+    # path('Create_API_KheCoc_read', Create_API_KheCoc_read, name='Create_API_KheCoc_read'),
+    path('Update_API_KheCoc_read', Update_API_KheCoc_read, name='Update_API_KheCoc_read'),
+    path('Show_API_KheCoc_R_W', Show_API_KheCoc_R_W, name='Show_API_KheCoc_R_W'),
+    # path('Create_API_KheCoc_R_W', Create_API_KheCoc_R_W, name='Create_API_KheCoc_R_W'),
+    path('Update_API_KheCoc_R_W', Update_API_KheCoc_R_W, name='Update_API_KheCoc_R_W'),
+    path('Show_API_ThaiMinh_read', Show_API_ThaiMinh_read, name='Show_API_ThaiMinh_read'),
+    # path('Create_API_ThaiMinh_read', Create_API_ThaiMinh_read, name='Create_API_ThaiMinh_read'),
+    path('Update_API_ThaiMinh_read', Update_API_ThaiMinh_read, name='Update_API_ThaiMinh_read'),
+    path('Show_API_ThaiMinh_R_W', Show_API_ThaiMinh_R_W, name='Show_API_ThaiMinh_R_W'),
+    # path('Create_API_ThaiMinh_R_W', Create_API_ThaiMinh_R_W, name='Create_API_ThaiMinh_R_W'),
+    path('Update_API_ThaiMinh_R_W', Update_API_ThaiMinh_R_W, name='Update_API_ThaiMinh_R_W'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
