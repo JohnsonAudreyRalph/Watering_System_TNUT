@@ -39,6 +39,7 @@ urlpatterns = [
     path('Show_API_ThaiMinh_R_W', Show_API_ThaiMinh_R_W, name='Show_API_ThaiMinh_R_W'),
     # path('Create_API_ThaiMinh_R_W', Create_API_ThaiMinh_R_W, name='Create_API_ThaiMinh_R_W'),
     path('Update_API_ThaiMinh_R_W', Update_API_ThaiMinh_R_W, name='Update_API_ThaiMinh_R_W'),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()

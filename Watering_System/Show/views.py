@@ -48,7 +48,7 @@ def Update_API_Hao_Dat_read(request):
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://mrduck.id.vn/Show_API_HaoDat_read?format=json'
+        url = 'http://127.0.0.1:8000/Show_API_HaoDat_read?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -92,7 +92,7 @@ def Update_API_Hao_Dat_R_W(request):
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://mrduck.id.vn/Show_API_HaoDat_R_W?format=json'
+        url = 'http://127.0.0.1:8000/Show_API_HaoDat_R_W?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -138,7 +138,7 @@ def Update_API_KheCoc_read(request):
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://mrduck.id.vn/Show_API_KheCoc_read?format=json'
+        url = 'http://127.0.0.1:8000/Show_API_KheCoc_read?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -182,7 +182,7 @@ def Update_API_KheCoc_R_W(request):
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://mrduck.id.vn/Show_API_KheCoc_R_W?format=json'
+        url = 'http://127.0.0.1:8000/Show_API_KheCoc_R_W?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -225,13 +225,11 @@ def Update_API_ThaiMinh_read(request):
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://mrduck.id.vn/Show_API_ThaiMinh_read?format=json'
+        url = 'http://127.0.0.1:8000/Show_API_ThaiMinh_read?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
-            return JsonResponse({
-                'message': json.dumps(response.json()) 
-            }, status=status.HTTP_200_OK)
+            return JsonResponse(response.json(), safe=False)
 
         return JsonResponse({'message': 'Cập nhật thành công!'}, status=status.HTTP_200_OK)
 
@@ -269,7 +267,7 @@ def Update_API_ThaiMinh_R_W(request):
 
     if serializer.is_valid():
         serializer.save()
-        url = 'http://mrduck.id.vn/Show_API_ThaiMinh_R_W?format=json'
+        url = 'http://127.0.0.1:8000/Show_API_ThaiMinh_R_W?format=json'
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -280,7 +278,6 @@ def Update_API_ThaiMinh_R_W(request):
         return JsonResponse({'message': 'Cập nhật thành công!'}, status=status.HTTP_200_OK)
 
     return JsonResponse({'message': 'Lỗi, cập nhật không thành công!'}, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 
@@ -328,19 +325,297 @@ def Stats_HTML(request):
 def info_HTML(request):
     user = request.user  # Lấy giá trị user từ request
     filtered_data = Manager_User.objects.all().filter(user=user)
-    return render(request, "info.html", {'filter':filtered_data})
+    nhiet_do_dat, do_am_dat, do_ph, trang_thai_van_khu_vuc_1, trang_thai_van_khu_vuc_2, trang_thai_van_khu_vuc_3, trang_thai_bom, che_do_hoat_dong = get_data(request)
+    return render(request, "info.html", {'filter':filtered_data, 'nhiet_do_dat': nhiet_do_dat, 'do_am_dat': do_am_dat, 'do_ph': do_ph, 'trang_thai_van_khu_vuc_1':trang_thai_van_khu_vuc_1, 'trang_thai_van_khu_vuc_2':trang_thai_van_khu_vuc_2, 'trang_thai_van_khu_vuc_3':trang_thai_van_khu_vuc_3, 'trang_thai_bom':trang_thai_bom, 'che_do_hoat_dong':che_do_hoat_dong})
 
 @login_required
 def home_HTML(request):
     user = request.user  # Lấy giá trị user từ request
     filtered_data = Manager_User.objects.all().filter(user=user)
-    return render(request, "home.html", {'filter':filtered_data})
+    if user.username  == "ThaiMinh":
+        print('Là Thái Minh')
+        if request.method == "POST":
+            print("Đã ấn xác nhận")
+            kv1_humid = request.POST.get("kv1_humid")
+            che_do_tu_dong_gio_bat_dau_tuoi_1 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_1")
+            che_do_tu_dong_phut_bat_dau_tuoi_1 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_1")
+            che_do_tu_dong_gio_bat_dau_tuoi_2 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_2")
+            che_do_tu_dong_phut_bat_dau_tuoi_2 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_2")
+            che_do_tu_dong_gio_bat_dau_tuoi_3 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_3")
+            che_do_tu_dong_phut_bat_dau_tuoi_3 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_3")
+            che_do_tu_dong_gio_bat_dau_tuoi_4 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_4")
+            che_do_tu_dong_phut_bat_dau_tuoi_4 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_4")
+            che_do_tu_dong_do_am_min_1 = request.POST.get("kv1_range_min_1")
+            che_do_tu_dong_do_am_max_1 = request.POST.get("kv1_range_max_1")
+            che_do_tu_dong_thoi_gian_tuoi_1 = request.POST.get("kv1_length1")
+            che_do_tu_dong_do_am_min_2 = request.POST.get("kv1_range_min_2")
+            che_do_tu_dong_do_am_max_2 = request.POST.get("kv1_range_max_2")
+            che_do_tu_dong_thoi_gian_tuoi_2 = request.POST.get("kv1_length2")
+            che_do_tu_dong_do_am_min_3 = request.POST.get("kv1_range_min_3")
+            che_do_tu_dong_do_am_max_3 = request.POST.get("kv1_range_max_3")
+            che_do_tu_dong_thoi_gian_tuoi_3 = request.POST.get("kv1_length3")
+            che_do_tu_dong_do_am_min_4 = request.POST.get("kv1_range_min_4")
+            che_do_tu_dong_do_am_max_4 = request.POST.get("kv1_range_max_4")
+            che_do_tu_dong_thoi_gian_tuoi_4 = request.POST.get("kv1_length4")
+            url_Update = 'http://mrduck.id.vn/Update_API_HaoDat_R_W?change_status=1&che_do_tu_dong_cai_dat_do_am='+kv1_humid+'&che_do_tu_dong_gio_bat_dau_tuoi_1='+che_do_tu_dong_gio_bat_dau_tuoi_1+'&che_do_tu_dong_gio_bat_dau_tuoi_2='+che_do_tu_dong_gio_bat_dau_tuoi_2+'&che_do_tu_dong_gio_bat_dau_tuoi_3='+che_do_tu_dong_gio_bat_dau_tuoi_3+'&che_do_tu_dong_gio_bat_dau_tuoi_4='+che_do_tu_dong_gio_bat_dau_tuoi_4+'&che_do_tu_dong_phut_bat_dau_tuoi_1='+che_do_tu_dong_phut_bat_dau_tuoi_1+'&che_do_tu_dong_phut_bat_dau_tuoi_2='+che_do_tu_dong_phut_bat_dau_tuoi_2+'&che_do_tu_dong_phut_bat_dau_tuoi_3='+che_do_tu_dong_phut_bat_dau_tuoi_3+'&che_do_tu_dong_phut_bat_dau_tuoi_4='+che_do_tu_dong_phut_bat_dau_tuoi_4+'&che_do_tu_dong_do_am_min_1='+che_do_tu_dong_do_am_min_1+'&che_do_tu_dong_do_am_min_2='+che_do_tu_dong_do_am_min_2+'&che_do_tu_dong_do_am_min_3='+che_do_tu_dong_do_am_min_3+'&che_do_tu_dong_do_am_min_4='+che_do_tu_dong_do_am_min_4+'&che_do_tu_dong_do_am_max_1='+che_do_tu_dong_do_am_max_1+'&che_do_tu_dong_do_am_max_2='+che_do_tu_dong_do_am_max_2+'&che_do_tu_dong_do_am_max_3='+che_do_tu_dong_do_am_max_3+'&che_do_tu_dong_do_am_max_4='+che_do_tu_dong_do_am_max_4+'&che_do_tu_dong_thoi_gian_tuoi_1='+che_do_tu_dong_thoi_gian_tuoi_1+'&che_do_tu_dong_thoi_gian_tuoi_2='+che_do_tu_dong_thoi_gian_tuoi_2+'&che_do_tu_dong_thoi_gian_tuoi_3='+che_do_tu_dong_thoi_gian_tuoi_3+'&che_do_tu_dong_thoi_gian_tuoi_4='+che_do_tu_dong_thoi_gian_tuoi_4
+            # print(url_Update)
+            requests.get(url_Update)
+
+
+        url_R_W_ThaiMinh = 'http://mrduck.id.vn/Show_API_HaoDat_R_W?format=json'
+        response_R_W_ThaiMinh = requests.get(url_R_W_ThaiMinh)
+        parsed_data_R_W_ThaiMinh = json.loads(response_R_W_ThaiMinh.text)
+        # print(parsed_data_R_W_ThaiMinh)
+        che_do_tu_dong_gio_bat_dau_tuoi_1 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_gio_bat_dau_tuoi_1']
+        che_do_tu_dong_gio_bat_dau_tuoi_2 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_gio_bat_dau_tuoi_2']
+        che_do_tu_dong_gio_bat_dau_tuoi_3 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_gio_bat_dau_tuoi_3']
+        che_do_tu_dong_gio_bat_dau_tuoi_4 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_gio_bat_dau_tuoi_4']
+        che_do_tu_dong_phut_bat_dau_tuoi_1 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_phut_bat_dau_tuoi_1']
+        che_do_tu_dong_phut_bat_dau_tuoi_2 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_phut_bat_dau_tuoi_2']
+        che_do_tu_dong_phut_bat_dau_tuoi_3 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_phut_bat_dau_tuoi_3']
+        che_do_tu_dong_phut_bat_dau_tuoi_4 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_phut_bat_dau_tuoi_4']
+        if che_do_tu_dong_gio_bat_dau_tuoi_1 < 10:
+            che_do_tu_dong_gio_bat_dau_tuoi_1 = f"0{che_do_tu_dong_gio_bat_dau_tuoi_1}"
+        if che_do_tu_dong_gio_bat_dau_tuoi_2 < 10:
+            che_do_tu_dong_gio_bat_dau_tuoi_2 = f"0{che_do_tu_dong_gio_bat_dau_tuoi_2}"
+        if che_do_tu_dong_gio_bat_dau_tuoi_3 < 10:
+            che_do_tu_dong_gio_bat_dau_tuoi_3 = f"0{che_do_tu_dong_gio_bat_dau_tuoi_3}"
+        if che_do_tu_dong_gio_bat_dau_tuoi_4 < 10:
+            che_do_tu_dong_gio_bat_dau_tuoi_4 = f"0{che_do_tu_dong_gio_bat_dau_tuoi_4}"
+        if che_do_tu_dong_phut_bat_dau_tuoi_1 < 10:
+            che_do_tu_dong_phut_bat_dau_tuoi_1 = f"0{che_do_tu_dong_phut_bat_dau_tuoi_1}"
+        if che_do_tu_dong_phut_bat_dau_tuoi_2 < 10:
+            che_do_tu_dong_phut_bat_dau_tuoi_2 = f"0{che_do_tu_dong_phut_bat_dau_tuoi_2}"
+        if che_do_tu_dong_phut_bat_dau_tuoi_3 < 10:
+            che_do_tu_dong_phut_bat_dau_tuoi_3 = f"0{che_do_tu_dong_phut_bat_dau_tuoi_3}"
+        if che_do_tu_dong_phut_bat_dau_tuoi_4 < 10:
+            che_do_tu_dong_phut_bat_dau_tuoi_4 = f"0{che_do_tu_dong_phut_bat_dau_tuoi_4}"
+        che_do_tu_dong_do_am_min_1 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_min_1']
+        che_do_tu_dong_do_am_min_2 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_min_2']
+        che_do_tu_dong_do_am_min_3 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_min_3']
+        che_do_tu_dong_do_am_min_4 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_min_4']
+        che_do_tu_dong_do_am_max_1 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_max_1']
+        che_do_tu_dong_do_am_max_2 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_max_2']
+        che_do_tu_dong_do_am_max_3 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_max_3']
+        che_do_tu_dong_do_am_max_4 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_do_am_max_4']
+        che_do_tu_dong_thoi_gian_tuoi_1 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_thoi_gian_tuoi_1']
+        che_do_tu_dong_thoi_gian_tuoi_2 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_thoi_gian_tuoi_2']
+        che_do_tu_dong_thoi_gian_tuoi_3 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_thoi_gian_tuoi_3']
+        che_do_tu_dong_thoi_gian_tuoi_4 = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_thoi_gian_tuoi_4']
+        che_do_tu_dong_cai_dat_do_am = parsed_data_R_W_ThaiMinh[0]['che_do_tu_dong_cai_dat_do_am']
+    elif user.username  == "HaoDat":
+        print("Là Hảo Đạt")
+        if request.method == "POST":
+            print("Đã ấn xác nhận")
+            kv1_humid = request.POST.get("kv1_humid")
+            che_do_tu_dong_gio_bat_dau_tuoi_1 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_1")
+            che_do_tu_dong_phut_bat_dau_tuoi_1 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_1")
+            che_do_tu_dong_gio_bat_dau_tuoi_2 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_2")
+            che_do_tu_dong_phut_bat_dau_tuoi_2 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_2")
+            che_do_tu_dong_gio_bat_dau_tuoi_3 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_3")
+            che_do_tu_dong_phut_bat_dau_tuoi_3 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_3")
+            che_do_tu_dong_gio_bat_dau_tuoi_4 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_4")
+            che_do_tu_dong_phut_bat_dau_tuoi_4 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_4")
+            che_do_tu_dong_do_am_min_1 = request.POST.get("kv1_range_min_1")
+            che_do_tu_dong_do_am_max_1 = request.POST.get("kv1_range_max_1")
+            che_do_tu_dong_thoi_gian_tuoi_1 = request.POST.get("kv1_length1")
+            che_do_tu_dong_do_am_min_2 = request.POST.get("kv1_range_min_2")
+            che_do_tu_dong_do_am_max_2 = request.POST.get("kv1_range_max_2")
+            che_do_tu_dong_thoi_gian_tuoi_2 = request.POST.get("kv1_length2")
+            che_do_tu_dong_do_am_min_3 = request.POST.get("kv1_range_min_3")
+            che_do_tu_dong_do_am_max_3 = request.POST.get("kv1_range_max_3")
+            che_do_tu_dong_thoi_gian_tuoi_3 = request.POST.get("kv1_length3")
+            che_do_tu_dong_do_am_min_4 = request.POST.get("kv1_range_min_4")
+            che_do_tu_dong_do_am_max_4 = request.POST.get("kv1_range_max_4")
+            che_do_tu_dong_thoi_gian_tuoi_4 = request.POST.get("kv1_length4")
+            url_Update = 'http://mrduck.id.vn/Update_API_HaoDat_R_W?change_status=1&che_do_tu_dong_cai_dat_do_am='+kv1_humid+'&che_do_tu_dong_gio_bat_dau_tuoi_1='+che_do_tu_dong_gio_bat_dau_tuoi_1+'&che_do_tu_dong_gio_bat_dau_tuoi_2='+che_do_tu_dong_gio_bat_dau_tuoi_2+'&che_do_tu_dong_gio_bat_dau_tuoi_3='+che_do_tu_dong_gio_bat_dau_tuoi_3+'&che_do_tu_dong_gio_bat_dau_tuoi_4='+che_do_tu_dong_gio_bat_dau_tuoi_4+'&che_do_tu_dong_phut_bat_dau_tuoi_1='+che_do_tu_dong_phut_bat_dau_tuoi_1+'&che_do_tu_dong_phut_bat_dau_tuoi_2='+che_do_tu_dong_phut_bat_dau_tuoi_2+'&che_do_tu_dong_phut_bat_dau_tuoi_3='+che_do_tu_dong_phut_bat_dau_tuoi_3+'&che_do_tu_dong_phut_bat_dau_tuoi_4='+che_do_tu_dong_phut_bat_dau_tuoi_4+'&che_do_tu_dong_do_am_min_1='+che_do_tu_dong_do_am_min_1+'&che_do_tu_dong_do_am_min_2='+che_do_tu_dong_do_am_min_2+'&che_do_tu_dong_do_am_min_3='+che_do_tu_dong_do_am_min_3+'&che_do_tu_dong_do_am_min_4='+che_do_tu_dong_do_am_min_4+'&che_do_tu_dong_do_am_max_1='+che_do_tu_dong_do_am_max_1+'&che_do_tu_dong_do_am_max_2='+che_do_tu_dong_do_am_max_2+'&che_do_tu_dong_do_am_max_3='+che_do_tu_dong_do_am_max_3+'&che_do_tu_dong_do_am_max_4='+che_do_tu_dong_do_am_max_4+'&che_do_tu_dong_thoi_gian_tuoi_1='+che_do_tu_dong_thoi_gian_tuoi_1+'&che_do_tu_dong_thoi_gian_tuoi_2='+che_do_tu_dong_thoi_gian_tuoi_2+'&che_do_tu_dong_thoi_gian_tuoi_3='+che_do_tu_dong_thoi_gian_tuoi_3+'&che_do_tu_dong_thoi_gian_tuoi_4='+che_do_tu_dong_thoi_gian_tuoi_4
+            # print(url_Update)
+            requests.get(url_Update)
+
+        url_R_W_HaoDat = 'http://mrduck.id.vn/Show_API_HaoDat_R_W?format=json'
+        response_R_W_HaoDat = requests.get(url_R_W_HaoDat)
+        parsed_data_R_W_HaoDat = json.loads(response_R_W_HaoDat.text)
+        che_do_tu_dong_gio_bat_dau_tuoi_1 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_gio_bat_dau_tuoi_1']
+        che_do_tu_dong_gio_bat_dau_tuoi_2 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_gio_bat_dau_tuoi_2']
+        che_do_tu_dong_gio_bat_dau_tuoi_3 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_gio_bat_dau_tuoi_3']
+        che_do_tu_dong_gio_bat_dau_tuoi_4 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_gio_bat_dau_tuoi_4']
+        che_do_tu_dong_phut_bat_dau_tuoi_1 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_phut_bat_dau_tuoi_1']
+        che_do_tu_dong_phut_bat_dau_tuoi_2 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_phut_bat_dau_tuoi_2']
+        che_do_tu_dong_phut_bat_dau_tuoi_3 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_phut_bat_dau_tuoi_3']
+        che_do_tu_dong_phut_bat_dau_tuoi_4 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_phut_bat_dau_tuoi_4']
+        che_do_tu_dong_do_am_min_1 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_min_1']
+        che_do_tu_dong_do_am_min_2 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_min_2']
+        che_do_tu_dong_do_am_min_3 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_min_3']
+        che_do_tu_dong_do_am_min_4 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_min_4']
+        che_do_tu_dong_do_am_max_1 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_max_1']
+        che_do_tu_dong_do_am_max_2 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_max_2']
+        che_do_tu_dong_do_am_max_3 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_max_3']
+        che_do_tu_dong_do_am_max_4 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_do_am_max_4']
+        che_do_tu_dong_thoi_gian_tuoi_1 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_thoi_gian_tuoi_1']
+        che_do_tu_dong_thoi_gian_tuoi_2 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_thoi_gian_tuoi_2']
+        che_do_tu_dong_thoi_gian_tuoi_3 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_thoi_gian_tuoi_3']
+        che_do_tu_dong_thoi_gian_tuoi_4 = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_thoi_gian_tuoi_4']
+        che_do_tu_dong_cai_dat_do_am = parsed_data_R_W_HaoDat[0]['che_do_tu_dong_cai_dat_do_am']
+    elif user.username  == "KheCoc":
+        print("Là Khe Cốc")
+        if request.method == "POST":
+            print("Đã ấn xác nhận")
+            kv1_humid = request.POST.get("kv1_humid")
+            che_do_tu_dong_gio_bat_dau_tuoi_1 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_1")
+            che_do_tu_dong_phut_bat_dau_tuoi_1 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_1")
+            che_do_tu_dong_gio_bat_dau_tuoi_2 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_2")
+            che_do_tu_dong_phut_bat_dau_tuoi_2 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_2")
+            che_do_tu_dong_gio_bat_dau_tuoi_3 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_3")
+            che_do_tu_dong_phut_bat_dau_tuoi_3 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_3")
+            che_do_tu_dong_gio_bat_dau_tuoi_4 = request.POST.get("che_do_tu_dong_gio_bat_dau_tuoi_4")
+            che_do_tu_dong_phut_bat_dau_tuoi_4 = request.POST.get("che_do_tu_dong_phut_bat_dau_tuoi_4")
+            che_do_tu_dong_do_am_min_1 = request.POST.get("kv1_range_min_1")
+            che_do_tu_dong_do_am_max_1 = request.POST.get("kv1_range_max_1")
+            che_do_tu_dong_thoi_gian_tuoi_1 = request.POST.get("kv1_length1")
+            che_do_tu_dong_do_am_min_2 = request.POST.get("kv1_range_min_2")
+            che_do_tu_dong_do_am_max_2 = request.POST.get("kv1_range_max_2")
+            che_do_tu_dong_thoi_gian_tuoi_2 = request.POST.get("kv1_length2")
+            che_do_tu_dong_do_am_min_3 = request.POST.get("kv1_range_min_3")
+            che_do_tu_dong_do_am_max_3 = request.POST.get("kv1_range_max_3")
+            che_do_tu_dong_thoi_gian_tuoi_3 = request.POST.get("kv1_length3")
+            che_do_tu_dong_do_am_min_4 = request.POST.get("kv1_range_min_4")
+            che_do_tu_dong_do_am_max_4 = request.POST.get("kv1_range_max_4")
+            che_do_tu_dong_thoi_gian_tuoi_4 = request.POST.get("kv1_length4")
+            url_Update = 'http://mrduck.id.vn/Update_API_KheCoc_R_W?change_status=1&che_do_tu_dong_cai_dat_do_am='+kv1_humid+'&che_do_tu_dong_gio_bat_dau_tuoi_1='+che_do_tu_dong_gio_bat_dau_tuoi_1+'&che_do_tu_dong_gio_bat_dau_tuoi_2='+che_do_tu_dong_gio_bat_dau_tuoi_2+'&che_do_tu_dong_gio_bat_dau_tuoi_3='+che_do_tu_dong_gio_bat_dau_tuoi_3+'&che_do_tu_dong_gio_bat_dau_tuoi_4='+che_do_tu_dong_gio_bat_dau_tuoi_4+'&che_do_tu_dong_phut_bat_dau_tuoi_1='+che_do_tu_dong_phut_bat_dau_tuoi_1+'&che_do_tu_dong_phut_bat_dau_tuoi_2='+che_do_tu_dong_phut_bat_dau_tuoi_2+'&che_do_tu_dong_phut_bat_dau_tuoi_3='+che_do_tu_dong_phut_bat_dau_tuoi_3+'&che_do_tu_dong_phut_bat_dau_tuoi_4='+che_do_tu_dong_phut_bat_dau_tuoi_4+'&che_do_tu_dong_do_am_min_1='+che_do_tu_dong_do_am_min_1+'&che_do_tu_dong_do_am_min_2='+che_do_tu_dong_do_am_min_2+'&che_do_tu_dong_do_am_min_3='+che_do_tu_dong_do_am_min_3+'&che_do_tu_dong_do_am_min_4='+che_do_tu_dong_do_am_min_4+'&che_do_tu_dong_do_am_max_1='+che_do_tu_dong_do_am_max_1+'&che_do_tu_dong_do_am_max_2='+che_do_tu_dong_do_am_max_2+'&che_do_tu_dong_do_am_max_3='+che_do_tu_dong_do_am_max_3+'&che_do_tu_dong_do_am_max_4='+che_do_tu_dong_do_am_max_4+'&che_do_tu_dong_thoi_gian_tuoi_1='+che_do_tu_dong_thoi_gian_tuoi_1+'&che_do_tu_dong_thoi_gian_tuoi_2='+che_do_tu_dong_thoi_gian_tuoi_2+'&che_do_tu_dong_thoi_gian_tuoi_3='+che_do_tu_dong_thoi_gian_tuoi_3+'&che_do_tu_dong_thoi_gian_tuoi_4='+che_do_tu_dong_thoi_gian_tuoi_4
+            # print(url_Update)
+            # requests.get(url_Update)
+        url_R_W_KheCoc = 'http://mrduck.id.vn/Show_API_KheCoc_R_W?format=json'
+        response_R_W_KheCoc = requests.get(url_R_W_KheCoc)
+        response_R_W_KheCoc = json.loads(response_R_W_KheCoc.text)
+        che_do_tu_dong_gio_bat_dau_tuoi_1 = response_R_W_KheCoc[0]['che_do_tu_dong_gio_bat_dau_tuoi_1']
+        che_do_tu_dong_gio_bat_dau_tuoi_2 = response_R_W_KheCoc[0]['che_do_tu_dong_gio_bat_dau_tuoi_2']
+        che_do_tu_dong_gio_bat_dau_tuoi_3 = response_R_W_KheCoc[0]['che_do_tu_dong_gio_bat_dau_tuoi_3']
+        che_do_tu_dong_gio_bat_dau_tuoi_4 = response_R_W_KheCoc[0]['che_do_tu_dong_gio_bat_dau_tuoi_4']
+        che_do_tu_dong_phut_bat_dau_tuoi_1 = response_R_W_KheCoc[0]['che_do_tu_dong_phut_bat_dau_tuoi_1']
+        che_do_tu_dong_phut_bat_dau_tuoi_2 = response_R_W_KheCoc[0]['che_do_tu_dong_phut_bat_dau_tuoi_2']
+        che_do_tu_dong_phut_bat_dau_tuoi_3 = response_R_W_KheCoc[0]['che_do_tu_dong_phut_bat_dau_tuoi_3']
+        che_do_tu_dong_phut_bat_dau_tuoi_4 = response_R_W_KheCoc[0]['che_do_tu_dong_phut_bat_dau_tuoi_4']
+        che_do_tu_dong_do_am_min_1 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_min_1']
+        che_do_tu_dong_do_am_min_2 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_min_2']
+        che_do_tu_dong_do_am_min_3 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_min_3']
+        che_do_tu_dong_do_am_min_4 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_min_4']
+        che_do_tu_dong_do_am_max_1 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_max_1']
+        che_do_tu_dong_do_am_max_2 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_max_2']
+        che_do_tu_dong_do_am_max_3 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_max_3']
+        che_do_tu_dong_do_am_max_4 = response_R_W_KheCoc[0]['che_do_tu_dong_do_am_max_4']
+        che_do_tu_dong_thoi_gian_tuoi_1 = response_R_W_KheCoc[0]['che_do_tu_dong_thoi_gian_tuoi_1']
+        che_do_tu_dong_thoi_gian_tuoi_2 = response_R_W_KheCoc[0]['che_do_tu_dong_thoi_gian_tuoi_2']
+        che_do_tu_dong_thoi_gian_tuoi_3 = response_R_W_KheCoc[0]['che_do_tu_dong_thoi_gian_tuoi_3']
+        che_do_tu_dong_thoi_gian_tuoi_4 = response_R_W_KheCoc[0]['che_do_tu_dong_thoi_gian_tuoi_4']
+        che_do_tu_dong_cai_dat_do_am = response_R_W_KheCoc[0]['che_do_tu_dong_cai_dat_do_am']
+    return render(request, "home.html", {'filter':filtered_data, 'che_do_tu_dong_gio_bat_dau_tuoi_1':che_do_tu_dong_gio_bat_dau_tuoi_1, 'che_do_tu_dong_gio_bat_dau_tuoi_2':che_do_tu_dong_gio_bat_dau_tuoi_2, 'che_do_tu_dong_gio_bat_dau_tuoi_3':che_do_tu_dong_gio_bat_dau_tuoi_3, 'che_do_tu_dong_gio_bat_dau_tuoi_4':che_do_tu_dong_gio_bat_dau_tuoi_4, 'che_do_tu_dong_phut_bat_dau_tuoi_1':che_do_tu_dong_phut_bat_dau_tuoi_1, 'che_do_tu_dong_phut_bat_dau_tuoi_2':che_do_tu_dong_phut_bat_dau_tuoi_2, 'che_do_tu_dong_phut_bat_dau_tuoi_3':che_do_tu_dong_phut_bat_dau_tuoi_3, 'che_do_tu_dong_phut_bat_dau_tuoi_4':che_do_tu_dong_phut_bat_dau_tuoi_4, 'che_do_tu_dong_do_am_min_1':che_do_tu_dong_do_am_min_1, 'che_do_tu_dong_do_am_min_2':che_do_tu_dong_do_am_min_2, 'che_do_tu_dong_do_am_min_3':che_do_tu_dong_do_am_min_3, 'che_do_tu_dong_do_am_min_4':che_do_tu_dong_do_am_min_4, 'che_do_tu_dong_do_am_max_1':che_do_tu_dong_do_am_max_1, 'che_do_tu_dong_do_am_max_2':che_do_tu_dong_do_am_max_2, 'che_do_tu_dong_do_am_max_3':che_do_tu_dong_do_am_max_3, 'che_do_tu_dong_do_am_max_4':che_do_tu_dong_do_am_max_4, 'che_do_tu_dong_thoi_gian_tuoi_1':che_do_tu_dong_thoi_gian_tuoi_1, 'che_do_tu_dong_thoi_gian_tuoi_2':che_do_tu_dong_thoi_gian_tuoi_2, 'che_do_tu_dong_thoi_gian_tuoi_3':che_do_tu_dong_thoi_gian_tuoi_3, 'che_do_tu_dong_thoi_gian_tuoi_4':che_do_tu_dong_thoi_gian_tuoi_4, 'che_do_tu_dong_cai_dat_do_am':che_do_tu_dong_cai_dat_do_am})
 
 @login_required
 def daily_HTML(request):
     user = request.user  # Lấy giá trị user từ request
     filtered_data = Manager_User.objects.all().filter(user=user)
-    return render(request, "daily.html", {'filter':filtered_data})
+    if user.username  == "ThaiMinh":
+        print('Là Thái Minh')
+        url_R_W_ThaiMinh = 'http://mrduck.id.vn/Show_API_HaoDat_R_W?format=json'
+        response_R_W_ThaiMinh = requests.get(url_R_W_ThaiMinh)
+        parsed_data_R_W_ThaiMinh = json.loads(response_R_W_ThaiMinh.text)
+        # print(parsed_data_R_W_ThaiMinh)
+        che_do_hang_ngay_xac_nhan_lan_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_xac_nhan_lan_1']
+        che_do_hang_ngay_xac_nhan_lan_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_xac_nhan_lan_2']
+        che_do_hang_ngay_xac_nhan_lan_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_xac_nhan_lan_3']
+        che_do_hang_ngay_xac_nhan_lan_4 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_xac_nhan_lan_4']
+        che_do_hang_ngay_dieu_khien_KV_1_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_1_1']
+        che_do_hang_ngay_dieu_khien_KV_1_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_1_2']
+        che_do_hang_ngay_dieu_khien_KV_1_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_1_3']
+        che_do_hang_ngay_dieu_khien_KV_2_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_2_1']
+        che_do_hang_ngay_dieu_khien_KV_2_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_2_2']
+        che_do_hang_ngay_dieu_khien_KV_2_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_2_3']
+        che_do_hang_ngay_dieu_khien_KV_3_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_3_1']
+        che_do_hang_ngay_dieu_khien_KV_3_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_3_2']
+        che_do_hang_ngay_dieu_khien_KV_3_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_3_3']
+        che_do_hang_ngay_dieu_khien_KV_4_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_4_1']
+        che_do_hang_ngay_dieu_khien_KV_4_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_4_2']
+        che_do_hang_ngay_dieu_khien_KV_4_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_dieu_khien_KV_4_3']
+
+        che_do_hang_ngay_thoi_gian_tuoi_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_thoi_gian_tuoi_1']
+        che_do_hang_ngay_thoi_gian_tuoi_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_thoi_gian_tuoi_2']
+        che_do_hang_ngay_thoi_gian_tuoi_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_thoi_gian_tuoi_3']
+        che_do_hang_ngay_thoi_gian_tuoi_4 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_thoi_gian_tuoi_4']
+        che_do_hang_ngay_gio_bat_dau_tuoi_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_gio_bat_dau_tuoi_1']
+        che_do_hang_ngay_gio_bat_dau_tuoi_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_gio_bat_dau_tuoi_2']
+        che_do_hang_ngay_gio_bat_dau_tuoi_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_gio_bat_dau_tuoi_3']
+        che_do_hang_ngay_gio_bat_dau_tuoi_4 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_gio_bat_dau_tuoi_4']
+        che_do_hang_ngay_phut_bat_dau_tuoi_1 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_phut_bat_dau_tuoi_1']
+        che_do_hang_ngay_phut_bat_dau_tuoi_2 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_phut_bat_dau_tuoi_2']
+        che_do_hang_ngay_phut_bat_dau_tuoi_3 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_phut_bat_dau_tuoi_3']
+        che_do_hang_ngay_phut_bat_dau_tuoi_4 = parsed_data_R_W_ThaiMinh[0]['che_do_hang_ngay_phut_bat_dau_tuoi_4']
+    elif user.username  == "HaoDat":
+        print('Là Hảo Đạt')
+        url_R_W_HaoDat = 'http://mrduck.id.vn/Show_API_HaoDat_R_W?format=json'
+        response_R_W_HaoDat = requests.get(url_R_W_HaoDat)
+        parsed_data_R_W_HaoDat = json.loads(response_R_W_HaoDat.text)
+        che_do_hang_ngay_xac_nhan_lan_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_xac_nhan_lan_1']
+        che_do_hang_ngay_xac_nhan_lan_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_xac_nhan_lan_2']
+        che_do_hang_ngay_xac_nhan_lan_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_xac_nhan_lan_3']
+        che_do_hang_ngay_xac_nhan_lan_4 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_xac_nhan_lan_4']
+        che_do_hang_ngay_dieu_khien_KV_1_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_1_1']
+        che_do_hang_ngay_dieu_khien_KV_1_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_1_2']
+        che_do_hang_ngay_dieu_khien_KV_1_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_1_3']
+        che_do_hang_ngay_dieu_khien_KV_2_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_2_1']
+        che_do_hang_ngay_dieu_khien_KV_2_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_2_2']
+        che_do_hang_ngay_dieu_khien_KV_2_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_2_3']
+        che_do_hang_ngay_dieu_khien_KV_3_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_3_1']
+        che_do_hang_ngay_dieu_khien_KV_3_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_3_2']
+        che_do_hang_ngay_dieu_khien_KV_3_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_3_3']
+        che_do_hang_ngay_dieu_khien_KV_4_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_4_1']
+        che_do_hang_ngay_dieu_khien_KV_4_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_4_2']
+        che_do_hang_ngay_dieu_khien_KV_4_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_dieu_khien_KV_4_3']
+        che_do_hang_ngay_thoi_gian_tuoi_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_thoi_gian_tuoi_1']
+        che_do_hang_ngay_thoi_gian_tuoi_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_thoi_gian_tuoi_2']
+        che_do_hang_ngay_thoi_gian_tuoi_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_thoi_gian_tuoi_3']
+        che_do_hang_ngay_thoi_gian_tuoi_4 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_thoi_gian_tuoi_4']
+        che_do_hang_ngay_gio_bat_dau_tuoi_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_gio_bat_dau_tuoi_1']
+        che_do_hang_ngay_gio_bat_dau_tuoi_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_gio_bat_dau_tuoi_2']
+        che_do_hang_ngay_gio_bat_dau_tuoi_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_gio_bat_dau_tuoi_3']
+        che_do_hang_ngay_gio_bat_dau_tuoi_4 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_gio_bat_dau_tuoi_4']
+        che_do_hang_ngay_phut_bat_dau_tuoi_1 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_phut_bat_dau_tuoi_1']
+        che_do_hang_ngay_phut_bat_dau_tuoi_2 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_phut_bat_dau_tuoi_2']
+        che_do_hang_ngay_phut_bat_dau_tuoi_3 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_phut_bat_dau_tuoi_3']
+        che_do_hang_ngay_phut_bat_dau_tuoi_4 = parsed_data_R_W_HaoDat[0]['che_do_hang_ngay_phut_bat_dau_tuoi_4']
+    elif user.username  == "KheCoc":
+        print('Là Khe Cốc')
+        url_R_W_KheCoc = 'http://mrduck.id.vn/Show_API_KheCoc_R_W?format=json'
+        response_R_W_KheCoc = requests.get(url_R_W_KheCoc)
+        parsed_data_R_W_KheCoc = json.loads(response_R_W_KheCoc.text)
+        che_do_hang_ngay_xac_nhan_lan_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_xac_nhan_lan_1']
+        che_do_hang_ngay_xac_nhan_lan_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_xac_nhan_lan_2']
+        che_do_hang_ngay_xac_nhan_lan_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_xac_nhan_lan_3']
+        che_do_hang_ngay_xac_nhan_lan_4 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_xac_nhan_lan_4']
+        che_do_hang_ngay_dieu_khien_KV_1_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_1_1']
+        che_do_hang_ngay_dieu_khien_KV_1_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_1_2']
+        che_do_hang_ngay_dieu_khien_KV_1_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_1_3']
+        che_do_hang_ngay_dieu_khien_KV_2_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_2_1']
+        che_do_hang_ngay_dieu_khien_KV_2_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_2_2']
+        che_do_hang_ngay_dieu_khien_KV_2_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_2_3']
+        che_do_hang_ngay_dieu_khien_KV_3_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_3_1']
+        che_do_hang_ngay_dieu_khien_KV_3_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_3_2']
+        che_do_hang_ngay_dieu_khien_KV_3_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_3_3']
+        che_do_hang_ngay_dieu_khien_KV_4_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_4_1']
+        che_do_hang_ngay_dieu_khien_KV_4_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_4_2']
+        che_do_hang_ngay_dieu_khien_KV_4_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_dieu_khien_KV_4_3']
+        che_do_hang_ngay_thoi_gian_tuoi_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_thoi_gian_tuoi_1']
+        che_do_hang_ngay_thoi_gian_tuoi_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_thoi_gian_tuoi_2']
+        che_do_hang_ngay_thoi_gian_tuoi_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_thoi_gian_tuoi_3']
+        che_do_hang_ngay_thoi_gian_tuoi_4 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_thoi_gian_tuoi_4']
+        che_do_hang_ngay_gio_bat_dau_tuoi_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_gio_bat_dau_tuoi_1']
+        che_do_hang_ngay_gio_bat_dau_tuoi_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_gio_bat_dau_tuoi_2']
+        che_do_hang_ngay_gio_bat_dau_tuoi_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_gio_bat_dau_tuoi_3']
+        che_do_hang_ngay_gio_bat_dau_tuoi_4 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_gio_bat_dau_tuoi_4']
+        che_do_hang_ngay_phut_bat_dau_tuoi_1 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_phut_bat_dau_tuoi_1']
+        che_do_hang_ngay_phut_bat_dau_tuoi_2 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_phut_bat_dau_tuoi_2']
+        che_do_hang_ngay_phut_bat_dau_tuoi_3 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_phut_bat_dau_tuoi_3']
+        che_do_hang_ngay_phut_bat_dau_tuoi_4 = parsed_data_R_W_KheCoc[0]['che_do_hang_ngay_phut_bat_dau_tuoi_4']
+    return render(request, "daily.html", {'filter':filtered_data, 'che_do_hang_ngay_xac_nhan_lan_1':che_do_hang_ngay_xac_nhan_lan_1, 'che_do_hang_ngay_xac_nhan_lan_2':che_do_hang_ngay_xac_nhan_lan_2, 'che_do_hang_ngay_xac_nhan_lan_3':che_do_hang_ngay_xac_nhan_lan_3, 'che_do_hang_ngay_xac_nhan_lan_4':che_do_hang_ngay_xac_nhan_lan_4, 'che_do_hang_ngay_dieu_khien_KV_1_1':che_do_hang_ngay_dieu_khien_KV_1_1, 'che_do_hang_ngay_dieu_khien_KV_1_2':che_do_hang_ngay_dieu_khien_KV_1_2, 'che_do_hang_ngay_dieu_khien_KV_1_3':che_do_hang_ngay_dieu_khien_KV_1_3, 'che_do_hang_ngay_dieu_khien_KV_2_1':che_do_hang_ngay_dieu_khien_KV_2_1, 'che_do_hang_ngay_dieu_khien_KV_2_2':che_do_hang_ngay_dieu_khien_KV_2_2, 'che_do_hang_ngay_dieu_khien_KV_2_3':che_do_hang_ngay_dieu_khien_KV_2_3, 'che_do_hang_ngay_dieu_khien_KV_3_1':che_do_hang_ngay_dieu_khien_KV_3_1, 'che_do_hang_ngay_dieu_khien_KV_3_2':che_do_hang_ngay_dieu_khien_KV_3_2, 'che_do_hang_ngay_dieu_khien_KV_3_3':che_do_hang_ngay_dieu_khien_KV_3_3, 'che_do_hang_ngay_dieu_khien_KV_4_1':che_do_hang_ngay_dieu_khien_KV_4_1, 'che_do_hang_ngay_dieu_khien_KV_4_2':che_do_hang_ngay_dieu_khien_KV_4_2, 'che_do_hang_ngay_dieu_khien_KV_4_3':che_do_hang_ngay_dieu_khien_KV_4_3, 'che_do_hang_ngay_thoi_gian_tuoi_1':che_do_hang_ngay_thoi_gian_tuoi_1, 'che_do_hang_ngay_thoi_gian_tuoi_2':che_do_hang_ngay_thoi_gian_tuoi_2, 'che_do_hang_ngay_thoi_gian_tuoi_3':che_do_hang_ngay_thoi_gian_tuoi_3, 'che_do_hang_ngay_thoi_gian_tuoi_4':che_do_hang_ngay_thoi_gian_tuoi_4, 'che_do_hang_ngay_gio_bat_dau_tuoi_1':che_do_hang_ngay_gio_bat_dau_tuoi_1, 'che_do_hang_ngay_gio_bat_dau_tuoi_2':che_do_hang_ngay_gio_bat_dau_tuoi_2, 'che_do_hang_ngay_gio_bat_dau_tuoi_3':che_do_hang_ngay_gio_bat_dau_tuoi_3, 'che_do_hang_ngay_gio_bat_dau_tuoi_4':che_do_hang_ngay_gio_bat_dau_tuoi_4, 'che_do_hang_ngay_phut_bat_dau_tuoi_1':che_do_hang_ngay_phut_bat_dau_tuoi_1, 'che_do_hang_ngay_phut_bat_dau_tuoi_2':che_do_hang_ngay_phut_bat_dau_tuoi_2, 'che_do_hang_ngay_phut_bat_dau_tuoi_3':che_do_hang_ngay_phut_bat_dau_tuoi_3, 'che_do_hang_ngay_phut_bat_dau_tuoi_4':che_do_hang_ngay_phut_bat_dau_tuoi_4})
 
 @login_required
 def pump_HTML(request):
@@ -439,12 +714,27 @@ def Show_ThaiMinh_info(request):
     user = request.user  # Lấy giá trị user từ request
     filtered_data = Manager_User.objects.all().filter(user=user)
     area = 'ThaiMinh'
-    return render(request, "ThaiMinh/info_ThaiMinh.html", {'filter_area':area, 'filter':filtered_data})
+    url = 'http://mrduck.id.vn/Show_API_ThaiMinh_read?format=json'
+    response = requests.get(url)
+    parsed_data = json.loads(response.text)
+    nhiet_do_dat = parsed_data[0]['nhiet_do_dat']
+    do_am_dat = parsed_data[0]['do_am_dat']
+    do_ph = parsed_data[0]['do_ph']
+    trang_thai_van_khu_vuc_1 = parsed_data[0]['trang_thai_van_khu_vuc_1']
+    trang_thai_van_khu_vuc_2 = parsed_data[0]['trang_thai_van_khu_vuc_2']
+    trang_thai_van_khu_vuc_3 = parsed_data[0]['trang_thai_van_khu_vuc_3']
+    trang_thai_bom = parsed_data[0]['trang_thai_bom']
+    url_R_W = 'http://mrduck.id.vn/Show_API_ThaiMinh_R_W?format=json'
+    response_R_W = requests.get(url_R_W)
+    parsed_data_R_W = json.loads(response_R_W.text)
+    che_do_hoat_dong = parsed_data_R_W[0]['che_do_hoat_dong']
+    return render(request, "ThaiMinh/info_ThaiMinh.html", {'filter_area':area, 'filter':filtered_data, 'nhiet_do_dat': nhiet_do_dat, 'do_am_dat': do_am_dat, 'do_ph': do_ph, 'trang_thai_van_khu_vuc_1':trang_thai_van_khu_vuc_1, 'trang_thai_van_khu_vuc_2':trang_thai_van_khu_vuc_2, 'trang_thai_van_khu_vuc_3':trang_thai_van_khu_vuc_3, 'trang_thai_bom':trang_thai_bom, 'che_do_hoat_dong':che_do_hoat_dong})
 
 def Show_ThaiMinh_status(request):
     user = request.user  # Lấy giá trị user từ request
     filtered_data = Manager_User.objects.all().filter(user=user)
     area = 'ThaiMinh'
+
     return render(request, "ThaiMinh/Stats_ThaiMinh.html", {'filter_area':area, 'filter':filtered_data})
 
 def Show_KheCoc_info(request):
@@ -459,3 +749,54 @@ def Show_KheCoc_status(request):
     area = 'KheCoc'
     
     return render(request, "KheCoc/Stats_KheCoc.html", {'filter_area':area, 'filter':filtered_data})
+
+def get_data(request):
+    user_role = request.user
+    print(user_role)
+
+    if user_role.username  == "ThaiMinh":
+        print('Là Thái Minh')
+        url = 'http://mrduck.id.vn/Show_API_ThaiMinh_read?format=json'
+        response = requests.get(url)
+
+        parsed_data = json.loads(response.text)
+        nhiet_do_dat = parsed_data[0]['nhiet_do_dat']
+        do_am_dat = parsed_data[0]['do_am_dat']
+        do_ph = parsed_data[0]['do_ph']
+        trang_thai_van_khu_vuc_1 = parsed_data[0]['trang_thai_van_khu_vuc_1']
+        trang_thai_van_khu_vuc_2 = parsed_data[0]['trang_thai_van_khu_vuc_2']
+        trang_thai_van_khu_vuc_3 = parsed_data[0]['trang_thai_van_khu_vuc_3']
+        trang_thai_bom = parsed_data[0]['trang_thai_bom']
+
+        url_R_W = 'http://mrduck.id.vn/Show_API_ThaiMinh_R_W?format=json'
+        response_R_W = requests.get(url_R_W)
+        parsed_data_R_W = json.loads(response_R_W.text)
+        che_do_hoat_dong = parsed_data_R_W[0]['che_do_hoat_dong']
+        return nhiet_do_dat, do_am_dat, do_ph, trang_thai_van_khu_vuc_1, trang_thai_van_khu_vuc_2, trang_thai_van_khu_vuc_3, trang_thai_bom, che_do_hoat_dong
+
+    elif user_role.username  == "KheCoc":
+        print('Là Khe Cốc')
+        url = 'http://mrduck.id.vn/Show_API_KheCoc_read?format=json'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            parsed_data = json.loads(response.text)
+            nhiet_do_dat = parsed_data[0]['nhiet_do_dat']
+            do_am_dat = parsed_data[0]['do_am_dat']
+            do_ph = parsed_data[0]['do_ph']
+            return nhiet_do_dat, do_am_dat, do_ph
+
+    elif user_role.username  == "HaoDat":
+        print('Là Hảo Đạt')
+        url = 'http://mrduck.id.vn/Show_API_HaoDat_read?format=json'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            parsed_data = json.loads(response.text)
+            nhiet_do_dat = parsed_data[0]['nhiet_do_dat']
+            do_am_dat = parsed_data[0]['do_am_dat']
+            do_ph = parsed_data[0]['do_ph']
+            return nhiet_do_dat, do_am_dat, do_ph
+
+    # Move the return statement outside the loop
+    return None, None, None, None, None, None, None, None

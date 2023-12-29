@@ -16,6 +16,7 @@
                         <i class="fa fa-thermometer-quarter fa-4x float-sm-left" aria-hidden="true"></i>
                         <p class="card-text" style="font-size: 20px;"><br>Nhiệt độ</p>
                     </span>
+                    {{nhiet_do_dat}} ºC
                 </div>
             </div>
         </div>
@@ -27,6 +28,7 @@
                         <span class="pH">pH</span>
                         <p class="card-text" style="font-size: 20px;"><br>Độ pH</p>
                     </span>
+                    {{do_ph}}
                 </div>
             </div>
         </div>
@@ -49,6 +51,7 @@
                         <i class="fa fa-tint fa-4x float-sm-left pb-2" aria-hidden="true"></i>
                         <p class="card-text text-left" style="font-size: 20px;"><br>Độ ẩm không khí</p>
                     </span>
+                    
                 </div>
             </div>
         </div>
@@ -68,11 +71,13 @@
                     </div>
                     <span>
                         <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Khu vực 1</p>
+                        {{do_am_dat}} %
                     </span>
+                    
                 </div>
             </div>
         </div>
-        <div class="col-sm-3 mb-2">
+        <div class="col-sm-3 mb-2 blur">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
@@ -85,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3 mb-2">
+        <div class="col-sm-3 mb-2 blur">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
@@ -135,49 +140,50 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input id="kv1_ps_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv1_ps_status" type="checkbox" style="width: 16px; height: 16px;" checked>
                                     </td>
                                     <td>
-                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                     <td>
-                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>
-                                        <input id="kv2_ps_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv2_ps_status" type="checkbox" style="width: 16px; height: 16px;" checked>
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="kv2_ng_status" style="width: 16px; height: 16px;">
+                                        <input type="checkbox" id="kv2_ng_status" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                     <td>
-                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>
-                                        <input id="kv3_ps_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv3_ps_status" type="checkbox" style="width: 16px; height: 16px;" checked>
                                     </td>
                                     <td>
-                                        <input id="kv3_ng_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv3_ng_status" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                     <td>
-                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv1_ng_status" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                 </tr>
-                                <tr class="blur">
+                                <!--class="blur"-->
+                                <tr>
                                     <th scope="row">4</th>
                                     <td>
-                                        <input id="kv4_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv4_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" checked>
                                     </td>
                                     <td>
-                                        <input id="kv4_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv4_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                     <td>
-                                        <input id="kv1_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;">
+                                        <input id="kv1_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                 </tr>
                         </tbody>
@@ -197,26 +203,26 @@
                         <tbody>
                             <tr>
                                 <td>Máy bơm 1</td>
-                                <td id="pump1_status">ON</td>
+                                <td id="pump1_status"></td>
                             </tr>
                             <tr>
                                 <td>Van 1</td>
-                                <td id="pump2_status"></td>
+                                <td id="Valve_1_pump_1"></td>
                             </tr>
                             <tr>
                                 <td>Van 2</td>
-                                <td id="pump2_status"></td>
+                                <td id="Valve_2_pump_1"></td>
                             </tr>
                             <tr>
                                 <td>Van 3</td>
-                                <td id="pump2_status"></td>
+                                <td id="Valve_3_pump_1"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
+        {% comment %} <div class="col-sm-3">
             <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
                 <h4 class="text-left">
                     <i class="fas fa-faucet" aria-hidden="true"></i>&nbsp; Trạng thái bơm/Van
@@ -254,8 +260,8 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3">
+        </div> {% endcomment %}
+        {% comment %} <div class="col-sm-3">
             <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
                 <h4 class="text-left">
                      <p style="padding: 9px 0;"></p>
@@ -289,8 +295,9 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3">
+        </div> {% endcomment %}
+
+        {% comment %} <div class="col-sm-3">
             <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
                 <h4 class="text-left">
                     <i class="fas fa-faucet" aria-hidden="true"></i>&nbsp; Trạng thái bơm
@@ -308,7 +315,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- <div class="col-sm-3">
             <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
                 <h4 class="text-left">
@@ -343,12 +350,42 @@
                     <table class="table table-success">
                         <tbody>
                             <tr>
-                            <td id="sys_mode">Tự động</td>
+                            <td id="sys_mode"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <script>
+                {% if che_do_hoat_dong == 1 %}
+                    document.getElementById("sys_mode").innerHTML = "Tự động"
+                {% elif che_do_hoat_dong == 2 %}
+                    document.getElementById("sys_mode").innerHTML = "Hằng ngày"
+                {% elif che_do_hoat_dong == 3 %}
+                    document.getElementById("sys_mode").innerHTML = "Bằng tay"
+                {% endif %}
+                {% if trang_thai_van_khu_vuc_1 == 0 %}
+                    document.getElementById("Valve_1_pump_1").innerHTML = "Off"
+                {% elif trang_thai_van_khu_vuc_1 == 1 %}
+                    document.getElementById("Valve_1_pump_1").innerHTML = "On"
+                {% endif %}
+                {% if trang_thai_van_khu_vuc_2 == 0 %}
+                    document.getElementById("Valve_2_pump_1").innerHTML = "Off"
+                {% elif trang_thai_van_khu_vuc_2 == 1 %}
+                    document.getElementById("Valve_2_pump_1").innerHTML = "On"
+                {% endif %}
+                {% if trang_thai_van_khu_vuc_3 == 0 %}
+                    document.getElementById("Valve_3_pump_1").innerHTML = "Off"
+                {% elif trang_thai_van_khu_vuc_2 == 1 %}
+                    document.getElementById("Valve_3_pump_1").innerHTML = "On"
+                {% endif %}
+                {% if trang_thai_bom == 0 %}
+                    document.getElementById("pump1_status").innerHTML = "Off"
+                {% elif trang_thai_bom == 1 %}
+                    document.getElementById("pump1_status").innerHTML = "On"
+                {% endif %}
+            </script>
         </div>
     </div>
 </div>
