@@ -13,57 +13,6 @@
     <div class="row row-cols-sm-4">
         <div class="col-sm-3 mb-2">
             <div class="card shadow-lg p-3 rounded">
-                <div class="card-body text-white" style="background-color:#D92027 !important">
-                    <p class="card-text float-end" style="font-size:33px;" id="temperature_data"></p>
-                    <span>
-                        <i class="fa fa-thermometer-quarter fa-4x float-sm-left" aria-hidden="true"></i>
-                        <p class="card-text" style="font-size: 20px;"><br>Nhiệt độ</p>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-            <div class="card shadow-lg p-3 rounded">
-                <div class="card-body text-white" style="background-color:#FF9A00 !important">
-                    <p class="card-text float-end" id="light_data" style="font-size: 23px; font-weight: bold;"></p>
-                    <span>
-                        <span class="pH">pH</span>
-                        <p class="card-text" style="font-size: 20px;"><br>Độ pH</p>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-            <div class="card shadow-lg p-3 rounded">
-                <div class="card-body text-white" style="background-color:#23364b !important">
-                    <p class="card-text float-end" id="tank_data" style="font-size:33px;"></p>
-                    <span>
-                        <i class="fa fa-codepen fa-4x float-sm-left" aria-hidden="true"></i>
-                        <p class="card-text" style="font-size: 20px;"><br>Bể nước</p>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-            <div class="card shadow-lg p-3 rounded">
-                <div class="card-body text-white" style="background-color:#556FB5 !important">
-                    <p class="card-text float-end" style="font-size:33px;" id="air-humid"></p>
-                    <span>
-                        <i class="fa fa-tint fa-4x float-sm-left pb-2" aria-hidden="true"></i>
-                        <p class="card-text text-left" style="font-size: 20px;"><br>Độ ẩm không khí</p>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-3" style="padding-left:0px !important; margin-left:0px !important;">
-        <h4 class="text-left">
-            <i class="fas fa-cloud-rain" aria-hidden="true"></i>&nbsp; Độ ẩm các khu vực
-        </h4>
-    </div>
-    <div class="row row-cols-sm-4">
-        <div class="col-sm-3 mb-2">
-            <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
                         <i class="fa fa-tint fa-2x m-3 mb-4" aria-hidden="true" style="margin-left:20px !important; flex-direction: row;"></i>
@@ -115,6 +64,53 @@
             </div>
         </div>
     </div>
+    <div class="row row-cols-sm-4">
+        <div class="col-sm-3 mb-2">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#D92027 !important">
+                    <p class="card-text float-end" style="font-size:33px;" id="temperature_data"></p>
+                    <span>
+                        <i class="fa fa-thermometer-quarter fa-4x float-sm-left" aria-hidden="true"></i>
+                        <p class="card-text" style="font-size: 20px;"><br>Nhiệt độ đất</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mb-2">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#FF9A00 !important">
+                    <p class="card-text float-end" id="light_data" style="font-size: 23px; font-weight: bold;"></p>
+                    <span>
+                        <span class="pH">pH</span>
+                        <p class="card-text" style="font-size: 20px;"><br>Độ pH đất</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-3 mb-2">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#23364b !important">
+                    <p class="card-text float-end" id="tank_data" style="font-size:33px;"></p>
+                    <span>
+                        <i class="fa fa-codepen fa-4x float-sm-left" aria-hidden="true"></i>
+                        <p class="card-text" style="font-size: 20px;"><br>Bể nước</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mb-2">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#556FB5 !important">
+                    <p class="card-text float-end" style="font-size:33px;" id="air-humid"></p>
+                    <span>
+                        <i class="fa fa-tint fa-4x float-sm-left pb-2" aria-hidden="true"></i>
+                        <p class="card-text text-left" style="font-size: 20px;"><br>Độ ẩm không khí</p>
+                    </span>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
 
     <div class="row row-cols-sm-4 water and pump">
         <div class="col-sm-3">
@@ -183,37 +179,6 @@
                                         <input id="kv1_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;">
                                     </td>
                                 </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
-                <h4 class="text-left">
-                    <i class="fas fa-faucet" aria-hidden="true"></i>&nbsp; Trạng thái bơm/Van
-                </h4>
-            </div>
-            <div class="card text-center pump">
-                <div class="card-body">
-                    <table class="table table-success">
-                        <tbody>
-                            <tr>
-                                <td>Máy bơm 1</td>
-                                <td id="pump1_status">ON</td>
-                            </tr>
-                            <tr>
-                                <td>Van 1</td>
-                                <td id="pump2_status"></td>
-                            </tr>
-                            <tr>
-                                <td>Van 2</td>
-                                <td id="pump2_status"></td>
-                            </tr>
-                            <tr>
-                                <td>Van 3</td>
-                                <td id="pump2_status"></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

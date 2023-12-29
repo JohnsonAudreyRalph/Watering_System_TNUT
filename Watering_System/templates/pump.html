@@ -47,7 +47,7 @@
                                 Bơm</span>
                             <div class="col" style="display:flex;justify-content:center;align-items:center;">
                                 <label class="switch">
-                                    <input type="checkbox" id="pump">
+                                    <input type="checkbox" id="pump" name="pump">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -60,7 +60,7 @@
                                 Van 1</span>
                             <div class="col" style="display:flex;justify-content:center;align-items:center;">
                                 <label class="switch">
-                                    <input type="checkbox" id="van_1">
+                                    <input type="checkbox" id="van_1" name="van_1">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -71,7 +71,7 @@
                                 Van 2</span>
                             <div class="col" style="display:flex;justify-content:center;align-items:center;">
                                 <label class="switch">
-                                    <input type="checkbox" id="van_2">
+                                    <input type="checkbox" id="van_2" name="van_2">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -82,7 +82,7 @@
                                 3</span>
                             <div class="col" style="display:flex;justify-content:center;align-items:center;">
                                 <label class="switch">
-                                    <input type="checkbox" id="van_3">
+                                    <input type="checkbox" id="van_3" name="van_3">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -102,7 +102,7 @@
                 </div>
                 
             </div>
-            <div class="container"
+            {% comment %} <div class="container"
                 style="border-style: outset; border-color: black; background-color:#ffff80;">
                 <div class="row row-cols-2">
                     <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
@@ -222,8 +222,8 @@
                     </div>
                 </div>
                 
-            </div>
-            <div class="container"
+            </div> {% endcomment %}
+            {% comment %} <div class="container"
                 style="border-style: outset; border-color: black; background-color:#ffff80;">
                 <div class="row row-cols-2">
                     <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
@@ -241,8 +241,72 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
     </div>
 </div>
+<script>
+
+    {% if che_do_bang_tay_dieu_khien_bom == 1 %}
+        document.getElementById("pump").checked = true;
+    {% elif che_do_bang_tay_dieu_khien_bom == 0 %}
+        document.getElementById("pump").checked = false;
+    {% endif %}
+
+    {% if che_do_dieu_khien_van_KV_1 == 1 %}
+        document.getElementById("van_1").checked = true;
+    {% elif che_do_dieu_khien_van_KV_1 == 0 %}
+        document.getElementById("van_1").checked = false;
+    {% endif %}
+
+    {% if che_do_dieu_khien_van_KV_2 == 1 %}
+        document.getElementById("van_2").checked = true;
+    {% elif che_do_dieu_khien_van_KV_2 == 0 %}
+        document.getElementById("van_2").checked = false;
+    {% endif %}
+
+    {% if che_do_dieu_khien_van_KV_3 == 1 %}
+        document.getElementById("van_3").checked = true;
+    {% elif che_do_dieu_khien_van_KV_3 == 0 %}
+        document.getElementById("van_3").checked = false;
+    {% endif %}
+
+    $(document).ready(function() {
+        $('#pump, #van_1, #van_2, #van_3').change(function() {
+            var pumpChecked = $('#pump').is(':checked');
+            var van1Checked = $('#van_1').is(':checked');
+            var van2Checked = $('#van_2').is(':checked');
+            var van3Checked = $('#van_3').is(':checked');
+
+            // console.log(checkboxValue)
+
+            // if (isChecked) {
+            //     console.log('Checkbox đã được chọn');
+            //     // Thực hiện các hành động khi checkbox được chọn
+            // } else {
+            //     console.log('Checkbox không được chọn');
+            //     // Thực hiện các hành động khi checkbox không được chọn
+            // }
+            
+            $.ajax({
+                type: 'POST',
+                url: '/pump_HTML/',
+                data: {
+                    'pump': pumpChecked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                    'van_1': van1Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                    'van_2': van2Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                    'van_3': van3Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    console.log('Dữ liệu đã được gửi thành công.');
+                    // Xử lý phản hồi từ Django views ở đây nếu cần
+                },
+                error: function(error) {
+                    console.log('Đã có lỗi xảy ra:', error);
+                }
+            });
+        });
+    });
+</script>
 {% endblock content %}
