@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/thermometer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/reponsive.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/chart.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'css/chart.css' %}" /> {% endcomment %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/v4-shims.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
@@ -210,9 +210,10 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <!-- <script type="text/javascript" src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+    {% comment %} <script type="text/javascript" src="{% static 'js/menu.js' %}"></script> {% endcomment %}
+    
 </body>
 </html>
