@@ -1,363 +1,364 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="col-10 pl-5" style="height:100%;" id="Sys_info">
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thay đổi chế độ</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Bạn đang dùng chế độ ..., ấn xác nhận để chuyển sang chế độ
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary" id="confirm-mode">Xác nhận</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row row-cols-sm-1 w-75" id="table1">
-        <div class="container"
-            style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;overflow:auto;">
-            <h4 class="text-left">
-                <i class="fas fa-cog" aria-hidden="true"></i>&nbsp; Cài đặt
-            </h4>
-            <table class="table table-sm" style="background-color: #C7FFBF;">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <tbody>
-                        <thead>
-                            <tr>
-                                <th class="text-center">Lần tưới</th>
-                                <th class="text-center">Khu vực</th>
-                                <th class="text-center">Chế độ</th>
-                                <th class="text-center">Bắt đầu</th>
-                                <th class="text-center">Thời lượng</th>
+    <div class="col-12 pl-5" style="height:100%;" id="Sys_info">
+        <div class="row row-cols-sm-1" id="table1" style="display:flex;justify-content:center;align-items:center;">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important;padding-right:0px !important; margin-left:0px !important;overflow:auto;">
+                <h4 class="text-left">
+                    <i class="fas fa-cog mx-2" aria-hidden="true"></i>Cài đặt
+                </h4>
+                <table class="table table-sm" style="background-color: #C7FFBF;">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <tbody>
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Lần tưới</th>
+                                    <th class="text-center">Khu vực</th>
+                                    <th class="text-center">Chế độ</th>
+                                    <th class="text-center">Bắt đầu</th>
+                                    <th class="text-center">Thời lượng</th>
+                                </tr>
+                            </thead>
+                            <tr id="l1-row">
+                                <th scope="row" class="text-center">
+                                    <input type="checkbox" name="day_1" id="day-1" value="1" class="range-checkbox">
+                                    <label for="day_1" class="range-label">1:</label>
+                                </th>
+                                <td class="text-center">
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_1_1" name="area_1_1" value='1'>
+                                        <label class="range-label">Khu vực 1</label>
+                                    </div>
+
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_1_2" name="area_1_2" value='1'>
+                                        <label class="range-label">Khu vực 2</label>
+                                    </div>
+                                    
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_1_3" name="area_1_3" value='1'>
+                                        <label class="range-label">Khu vực 3</label>
+                                    </div>
+                                    {% comment %} <select id="khuvuc_l1">
+                                        <option value="1">Khu vực 1,2</option>
+                                        <option value="2">Khu vực 3,4</option>
+                                        <option value="3">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    Phun mưa
+                                    {% comment %} <select id="mode_l4">
+                                        <option value="1">Phun mưa</option>
+                                        <option value="2">Phun sương</option>
+                                        <option value="3">Nhỏ giọt</option>
+                                        <option value="4">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_1" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_1}}'>
+                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_1" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_1}}'>
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" id="length1" name="che_do_hang_ngay_thoi_gian_tuoi_1" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_1}}'>
+                                    <small>phút</small>
+                                </td>
                             </tr>
-                        </thead>
-                        <tr id="l1-row">
-                            <th scope="row" class="text-center">
-                                <input type="checkbox" name="day_1" id="day-1" value="1" class="range-checkbox">
-                                <label for="day_1" class="range-label">1:</label>
-                            </th>
-                            <td class="text-center">
-                                <input type="checkbox" class="range-checkbox" id="area_1_1" name="area_1_1" value='1'>
-                                <label class="range-label">Khu vực 1</label>
-                                <input type="checkbox" class="range-checkbox" id="area_1_2" name="area_1_2" value='1'>
-                                <label class="range-label">Khu vực 2</label>
-                                <input type="checkbox" class="range-checkbox" id="area_1_3" name="area_1_3" value='1'>
-                                <label class="range-label">Khu vực 3</label>
-                                {% comment %} <select id="khuvuc_l1">
-                                    <option value="1">Khu vực 1,2</option>
-                                    <option value="2">Khu vực 3,4</option>
-                                    <option value="3">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                Phun mưa
-                                {% comment %} <select id="mode_l4">
-                                    <option value="1">Phun mưa</option>
-                                    <option value="2">Phun sương</option>
-                                    <option value="3">Nhỏ giọt</option>
-                                    <option value="4">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_1" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_1}}'>
-                                <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_1" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_1}}'>
-                            </td>
-                            <td class='text-center'>
-                                <input type="number" id="length1" name="che_do_hang_ngay_thoi_gian_tuoi_1" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_1}}'>
-                                <small>&nbsp;phút</small>
-                            </td>
-                        </tr>
-                        <tr id="l2-row">
-                            <th scope="row" class="text-center">
-                                <input type="checkbox" name="day_2" id="day-2" value="1" class="range-checkbox">
-                                <label for="day_2" class="range-label">2:</label>
-                            </th>
-                            <td class="text-center">
-                                <input type="checkbox" class="range-checkbox" id="area_2_1" name="area_2_1" value='1'>
-                                <label class="range-label">Khu vực 1</label>
-                                <input type="checkbox" class="range-checkbox" id="area_2_2" name="area_2_2" value='1'>
-                                <label class="range-label">Khu vực 2</label>
-                                <input type="checkbox" class="range-checkbox" id="area_2_3" name="area_2_3" value='1'>
-                                <label class="range-label">Khu vực 3</label>
-                                {% comment %} <select id="khuvuc_l1">
-                                    <option value="1">Khu vực 1,2</option>
-                                    <option value="2">Khu vực 3,4</option>
-                                    <option value="3">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                Phun mưa
-                                {% comment %} <select id="mode_l4">
-                                    <option value="1">Phun mưa</option>
-                                    <option value="2">Phun sương</option>
-                                    <option value="3">Nhỏ giọt</option>
-                                    <option value="4">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_2" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_2}}'>
-                                <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_2" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_2}}'>
-                            </td>
-                            <td class="text-center">
-                                <input type="number" id="length2" name="che_do_hang_ngay_thoi_gian_tuoi_2" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_2}}'>
-                                <small>&nbsp;phút</small>
-                            </td>
-                        </tr>
-                        <tr id="l3-row">
-                            <th scope="row" class="text-center">
-                                <input type="checkbox" name="day_3" id="day-3" value="1" class="range-checkbox">
-                                <label for="day_3" class="range-label">3:</label>
-                            </th>
-                            <td class="text-center">
-                                <input type="checkbox" class="range-checkbox" id="area_3_1" name="area_3_1" value='1'>
-                                <label class="range-label">Khu vực 1</label>
-                                <input type="checkbox" class="range-checkbox" id="area_3_2" name="area_3_2" value='1'>
-                                <label class="range-label">Khu vực 2</label>
-                                <input type="checkbox" class="range-checkbox" id="area_3_3" name="area_3_3" value='1'>
-                                <label class="range-label">Khu vực 3</label>
-                                {% comment %} <select id="khuvuc_l1">
-                                    <option value="1">Khu vực 1,2</option>
-                                    <option value="2">Khu vực 3,4</option>
-                                    <option value="3">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                Phun mưa
-                                {% comment %} <select id="mode_l4">
-                                    <option value="1">Phun mưa</option>
-                                    <option value="2">Phun sương</option>
-                                    <option value="3">Nhỏ giọt</option>
-                                    <option value="4">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_3" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_3}}'>
-                                <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_3" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_3}}'>
-                            </td>
-                            <td class="text-center">
-                                <input type="number" id="length3" name="che_do_hang_ngay_thoi_gian_tuoi_3" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_3}}'>
-                                <small>&nbsp;phút</small>
-                            </td>
-                        </tr>
-                        <tr id="l4-row">
-                            <th scope="row" class="text-center">
-                                <input type="checkbox" name="day_4" id="day-4" value="1" class="range-checkbox">
-                                <label for="day_4" class="range-label">4:</label>
-                            </th>
-                            <td class="text-center">
-                                <input type="checkbox" class="range-checkbox" id="area_4_1" name="area_4_1" value='1'>
-                                <label class="range-label">Khu vực 1</label>
-                                <input type="checkbox" class="range-checkbox" id="area_4_2" name="area_4_2" value='1'>
-                                <label class="range-label">Khu vực 2</label>
-                                <input type="checkbox" class="range-checkbox" id="area_4_3" name="area_4_3" value='1'>
-                                <label class="range-label">Khu vực 3</label>
-                                {% comment %} <select id="khuvuc_l1">
-                                    <option value="1">Khu vực 1,2</option>
-                                    <option value="2">Khu vực 3,4</option>
-                                    <option value="3">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                Phun mưa
-                                {% comment %} <select id="mode_l4">
-                                    <option value="1">Phun mưa</option>
-                                    <option value="2">Phun sương</option>
-                                    <option value="3">Nhỏ giọt</option>
-                                    <option value="4">Tất cả</option>
-                                </select> {% endcomment %}
-                            </td>
-                            <td class="text-center">
-                                <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_4" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_4}}'>
-                                <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_4" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_4}}'>
-                            </td>
-                            <td class="text-center">
-                                <input type="number" id="length4" name="che_do_hang_ngay_thoi_gian_tuoi_4" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_4}}'>
-                                <small>&nbsp;phút</small>
-                            </td>
-                        </tr>
-                        {% comment %} <tr id="l5-row">
-                            <th scope="row" class="text-center">
-                                <input type="checkbox" name="day-5" id="day-5" value="1" class="range-checkbox"
-                                    checked>
-                                <label for="day-5" class="range-label">5:</label>
-                            </th>
-                            <td>
-                                <select id="khuvuc_l5">
-                                    <option value="1">Khu vực 1,2</option>
-                                    <option value="2">Khu vực 3,4</option>
-                                    <option value="3">Tất cả</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select id="mode_l5">
-                                    <option value="1">Phun mưa</option>
-                                    <option value="2">Phun sương</option>
-                                    <option value="3">Nhỏ giọt</option>
-                                    <option value="4">Tất cả</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="time" id="start_time5" name="start_time5" min="00:00" max="24:00">
-                            </td>
-                            <td>
-                                <input type="number" id="length5" name="length5" style="width: 50px;">
-                                <small>&nbsp;phút</small>
-                            </td>
-                        </tr>
-                        <tr id="l6-row">
-                            <th scope="row" class="text-center">
-                                <input type="checkbox" name="day-6" id="day-6" value="1" class="range-checkbox"
-                                    checked>
-                                <label for="day-6" class="range-label">6:</label>
-                            </th>
-                            <td>
-                                <select id="khuvuc_l6">
-                                    <option value="1">Khu vực 1,2</option>
-                                    <option value="2">Khu vực 3,4</option>
-                                    <option value="3">Tất cả</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select id="mode_l6">
-                                    <option value="1">Phun mưa</option>
-                                    <option value="2">Phun sương</option>
-                                    <option value="3">Nhỏ giọt</option>
-                                    <option value="4">Tất cả</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="time" id="start_time6" name="start_time6" min="00:00" max="24:00">
-                            </td>
-                            <td>
-                                <input type="number" id="length6" name="length6" style="width: 50px;">
-                                <small>&nbsp;phút</small>
-                            </td>
-                        </tr> {% endcomment %}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button type="submit" class="btn btn-danger" id="submit">Xác nhận</button>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </form>
-            </table>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert"
-                style="display:none;">
-                <strong id="alert-text">Đã thiết lập thành công!</strong>
+                            <tr id="l2-row">
+                                <th scope="row" class="text-center">
+                                    <input type="checkbox" name="day_2" id="day-2" value="1" class="range-checkbox">
+                                    <label for="day_2" class="range-label">2:</label>
+                                </th>
+                                <td class="text-center">
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_2_1" name="area_2_1" value='1'>
+                                        <label class="range-label">Khu vực 1</label>
+                                    </div>
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_2_2" name="area_2_2" value='1'>
+                                        <label class="range-label">Khu vực 2</label>
+                                    </div>
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_2_3" name="area_2_3" value='1'>
+                                        <label class="range-label">Khu vực 3</label>
+                                    </div>
+                                    {% comment %} <select id="khuvuc_l1">
+                                        <option value="1">Khu vực 1,2</option>
+                                        <option value="2">Khu vực 3,4</option>
+                                        <option value="3">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    Phun mưa
+                                    {% comment %} <select id="mode_l4">
+                                        <option value="1">Phun mưa</option>
+                                        <option value="2">Phun sương</option>
+                                        <option value="3">Nhỏ giọt</option>
+                                        <option value="4">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_2" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_2}}'>
+                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_2" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_2}}'>
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" id="length2" name="che_do_hang_ngay_thoi_gian_tuoi_2" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_2}}'>
+                                    <small>phút</small>
+                                </td>
+                            </tr>
+                            <tr id="l3-row">
+                                <th scope="row" class="text-center">
+                                    <input type="checkbox" name="day_3" id="day-3" value="1" class="range-checkbox">
+                                    <label for="day_3" class="range-label">3:</label>
+                                </th>
+                                <td class="text-center">
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_3_1" name="area_3_1" value='1'>
+                                        <label class="range-label">Khu vực 1</label>
+                                    </div>
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_3_2" name="area_3_2" value='1'>
+                                        <label class="range-label">Khu vực 2</label>
+                                    </div>
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_3_3" name="area_3_3" value='1'>
+                                        <label class="range-label">Khu vực 3</label>
+                                    </div>
+                                    {% comment %} <select id="khuvuc_l1">
+                                        <option value="1">Khu vực 1,2</option>
+                                        <option value="2">Khu vực 3,4</option>
+                                        <option value="3">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    Phun mưa
+                                    {% comment %} <select id="mode_l4">
+                                        <option value="1">Phun mưa</option>
+                                        <option value="2">Phun sương</option>
+                                        <option value="3">Nhỏ giọt</option>
+                                        <option value="4">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_3" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_3}}'>
+                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_3" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_3}}'>
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" id="length3" name="che_do_hang_ngay_thoi_gian_tuoi_3" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_3}}'>
+                                    <small>phút</small>
+                                </td>
+                            </tr>
+                            <tr id="l4-row">
+                                <th scope="row" class="text-center">
+                                    <input type="checkbox" name="day_4" id="day-4" value="1" class="range-checkbox">
+                                    <label for="day_4" class="range-label">4:</label>
+                                </th>
+                                <td class="text-center">
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_4_1" name="area_4_1" value='1'>
+                                        <label class="range-label">Khu vực 1</label>
+                                    </div>
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_4_2" name="area_4_2" value='1'>
+                                        <label class="range-label">Khu vực 2</label>
+                                    </div>
+                                    <div class="input-group text-center justify-content-center">
+                                        <input type="checkbox" class="range-checkbox" id="area_4_3" name="area_4_3" value='1'>
+                                        <label class="range-label">Khu vực 3</label>
+                                    </div>
+                                    {% comment %} <select id="khuvuc_l1">
+                                        <option value="1">Khu vực 1,2</option>
+                                        <option value="2">Khu vực 3,4</option>
+                                        <option value="3">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    Phun mưa
+                                    {% comment %} <select id="mode_l4">
+                                        <option value="1">Phun mưa</option>
+                                        <option value="2">Phun sương</option>
+                                        <option value="3">Nhỏ giọt</option>
+                                        <option value="4">Tất cả</option>
+                                    </select> {% endcomment %}
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_4" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_4}}'>
+                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_4" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_4}}'>
+                                </td>
+                                <td class="text-center">
+                                    <input type="number" id="length4" name="che_do_hang_ngay_thoi_gian_tuoi_4" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_4}}'>
+                                    <small>phút</small>
+                                </td>
+                            </tr>
+                            {% comment %} <tr id="l5-row">
+                                <th scope="row" class="text-center">
+                                    <input type="checkbox" name="day-5" id="day-5" value="1" class="range-checkbox"
+                                        checked>
+                                    <label for="day-5" class="range-label">5:</label>
+                                </th>
+                                <td>
+                                    <select id="khuvuc_l5">
+                                        <option value="1">Khu vực 1,2</option>
+                                        <option value="2">Khu vực 3,4</option>
+                                        <option value="3">Tất cả</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="mode_l5">
+                                        <option value="1">Phun mưa</option>
+                                        <option value="2">Phun sương</option>
+                                        <option value="3">Nhỏ giọt</option>
+                                        <option value="4">Tất cả</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="time" id="start_time5" name="start_time5" min="00:00" max="24:00">
+                                </td>
+                                <td>
+                                    <input type="number" id="length5" name="length5" style="width: 50px;">
+                                    <small>&nbsp;phút</small>
+                                </td>
+                            </tr>
+                            <tr id="l6-row">
+                                <th scope="row" class="text-center">
+                                    <input type="checkbox" name="day-6" id="day-6" value="1" class="range-checkbox"
+                                        checked>
+                                    <label for="day-6" class="range-label">6:</label>
+                                </th>
+                                <td>
+                                    <select id="khuvuc_l6">
+                                        <option value="1">Khu vực 1,2</option>
+                                        <option value="2">Khu vực 3,4</option>
+                                        <option value="3">Tất cả</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="mode_l6">
+                                        <option value="1">Phun mưa</option>
+                                        <option value="2">Phun sương</option>
+                                        <option value="3">Nhỏ giọt</option>
+                                        <option value="4">Tất cả</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="time" id="start_time6" name="start_time6" min="00:00" max="24:00">
+                                </td>
+                                <td>
+                                    <input type="number" id="length6" name="length6" style="width: 50px;">
+                                    <small>&nbsp;phút</small>
+                                </td>
+                            </tr> {% endcomment %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center">
+                                    <button type="submit" class="btn btn-danger" id="submit">Xác nhận</button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </form>
+                </table>
             </div>
         </div>
+        {% comment %} <div class="row row-cols-sm-1" id="table2">
+            <div class="container"
+                style="padding-top:8px;padding-left:0px !important; margin-left:0px !important;overflow:auto;">
+                <h4 class="text-left">
+                    <i class="fas fa-water mx-2" aria-hidden="true"></i> Bảng giám sát
+                </h4>
+                <table id="schedule" class="table table-warning table-striped table-hover">
+                </table>
+            </div>
+        </div> {% endcomment %}
     </div>
-    <div class="row row-cols-sm-1 w-75" id="table2">
-        <div class="container"
-            style="padding-top:8px;padding-left:0px !important; margin-left:0px !important;overflow:auto;">
-            <h4 class="text-left">
-                <i class="fas fa-water" aria-hidden="true"></i>&nbsp; Bảng giám sát
-            </h4>
-            <table id="schedule" class="table table-warning table-striped table-hover">
-            </table>
-        </div>
-    </div>
-</div>
-<script>
-    {% if che_do_hang_ngay_xac_nhan_lan_1 == 1 %}
-        document.getElementById("day-1").checked = true;
-    {% elif che_do_hang_ngay_xac_nhan_lan_1 == 0 %}
-        document.getElementById("day-1").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_xac_nhan_lan_2 == 1 %}
-        console.log({{che_do_hang_ngay_xac_nhan_lan_2}})
-        document.getElementById("day-2").checked = true;
-    {% elif che_do_hang_ngay_xac_nhan_lan_2 == 0 %}
-        document.getElementById("day-2").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_xac_nhan_lan_3 == 1 %}
-        document.getElementById("day-3").checked = true;
-    {% elif che_do_hang_ngay_xac_nhan_lan_3 == 0 %}
-        document.getElementById("day-3").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_xac_nhan_lan_4 == 1 %}
-        document.getElementById("day-4").checked = true;
-    {% elif che_do_hang_ngay_xac_nhan_lan_4 == 0 %}
-        document.getElementById("day-4").checked = false;
-    {% endif %}
+    <script>
+        {% if che_do_hang_ngay_xac_nhan_lan_1 == 1 %}
+            document.getElementById("day-1").checked = true;
+        {% elif che_do_hang_ngay_xac_nhan_lan_1 == 0 %}
+            document.getElementById("day-1").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_xac_nhan_lan_2 == 1 %}
+            console.log({{che_do_hang_ngay_xac_nhan_lan_2}})
+            document.getElementById("day-2").checked = true;
+        {% elif che_do_hang_ngay_xac_nhan_lan_2 == 0 %}
+            document.getElementById("day-2").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_xac_nhan_lan_3 == 1 %}
+            document.getElementById("day-3").checked = true;
+        {% elif che_do_hang_ngay_xac_nhan_lan_3 == 0 %}
+            document.getElementById("day-3").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_xac_nhan_lan_4 == 1 %}
+            document.getElementById("day-4").checked = true;
+        {% elif che_do_hang_ngay_xac_nhan_lan_4 == 0 %}
+            document.getElementById("day-4").checked = false;
+        {% endif %}
 
-    {% if che_do_hang_ngay_dieu_khien_KV_1_1 == 1 %}
-        document.getElementById("area_1_1").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_1_1 == 0 %}
-        document.getElementById("area_1_1").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_1_2 == 1 %}
-        document.getElementById("area_1_2").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_1_2 == 0 %}
-        document.getElementById("area_1_2").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_1_3 == 1 %}
-        document.getElementById("area_1_3").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_1_3 == 0 %}
-        document.getElementById("area_1_3").checked = false;
-    {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_1_1 == 1 %}
+            document.getElementById("area_1_1").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_1_1 == 0 %}
+            document.getElementById("area_1_1").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_1_2 == 1 %}
+            document.getElementById("area_1_2").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_1_2 == 0 %}
+            document.getElementById("area_1_2").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_1_3 == 1 %}
+            document.getElementById("area_1_3").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_1_3 == 0 %}
+            document.getElementById("area_1_3").checked = false;
+        {% endif %}
 
-    {% if che_do_hang_ngay_dieu_khien_KV_2_1 == 1 %}
-        document.getElementById("area_2_1").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_2_1 == 0 %}
-        document.getElementById("area_2_1").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_2_2 == 1 %}
-        document.getElementById("area_2_2").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_2_2 == 0 %}
-        document.getElementById("area_2_2").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_2_3 == 1 %}
-        document.getElementById("area_2_3").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_2_3 == 0 %}
-        document.getElementById("area_2_3").checked = false;
-    {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_2_1 == 1 %}
+            document.getElementById("area_2_1").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_2_1 == 0 %}
+            document.getElementById("area_2_1").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_2_2 == 1 %}
+            document.getElementById("area_2_2").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_2_2 == 0 %}
+            document.getElementById("area_2_2").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_2_3 == 1 %}
+            document.getElementById("area_2_3").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_2_3 == 0 %}
+            document.getElementById("area_2_3").checked = false;
+        {% endif %}
 
-    {% if che_do_hang_ngay_dieu_khien_KV_3_1 == 1 %}
-        document.getElementById("area_3_1").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_3_1 == 0 %}
-        document.getElementById("area_3_1").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_3_2 == 1 %}
-        document.getElementById("area_3_2").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_3_2 == 0 %}
-        document.getElementById("area_3_2").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_3_3 == 1 %}
-        document.getElementById("area_3_3").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_3_3 == 0 %}
-        document.getElementById("area_3_3").checked = false;
-    {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_3_1 == 1 %}
+            document.getElementById("area_3_1").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_3_1 == 0 %}
+            document.getElementById("area_3_1").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_3_2 == 1 %}
+            document.getElementById("area_3_2").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_3_2 == 0 %}
+            document.getElementById("area_3_2").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_3_3 == 1 %}
+            document.getElementById("area_3_3").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_3_3 == 0 %}
+            document.getElementById("area_3_3").checked = false;
+        {% endif %}
 
-    {% if che_do_hang_ngay_dieu_khien_KV_4_1 == 1 %}
-        document.getElementById("area_4_1").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_4_1 == 0 %}
-        document.getElementById("area_4_1").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_4_2 == 1 %}
-        document.getElementById("area_4_2").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_4_2 == 0 %}
-        document.getElementById("area_4_2").checked = false;
-    {% endif %}
-    {% if che_do_hang_ngay_dieu_khien_KV_4_3 == 1 %}
-        document.getElementById("area_4_3").checked = true;
-    {% elif che_do_hang_ngay_dieu_khien_KV_4_3 == 0 %}
-        document.getElementById("area_4_3").checked = false;
-    {% endif %}
-</script>
+        {% if che_do_hang_ngay_dieu_khien_KV_4_1 == 1 %}
+            document.getElementById("area_4_1").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_4_1 == 0 %}
+            document.getElementById("area_4_1").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_4_2 == 1 %}
+            document.getElementById("area_4_2").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_4_2 == 0 %}
+            document.getElementById("area_4_2").checked = false;
+        {% endif %}
+        {% if che_do_hang_ngay_dieu_khien_KV_4_3 == 1 %}
+            document.getElementById("area_4_3").checked = true;
+        {% elif che_do_hang_ngay_dieu_khien_KV_4_3 == 0 %}
+            document.getElementById("area_4_3").checked = false;
+        {% endif %}
+    </script>
 {% endblock content %}

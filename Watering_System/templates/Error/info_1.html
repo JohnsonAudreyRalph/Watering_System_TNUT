@@ -1,17 +1,19 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "new_base.html" %}
 
 {% block content %}
-    <h4 class="text-left">
-        <i class="fa fa-tachometer mx-3" aria-hidden="true"></i>Trạng thái môi trường
-    </h4>
+<div class="col-10 pl-5" style="height:100%;" id="Sys_info">
+    <div class="container pt-4" style="padding-left:0px !important; margin-left:0px !important;">
+        <h4 class="text-left">
+            <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp; Trạng thái môi trường
+        </h4>
+    </div>
     <div class="row row-cols-sm-4">
         <div class="col-sm-3 mb-2">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
                         <i class="fa fa-tint fa-2x m-3 mb-4" aria-hidden="true" style="margin-left:20px !important; flex-direction: row;"></i>
-                        <p class="card-text text-center" style="font-size:30px; flex-direction: row; padding-left: 40px; font-weight: bold;" id="kv1_humid_data_display">{{do_am_dat}}%</p>
+                        <p class="card-text text-center" style="font-size:30px; flex-direction: row;padding-left: 40px;" id="kv1_humid_data_display">{{do_am_dat}}%</p>
                     </div>
                     <span>
                         <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Khu vực 1</p>
@@ -19,12 +21,13 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-3 mb-2 blur">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
                         <i class="fa fa-tint fa-2x m-3 mb-4" aria-hidden="true" style="margin-left:20px !important; flex-direction: row;"></i>
-                        <p class="card-text text-center" style="font-size:33px; flex-direction: row;padding-left: 40px; font-weight: bold;" id="kv2_humid_data_display"></p>
+                        <p class="card-text text-center" style="font-size:33px; flex-direction: row;padding-left: 40px;" id="kv2_humid_data_display"></p>
                     </div>
                     <span>
                         <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Khu vực 2</p>
@@ -37,7 +40,7 @@
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
                         <i class="fa fa-tint fa-2x m-3 mb-4" aria-hidden="true" style="margin-left:20px !important; flex-direction: row;"></i>
-                        <p class="card-text text-center" style="font-size:33px; flex-direction: row; padding-left: 40px; font-weight: bold;" id="kv3_humid_data_display"></p>
+                        <p class="card-text text-center" style="font-size:33px; flex-direction: row;padding-left: 40px;" id="kv3_humid_data_display"></p>
                     </div>
                     <span>
                         <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Khu vực 3</p>
@@ -50,7 +53,7 @@
                 <div class="card-body text-white" style="background-color: #0d6efd; padding:5px !important">
                     <div class="float-sm-left" style="display:flex;vertical-align: top !important; text-align: left !important; border-radius: 50%; border-color: #fde50d;border-style:groove; border-top: none; border-left: none; width: 60px;height: 60px;">
                         <i class="fa fa-tint fa-2x m-3 mb-4" aria-hidden="true" style="margin-left:20px !important; flex-direction: row;"></i>
-                        <p class="card-text text-center" style="font-size:33px; flex-direction: row; padding-left: 40px; font-weight: bold;" id="kv4_humid_data_display"></p>
+                        <p class="card-text text-center" style="font-size:33px; flex-direction: row;padding-left: 40px;" id="kv4_humid_data_display"></p>
                     </div>
                     <span>
                         <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Khu vực 4</p>
@@ -59,12 +62,11 @@
             </div>
         </div>
     </div>
-
     <div class="row row-cols-sm-4">
         <div class="col-sm-3 mb-2">
             <div class="card shadow-lg p-3 rounded">
                 <div class="card-body text-white" style="background-color:#D92027 !important">
-                    <p class="card-text float-end" style="font-size: 33px; font-weight: bold;" id="temperature_data">{{nhiet_do_dat}} ºC</p>
+                    <p class="card-text float-end" style="font-size:33px;" id="temperature_data">{{nhiet_do_dat}} ºC</p>
                     <span>
                         <i class="fa fa-thermometer-quarter fa-4x float-sm-left" aria-hidden="true"></i>
                         <p class="card-text" style="font-size: 20px;"><br>Nhiệt độ đất</p>
@@ -78,19 +80,44 @@
                 <div class="card-body text-white" style="background-color:#FF9A00 !important">
                     <p class="card-text float-end" id="light_data" style="font-size: 33px; font-weight: bold;">{{do_ph}}</p>
                     <span>
-                        <i class="fa fa-thermometer-empty fa-4x float-sm-left" aria-hidden="true"></i>
+                        <span class="pH">pH</span>
                         <p class="card-text" style="font-size: 20px;"><br>Độ pH đất</p>
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-3 mb-2">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#23364b !important">
+                    <p class="card-text float-end" id="tank_data" style="font-size:33px;"></p>
+                    <span>
+                        <i class="fa fa-codepen fa-4x float-sm-left" aria-hidden="true"></i>
+                        <p class="card-text" style="font-size: 20px;"><br>Bể nước</p>
                     </span>
                 </div>
             </div>
         </div>
+        <div class="col-sm-3 mb-2">
+            <div class="card shadow-lg p-3 rounded">
+                <div class="card-body text-white" style="background-color:#556FB5 !important">
+                    <p class="card-text float-end" style="font-size:33px;" id="air-humid"></p>
+                    <span>
+                        <i class="fa fa-tint fa-4x float-sm-left pb-2" aria-hidden="true"></i>
+                        <p class="card-text text-left" style="font-size: 20px;"><br>Độ ẩm không khí</p>
+                    </span>
+                    
+                </div>
+            </div>
+        </div> -->
     </div>
 
-    <div class="row row-cols-sm-4">
+
+    <div class="row row-cols-sm-4 water and pump">
         <div class="col-sm-3">
-            <div class="container">
+            <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
                 <h4 class="text-left">
-                    <i class="fas fa-water mx-3" aria-hidden="true"></i>Chế độ tưới
+                    <i class="fas fa-water" aria-hidden="true"></i>&nbsp; Chế độ tưới
                 </h4>
             </div>
             <div class="card">
@@ -160,15 +187,15 @@
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="container">
-                <h4 class="text-left mt-2">
-                    <i class="fas fa-faucet mx-3" aria-hidden="true"></i>Trạng thái bơm/Van
+            <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-faucet" aria-hidden="true"></i>&nbsp; Trạng thái bơm/Van
                 </h4>
             </div>
             <div class="card text-center pump">
                 <div class="card-body">
                     <table class="table table-success">
-                        <tbody class="fw-bold fs-6 text">
+                        <tbody>
                             <tr>
                                 <td>Máy bơm 1</td>
                                 <td id="pump1_status"></td>
@@ -190,55 +217,55 @@
                 </div>
             </div>
         </div>
-
         <div class="col-sm-3">
-            <div class="container">
-                <h4 class="text-left mt-2">
-                    <i class="fas fa-tools mx-3" aria-hidden="true"></i>Chế độ hoạt động
+            <div class="container" style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
+                <h4 class="text-left">
+                    <i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Chế độ hoạt động
                 </h4>
             </div>
-            <div class="card text-center pump">
-                <div class="card-body">
-                    <table class="table table-success">
-                        <tbody>
-                            <tr>
-                                <td id="sys_mode" class="fw-bold fs-6 text"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card text-center pump">
+                    <div class="card-body">
+                        <table class="table table-success">
+                            <tbody>
+                                <tr>
+                                <td id="sys_mode"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <script>
+                {% if che_do_hoat_dong == 1 %}
+                    document.getElementById("sys_mode").innerHTML = "Tự động"
+                {% elif che_do_hoat_dong == 2 %}
+                    document.getElementById("sys_mode").innerHTML = "Hằng ngày"
+                {% elif che_do_hoat_dong == 3 %}
+                    document.getElementById("sys_mode").innerHTML = "Bằng tay"
+                {% endif %}
+                {% if trang_thai_van_khu_vuc_1 == 0 %}
+                    document.getElementById("Valve_1_pump_1").innerHTML = "Off"
+                {% elif trang_thai_van_khu_vuc_1 == 1 %}
+                    document.getElementById("Valve_1_pump_1").innerHTML = "On"
+                {% endif %}
+                {% if trang_thai_van_khu_vuc_2 == 0 %}
+                    document.getElementById("Valve_2_pump_1").innerHTML = "Off"
+                {% elif trang_thai_van_khu_vuc_2 == 1 %}
+                    document.getElementById("Valve_2_pump_1").innerHTML = "On"
+                {% endif %}
+                {% if trang_thai_van_khu_vuc_3 == 0 %}
+                    document.getElementById("Valve_3_pump_1").innerHTML = "Off"
+                {% elif trang_thai_van_khu_vuc_3 == 1 %}
+                    document.getElementById("Valve_3_pump_1").innerHTML = "On"
+                {% endif %}
+                {% if trang_thai_bom == 0 %}
+                    document.getElementById("pump1_status").innerHTML = "Off"
+                {% elif trang_thai_bom == 1 %}
+                    document.getElementById("pump1_status").innerHTML = "On"
+                {% endif %}
+            </script>
         </div>
     </div>
-
-    <script>
-        {% if che_do_hoat_dong == 1 %}
-            document.getElementById("sys_mode").innerHTML = "Tự động"
-        {% elif che_do_hoat_dong == 2 %}
-            document.getElementById("sys_mode").innerHTML = "Hằng ngày"
-        {% elif che_do_hoat_dong == 3 %}
-            document.getElementById("sys_mode").innerHTML = "Bằng tay"
-        {% endif %}
-        {% if trang_thai_van_khu_vuc_1 == 0 %}
-            document.getElementById("Valve_1_pump_1").innerHTML = "Off"
-        {% elif trang_thai_van_khu_vuc_1 == 1 %}
-            document.getElementById("Valve_1_pump_1").innerHTML = "On"
-        {% endif %}
-        {% if trang_thai_van_khu_vuc_2 == 0 %}
-            document.getElementById("Valve_2_pump_1").innerHTML = "Off"
-        {% elif trang_thai_van_khu_vuc_2 == 1 %}
-            document.getElementById("Valve_2_pump_1").innerHTML = "On"
-        {% endif %}
-        {% if trang_thai_van_khu_vuc_3 == 0 %}
-            document.getElementById("Valve_3_pump_1").innerHTML = "Off"
-        {% elif trang_thai_van_khu_vuc_3 == 1 %}
-            document.getElementById("Valve_3_pump_1").innerHTML = "On"
-        {% endif %}
-        {% if trang_thai_bom == 0 %}
-            document.getElementById("pump1_status").innerHTML = "Off"
-        {% elif trang_thai_bom == 1 %}
-            document.getElementById("pump1_status").innerHTML = "On"
-        {% endif %}
-    </script>
-    
+</div>
 {% endblock content %}

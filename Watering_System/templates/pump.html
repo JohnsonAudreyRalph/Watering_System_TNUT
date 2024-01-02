@@ -2,29 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="col-10 pl-5" style="height:100%; min-height:501px;" id="Sys_info">
-    <!-- Button trigger modal -->
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thay đổi chế độ</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Bạn đang dùng chế độ ..., ấn xác nhận để chuyển sang chế độ
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary" id="confirm-mode">Xác nhận</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="col-12 pl-5" style="height:100%; min-height:501px;" id="Sys_info">
     <div class="row row-cols-lg-2">
         <div class="col-xl-8" style="padding-right:5%;">
             <img src="{% static 'image/pump-2.png' %}" alt="Responsive image" id="pump-img" style="width:100%;">
@@ -280,13 +258,21 @@
 
             // console.log(checkboxValue)
 
-            // if (isChecked) {
-            //     console.log('Checkbox đã được chọn');
-            //     // Thực hiện các hành động khi checkbox được chọn
-            // } else {
-            //     console.log('Checkbox không được chọn');
-            //     // Thực hiện các hành động khi checkbox không được chọn
-            // }
+            if (van1Checked) {
+                console.log('Van 1 bật đã được chọn');
+            } else if (!van1Checked) {
+                console.log('Van 1 tắt đã được chọn');
+            }
+            if (van2Checked) {
+                console.log('Van 2 bật đã được chọn');
+            } else if (!van2Checked) {
+                console.log('Van 2 tắt đã được chọn');
+            }
+            if (van3Checked) {
+                console.log('Van 3 bật đã được chọn');
+            } else if (!van3Checked) {
+                console.log('Van 3 tắt đã được chọn');
+            }
             
             $.ajax({
                 type: 'POST',
