@@ -16,7 +16,7 @@
         margin-top: 240px;
 	}
     .toggle-sidebar .sidebar {
-        top: 240px;
+        top: 190px;
     }
 }
 
@@ -200,7 +200,7 @@
 
 .sidebar {
 	position: fixed;
-	top: 147.2px;
+	top: 130.2px;
 	left: 0;
 	width: 260px;
     height: 100pc;

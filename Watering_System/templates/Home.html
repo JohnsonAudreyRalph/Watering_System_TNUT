@@ -29,28 +29,28 @@
                             </div>
                             <div class="col-sm-4 mb-3 justify-content-center text-center">
                                 <p style="margin-bottom:10px; font-size:16px;">Thời gian bắt đầu</p>
-                                <input type="checkbox" name="kv1_check_l1" id="kv1_check_l1" class="range-checkbox" style="width: 15px; height:15px;" checked>
+                                <input type="checkbox" name="kv1_check_l1" id="kv1_check_l1" class="range-checkbox" style="width: 15px; height:15px;">
                                 <label for="start_time1" class="range-label">Lần 1:</label>
                                 <input type="number" name="che_do_tu_dong_gio_bat_dau_tuoi_1" min="00" max="24" value={{che_do_tu_dong_gio_bat_dau_tuoi_1}}>
                                 <span> : </span>
                                 <input type="number" name="che_do_tu_dong_phut_bat_dau_tuoi_1" min="00" max="59" value={{che_do_tu_dong_phut_bat_dau_tuoi_1}}>
                                 <br><br>
                                 
-                                <input type="checkbox" name="kv1_check_l2" id="kv1_check_l2" class="range-checkbox" style="width: 15px; height:15px;" checked>
+                                <input type="checkbox" name="kv1_check_l2" id="kv1_check_l2" class="range-checkbox" style="width: 15px; height:15px;">
                                 <label for="kv1_time2" class="range-label">Lần 2:</label>
                                 <input type="number" name="che_do_tu_dong_gio_bat_dau_tuoi_2" min="00" max="24" value={{che_do_tu_dong_gio_bat_dau_tuoi_2}}>
                                 <span> : </span>
                                 <input type="number" name="che_do_tu_dong_phut_bat_dau_tuoi_2" min="00" max="59" value={{che_do_tu_dong_phut_bat_dau_tuoi_2}}>
                                 <br><br>
 
-                                <input type="checkbox" name="kv1_check_l3" id="kv1_check_l3" class="range-checkbox" style="width: 15px; height:15px;" checked>
+                                <input type="checkbox" name="kv1_check_l3" id="kv1_check_l3" class="range-checkbox" style="width: 15px; height:15px;">
                                 <label for="kv1_time3" class="range-label">Lần 3:</label>
                                 <input type="number" name="che_do_tu_dong_gio_bat_dau_tuoi_3" min="00" max="24" value={{che_do_tu_dong_gio_bat_dau_tuoi_3}}>
                                 <span> : </span>
                                 <input type="number" name="che_do_tu_dong_phut_bat_dau_tuoi_3" min="00" max="59" value={{che_do_tu_dong_phut_bat_dau_tuoi_3}}>
                                 <br><br>
                                 
-                                <input type="checkbox" name="kv1_check_l4" id="kv1_check_l4" class="range-checkbox" style="width: 15px; height:15px;" checked>
+                                <input type="checkbox" name="kv1_check_l4" id="kv1_check_l4" class="range-checkbox" style="width: 15px; height:15px;">
                                 <label for="kv1_time4" class="range-label">Lần 4:</label>
                                 <input type="number" name="che_do_tu_dong_gio_bat_dau_tuoi_4" min="00" max="24" value={{che_do_tu_dong_gio_bat_dau_tuoi_4}}>
                                 <span> : </span>
@@ -449,4 +449,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    {% if che_do_xac_nhan_lan_tuoi_1 == 1 %}
+        document.getElementById("kv1_check_l1").checked = true;
+    {% elif che_do_xac_nhan_lan_tuoi_1 == 0 %}
+        document.getElementById("kv1_check_l1").checked = false;
+    {% endif %}
+    {% if che_do_xac_nhan_lan_tuoi_2 == 1 %}
+        document.getElementById("kv1_check_l2").checked = true;
+    {% elif che_do_xac_nhan_lan_tuoi_2 == 0 %}
+        document.getElementById("kv1_check_l2").checked = false;
+    {% endif %}
+    {% if che_do_xac_nhan_lan_tuoi_3 == 1 %}
+        document.getElementById("kv1_check_l3").checked = true;
+    {% elif che_do_xac_nhan_lan_tuoi_3 == 0 %}
+        document.getElementById("kv1_check_l3").checked = false;
+    {% endif %}
+    {% if che_do_xac_nhan_lan_tuoi_4 == 1 %}
+        document.getElementById("kv1_check_l4").checked = true;
+    {% elif che_do_xac_nhan_lan_tuoi_4 == 0 %}
+        document.getElementById("kv1_check_l4").checked = false;
+    {% endif %}
+</script>
 {% endblock content %}

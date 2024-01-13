@@ -5,294 +5,419 @@
 <div class="col-12 pl-5" style="height:100%; min-height:501px;" id="Sys_info">
     <div class="row row-cols-lg-2">
         <div class="col-xl-8" style="padding-right:5%;">
-            <img src="{% static 'image/pump-2.png' %}" alt="Responsive image" id="pump-img" style="width:100%;">
+            <img src="{% static 'image/Img.jpg' %}" alt="Responsive image" id="pump-img" style="width:100%;">
         </div>
-        <div class="col-xl-4">
-            <div class="container"
-                style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
-                <h4 class="text-left">
-                    <i class="fas fa-user-cog" aria-hidden="true"></i>&nbsp; Bảng điều khiển
-                </h4>
+
+        {% if Name == 'KheCoc' %}
+            <div class="col-xl-4">
+                <div class="container"
+                    style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
+                    <h4 class="text-left">
+                        <i class="fas fa-user-cog" aria-hidden="true"></i>&nbsp; Bảng điều khiển
+                    </h4>
+                </div>
+                <div class="container"
+                    style="border-style: outset; border-color: black; background-color:#ffff80;">
+                    <div class="row row-cols-2">
+                        <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
+                        border-bottom: 0px; border-left: 0px;">
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Bơm</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="pump" name="pump">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 1</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_1_1" name="van_1_1">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 2</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_1_2" name="van_1_2">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">Van
+                                    3</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_1_3" name="van_1_3">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row pt-4 pb-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 4</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_1_4" name="van_1_4">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% comment %} <div class="container"
+                    style="border-style: outset; border-color: black; background-color:#ffff80;">
+                    <div class="row row-cols-2">
+                        <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
+                        border-bottom: 0px; border-left: 0px;">
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Bơm <br> (KV 3)</span>
+                                <div class="col mx-3" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="pump_2" name="pump_2">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 1</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_2_1" name="van_2_1">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 2</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_2_2" name="van_2_2">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">Van
+                                    3</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_2_3" name="van_2_3">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row pt-4 pb-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 4</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_2_4" name="van_2_4">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
             </div>
-            <div class="container"
-                style="border-style: outset; border-color: black; background-color:#ffff80;">
-                <div class="row row-cols-2">
-                    <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
-                    border-bottom: 0px; border-left: 0px;">
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Bơm</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="pump" name="pump">
-                                    <span class="slider round"></span>
-                                </label>
+            <script>
+                {% if che_do_bang_tay_dieu_khien_bom == 1 %}
+                    console.log("Bơm Bật")
+                    document.getElementById("pump").checked = true;
+                {% elif che_do_bang_tay_dieu_khien_bom == 0 %}
+                    document.getElementById("pump").checked = false;
+                    console.log("Bơm Tắt")
+                {% endif %}
+                {% comment %} {% if Che_do_bang_tay_dieu_khien_van_KV3 == 1 %}
+                    document.getElementById("pump_2").checked = true;
+                    console.log("Bơm tổng Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV3 == 0 %}
+                    document.getElementById("pump_2").checked = false;
+                    console.log("Bơm tổng tắt")
+                {% endif %} {% endcomment %}
+                {% if Che_do_bang_tay_dieu_khien_van_KV1_1 == 1 %}
+                    document.getElementById("van_1_1").checked = true;
+                    console.log("Van 1 1 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV1_1 == 0 %}
+                    document.getElementById("van_1_1").checked = false;
+                    console.log("Van 1 1 Tắt")
+                {% endif %}
+                {% if Che_do_bang_tay_dieu_khien_van_KV1_2 == 1 %}
+                    document.getElementById("van_1_2").checked = true;
+                    console.log("Van 1 2 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV1_2 == 0 %}
+                    document.getElementById("van_1_2").checked = false;
+                    console.log("Van 1 2 Tắt")
+                {% endif %}
+                {% if Che_do_bang_tay_dieu_khien_van_KV1_3 == 1 %}
+                    document.getElementById("van_1_3").checked = true;
+                    console.log("Van 1 3 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV1_3 == 0 %}
+                    document.getElementById("van_1_3").checked = false;
+                    console.log("Van 1 3 Tắt")
+                {% endif %}
+                {% if Che_do_bang_tay_dieu_khien_van_KV1_4 == 1 %}
+                    document.getElementById("van_1_4").checked = true;
+                    console.log("Van 1 4 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV1_4 == 0 %}
+                    document.getElementById("van_1_4").checked = false;
+                    console.log("Van 1 4 Tắt")
+                {% endif %}
+                {% comment %} {% if Che_do_bang_tay_dieu_khien_van_KV2_1 == 1 %}
+                    document.getElementById("van_2_1").checked = true;
+                    console.log("Van 2 1 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV2_1 == 0 %}
+                    document.getElementById("van_2_1").checked = false;
+                    console.log("Van 2 1 Tắt")
+                {% endif %} {% endcomment %}
+                {% comment %} {% if Che_do_bang_tay_dieu_khien_van_KV2_2 == 1 %}
+                    document.getElementById("van_2_2").checked = true;
+                    console.log("Van 2 2 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV2_2 == 0 %}
+                    document.getElementById("van_2_2").checked = false;
+                    console.log("Van 2 2 Tắt")
+                {% endif %} {% endcomment %}
+                {% comment %} {% if Che_do_bang_tay_dieu_khien_van_KV2_3 == 1 %}
+                    document.getElementById("van_2_3").checked = true;
+                    console.log("Van 2 3 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV2_3 == 0 %}
+                    document.getElementById("van_2_3").checked = false;
+                    console.log("Van 2 3 Tắt")
+                {% endif %} {% endcomment %}
+                {% comment %} {% if Che_do_bang_tay_dieu_khien_van_KV2_4 == 1 %}
+                    document.getElementById("van_2_4").checked = true;
+                    console.log("Van 2 4 Bật")
+                {% elif Che_do_bang_tay_dieu_khien_van_KV2_4 == 0 %}
+                    document.getElementById("van_2_4").checked = false;
+                    console.log("Van 2 4 Tắt")
+                {% endif %} {% endcomment %}
+
+                // #pump_2, #van_2_1, #van_2_2, #van_2_3 , #van_2_4
+                $(document).ready(function() {
+                    $('#pump, #van_1_1, #van_1_2, #van_1_3, #van_1_4').change(function() {
+                        var pumpChecked = $('#pump').is(':checked');
+                        // var pump_2Checked = $('#pump_2').is(':checked');
+                        var van1_1Checked = $('#van_1_1').is(':checked');
+                        var van1_2Checked = $('#van_1_2').is(':checked');
+                        var van1_3Checked = $('#van_1_3').is(':checked');
+                        var van1_4Checked = $('#van_1_4').is(':checked');
+                        // var van2_1Checked = $('#van_2_1').is(':checked');
+                        // var van2_2Checked = $('#van_2_2').is(':checked');
+                        // var van2_3Checked = $('#van_2_3').is(':checked');
+                        // var van2_4Checked = $('#van_2_4').is(':checked');
+            
+                        // console.log(checkboxValue)
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url: '/pump_HTML/',
+                            data: {
+                                'pump': pumpChecked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                // 'pump_2': pump_2Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_1_1': van1_1Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_1_2': van1_2Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_1_3': van1_3Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_1_4': van1_4Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                // 'van_2_1': van2_1Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                // 'van_2_2': van2_2Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                // 'van_2_3': van2_3Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                // 'van_2_4': van2_4Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'csrfmiddlewaretoken': '{{ csrf_token }}'
+                            },
+                            success: function(response) {
+                                console.log('Dữ liệu đã được gửi thành công.');
+                                // Xử lý phản hồi từ Django views ở đây nếu cần
+                            },
+                            error: function(error) {
+                                console.log('Đã có lỗi xảy ra:', error);
+                            }
+                        });
+                    });
+                });
+            </script>
+        {% else %}
+            <div class="col-xl-4">
+                <div class="container"
+                    style="padding-top:20px;padding-left:0px !important; margin-left:0px !important;">
+                    <h4 class="text-left">
+                        <i class="fas fa-user-cog" aria-hidden="true"></i>&nbsp; Bảng điều khiển
+                    </h4>
+                </div>
+                <div class="container"
+                    style="border-style: outset; border-color: black; background-color:#ffff80;">
+                    <div class="row row-cols-2">
+                        <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
+                        border-bottom: 0px; border-left: 0px;">
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Bơm</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="pump" name="pump">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 1</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_1" name="van_1">
-                                    <span class="slider round"></span>
-                                </label>
+                        <div class="col">
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 1</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_1" name="van_1">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 2</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_2" name="van_2">
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 2</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_2" name="van_2">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">Van
-                                3</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_3" name="van_3">
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="row pt-4">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">Van
+                                    3</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch">
+                                        <input type="checkbox" id="van_3" name="van_3">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row pt-4 pb-4 blur">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 4</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch dc">
-                                    <input type="checkbox" id="van_4">
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="row pt-4 pb-4 blur">
+                                <span class="col"
+                                    style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
+                                    Van 4</span>
+                                <div class="col" style="display:flex;justify-content:center;align-items:center;">
+                                    <label class="switch dc">
+                                        <input type="checkbox" id="van_4">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
-            {% comment %} <div class="container"
-                style="border-style: outset; border-color: black; background-color:#ffff80;">
-                <div class="row row-cols-2">
-                    <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
-                    border-bottom: 0px; border-left: 0px;">
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Bơm 1</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="pump">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 1</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_1">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 2</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_2">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">Van
-                                3</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_3">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4 blur">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 4</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch dc">
-                                    <input type="checkbox" id="van_4">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 5</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_1">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 6</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_2">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">Van
-                                7</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="van_3">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4 blur">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 8</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch dc">
-                                    <input type="checkbox" id="van_4">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row pt-4 pb-4 blur">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Van 9</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch dc">
-                                    <input type="checkbox" id="van_4">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div> {% endcomment %}
-            {% comment %} <div class="container"
-                style="border-style: outset; border-color: black; background-color:#ffff80;">
-                <div class="row row-cols-2">
-                    <div class="col" style="display: flex;align-items: center; border-style:groove; border-color: black;border-top: 0px;
-                    border-bottom: 0px; border-left: 0px;">
-                        <div class="row pt-4 pb-4">
-                            <span class="col"
-                                style="font-size: 16px; padding-left:4px !important; padding-right:0px !important; display:flex;justify-content:center;align-items:center;">
-                                Bơm 2</span>
-                            <div class="col" style="display:flex;justify-content:center;align-items:center;">
-                                <label class="switch">
-                                    <input type="checkbox" id="pump">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> {% endcomment %}
-        </div>
+            <script>
+
+                {% if che_do_bang_tay_dieu_khien_bom == 1 %}
+                    document.getElementById("pump").checked = true;
+                    console.log("Bơm Bật")
+                {% elif che_do_bang_tay_dieu_khien_bom == 0 %}
+                    document.getElementById("pump").checked = false;
+                    console.log("Bơm tắt")
+                {% endif %}
+            
+                {% if che_do_dieu_khien_van_KV_1 == 1 %}
+                    document.getElementById("van_1").checked = true;
+                    console.log("Van 1 Bật")
+                {% elif che_do_dieu_khien_van_KV_1 == 0 %}
+                    document.getElementById("van_1").checked = false;
+                    console.log("Van 1 Tắt")
+                {% endif %}
+            
+                {% if che_do_dieu_khien_van_KV_2 == 1 %}
+                    document.getElementById("van_2").checked = true;
+                    console.log("Van 2 Bật")
+                {% elif che_do_dieu_khien_van_KV_2 == 0 %}
+                    document.getElementById("van_2").checked = false;
+                    console.log("Van 2 Tắt")
+                {% endif %}
+            
+                {% if che_do_dieu_khien_van_KV_3 == 1 %}
+                    document.getElementById("van_3").checked = true;
+                    console.log("Van 3 Bật")
+                {% elif che_do_dieu_khien_van_KV_3 == 0 %}
+                    document.getElementById("van_3").checked = false;
+                    console.log("Van 3 Tắt")
+                {% endif %}
+            
+                $(document).ready(function() {
+                    $('#pump, #van_1, #van_2, #van_3').change(function() {
+                        var pumpChecked = $('#pump').is(':checked');
+                        var van1Checked = $('#van_1').is(':checked');
+                        var van2Checked = $('#van_2').is(':checked');
+                        var van3Checked = $('#van_3').is(':checked');
+            
+                        // console.log(checkboxValue)
+            
+                        if (van1Checked) {
+                            console.log('Van 1 bật đã được chọn');
+                        } else if (!van1Checked) {
+                            console.log('Van 1 tắt đã được chọn');
+                        }
+                        if (van2Checked) {
+                            console.log('Van 2 bật đã được chọn');
+                        } else if (!van2Checked) {
+                            console.log('Van 2 tắt đã được chọn');
+                        }
+                        if (van3Checked) {
+                            console.log('Van 3 bật đã được chọn');
+                        } else if (!van3Checked) {
+                            console.log('Van 3 tắt đã được chọn');
+                        }
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url: '/pump_HTML/',
+                            data: {
+                                'pump': pumpChecked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_1': van1Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_2': van2Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'van_3': van3Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
+                                'csrfmiddlewaretoken': '{{ csrf_token }}'
+                            },
+                            success: function(response) {
+                                console.log('Dữ liệu đã được gửi thành công.');
+                                // Xử lý phản hồi từ Django views ở đây nếu cần
+                            },
+                            error: function(error) {
+                                console.log('Đã có lỗi xảy ra:', error);
+                            }
+                        });
+                    });
+                });
+            </script>
+        {% endif %}
+        
     </div>
 </div>
-<script>
-
-    {% if che_do_bang_tay_dieu_khien_bom == 1 %}
-        document.getElementById("pump").checked = true;
-    {% elif che_do_bang_tay_dieu_khien_bom == 0 %}
-        document.getElementById("pump").checked = false;
-    {% endif %}
-
-    {% if che_do_dieu_khien_van_KV_1 == 1 %}
-        document.getElementById("van_1").checked = true;
-    {% elif che_do_dieu_khien_van_KV_1 == 0 %}
-        document.getElementById("van_1").checked = false;
-    {% endif %}
-
-    {% if che_do_dieu_khien_van_KV_2 == 1 %}
-        document.getElementById("van_2").checked = true;
-    {% elif che_do_dieu_khien_van_KV_2 == 0 %}
-        document.getElementById("van_2").checked = false;
-    {% endif %}
-
-    {% if che_do_dieu_khien_van_KV_3 == 1 %}
-        document.getElementById("van_3").checked = true;
-    {% elif che_do_dieu_khien_van_KV_3 == 0 %}
-        document.getElementById("van_3").checked = false;
-    {% endif %}
-
-    $(document).ready(function() {
-        $('#pump, #van_1, #van_2, #van_3').change(function() {
-            var pumpChecked = $('#pump').is(':checked');
-            var van1Checked = $('#van_1').is(':checked');
-            var van2Checked = $('#van_2').is(':checked');
-            var van3Checked = $('#van_3').is(':checked');
-
-            // console.log(checkboxValue)
-
-            if (van1Checked) {
-                console.log('Van 1 bật đã được chọn');
-            } else if (!van1Checked) {
-                console.log('Van 1 tắt đã được chọn');
-            }
-            if (van2Checked) {
-                console.log('Van 2 bật đã được chọn');
-            } else if (!van2Checked) {
-                console.log('Van 2 tắt đã được chọn');
-            }
-            if (van3Checked) {
-                console.log('Van 3 bật đã được chọn');
-            } else if (!van3Checked) {
-                console.log('Van 3 tắt đã được chọn');
-            }
-            
-            $.ajax({
-                type: 'POST',
-                url: '/pump_HTML/',
-                data: {
-                    'pump': pumpChecked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
-                    'van_1': van1Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
-                    'van_2': van2Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
-                    'van_3': van3Checked ? 'on' : 'off', // Gửi 'on' nếu checked, rỗng nếu không
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    console.log('Dữ liệu đã được gửi thành công.');
-                    // Xử lý phản hồi từ Django views ở đây nếu cần
-                },
-                error: function(error) {
-                    console.log('Đã có lỗi xảy ra:', error);
-                }
-            });
-        });
-    });
-</script>
 {% endblock content %}

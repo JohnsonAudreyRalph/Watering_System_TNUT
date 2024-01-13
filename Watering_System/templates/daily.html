@@ -8,257 +8,1281 @@
                 <h4 class="text-left">
                     <i class="fas fa-cog mx-2" aria-hidden="true"></i>Cài đặt
                 </h4>
-                <table class="table table-sm" style="background-color: #C7FFBF;">
+                <table class="table table-sm table-hover" style="background-color: #C7FFBF;">
                     <form action="" method="post">
                         {% csrf_token %}
-                        <tbody>
-                            <thead>
+                        {% if Name == 'KheCoc' %}
+                            <tbody>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Khu vực</th>
+                                        <th class="text-center">Lần tưới</th>
+                                        <th class="text-center">Chế độ</th>
+                                        <th class="text-center">Bắt đầu</th>
+                                        <th class="text-center">Kết thúc</th>
+                                    </tr>
+                                </thead>
                                 <tr>
-                                    <th class="text-center">Lần tưới</th>
-                                    <th class="text-center">Khu vực</th>
-                                    <th class="text-center">Chế độ</th>
-                                    <th class="text-center">Bắt đầu</th>
-                                    <th class="text-center">Thời lượng</th>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_1" id="day-1" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">1:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                            </thead>
-                            <tr id="l1-row">
-                                <th scope="row" class="text-center">
-                                    <input type="checkbox" name="day_1" id="day-1" value="1" class="range-checkbox">
-                                    <label for="day_1" class="range-label">1:</label>
-                                </th>
-                                <td class="text-center">
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_1_1" name="area_1_1" value='1'>
-                                        <label class="range-label">Khu vực 1</label>
-                                    </div>
-
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_1_2" name="area_1_2" value='1'>
-                                        <label class="range-label">Khu vực 2</label>
-                                    </div>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_1_1" name="Xac_nhan_khu_vuc_1_1" value='1'>
+                                            <label class="range-label">Lần 1</label>
+                                        </div>
+                                    </td>
                                     
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_1_3" name="area_1_3" value='1'>
-                                        <label class="range-label">Khu vực 3</label>
-                                    </div>
-                                    {% comment %} <select id="khuvuc_l1">
-                                        <option value="1">Khu vực 1,2</option>
-                                        <option value="2">Khu vực 3,4</option>
-                                        <option value="3">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    Phun mưa
-                                    {% comment %} <select id="mode_l4">
-                                        <option value="1">Phun mưa</option>
-                                        <option value="2">Phun sương</option>
-                                        <option value="3">Nhỏ giọt</option>
-                                        <option value="4">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_1" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_1}}'>
-                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_1" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_1}}'>
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" id="length1" name="che_do_hang_ngay_thoi_gian_tuoi_1" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_1}}'>
-                                    <small>phút</small>
-                                </td>
-                            </tr>
-                            <tr id="l2-row">
-                                <th scope="row" class="text-center">
-                                    <input type="checkbox" name="day_2" id="day-2" value="1" class="range-checkbox">
-                                    <label for="day_2" class="range-label">2:</label>
-                                </th>
-                                <td class="text-center">
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_2_1" name="area_2_1" value='1'>
-                                        <label class="range-label">Khu vực 1</label>
-                                    </div>
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_2_2" name="area_2_2" value='1'>
-                                        <label class="range-label">Khu vực 2</label>
-                                    </div>
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_2_3" name="area_2_3" value='1'>
-                                        <label class="range-label">Khu vực 3</label>
-                                    </div>
-                                    {% comment %} <select id="khuvuc_l1">
-                                        <option value="1">Khu vực 1,2</option>
-                                        <option value="2">Khu vực 3,4</option>
-                                        <option value="3">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    Phun mưa
-                                    {% comment %} <select id="mode_l4">
-                                        <option value="1">Phun mưa</option>
-                                        <option value="2">Phun sương</option>
-                                        <option value="3">Nhỏ giọt</option>
-                                        <option value="4">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_2" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_2}}'>
-                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_2" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_2}}'>
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" id="length2" name="che_do_hang_ngay_thoi_gian_tuoi_2" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_2}}'>
-                                    <small>phút</small>
-                                </td>
-                            </tr>
-                            <tr id="l3-row">
-                                <th scope="row" class="text-center">
-                                    <input type="checkbox" name="day_3" id="day-3" value="1" class="range-checkbox">
-                                    <label for="day_3" class="range-label">3:</label>
-                                </th>
-                                <td class="text-center">
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_3_1" name="area_3_1" value='1'>
-                                        <label class="range-label">Khu vực 1</label>
-                                    </div>
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_3_2" name="area_3_2" value='1'>
-                                        <label class="range-label">Khu vực 2</label>
-                                    </div>
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_3_3" name="area_3_3" value='1'>
-                                        <label class="range-label">Khu vực 3</label>
-                                    </div>
-                                    {% comment %} <select id="khuvuc_l1">
-                                        <option value="1">Khu vực 1,2</option>
-                                        <option value="2">Khu vực 3,4</option>
-                                        <option value="3">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    Phun mưa
-                                    {% comment %} <select id="mode_l4">
-                                        <option value="1">Phun mưa</option>
-                                        <option value="2">Phun sương</option>
-                                        <option value="3">Nhỏ giọt</option>
-                                        <option value="4">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_3" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_3}}'>
-                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_3" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_3}}'>
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" id="length3" name="che_do_hang_ngay_thoi_gian_tuoi_3" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_3}}'>
-                                    <small>phút</small>
-                                </td>
-                            </tr>
-                            <tr id="l4-row">
-                                <th scope="row" class="text-center">
-                                    <input type="checkbox" name="day_4" id="day-4" value="1" class="range-checkbox">
-                                    <label for="day_4" class="range-label">4:</label>
-                                </th>
-                                <td class="text-center">
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_4_1" name="area_4_1" value='1'>
-                                        <label class="range-label">Khu vực 1</label>
-                                    </div>
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_4_2" name="area_4_2" value='1'>
-                                        <label class="range-label">Khu vực 2</label>
-                                    </div>
-                                    <div class="input-group text-center justify-content-center">
-                                        <input type="checkbox" class="range-checkbox" id="area_4_3" name="area_4_3" value='1'>
-                                        <label class="range-label">Khu vực 3</label>
-                                    </div>
-                                    {% comment %} <select id="khuvuc_l1">
-                                        <option value="1">Khu vực 1,2</option>
-                                        <option value="2">Khu vực 3,4</option>
-                                        <option value="3">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    Phun mưa
-                                    {% comment %} <select id="mode_l4">
-                                        <option value="1">Phun mưa</option>
-                                        <option value="2">Phun sương</option>
-                                        <option value="3">Nhỏ giọt</option>
-                                        <option value="4">Tất cả</option>
-                                    </select> {% endcomment %}
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_4" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_4}}'>
-                                    <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_4" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_4}}'>
-                                </td>
-                                <td class="text-center">
-                                    <input type="number" id="length4" name="che_do_hang_ngay_thoi_gian_tuoi_4" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_4}}'>
-                                    <small>phút</small>
-                                </td>
-                            </tr>
-                            {% comment %} <tr id="l5-row">
-                                <th scope="row" class="text-center">
-                                    <input type="checkbox" name="day-5" id="day-5" value="1" class="range-checkbox"
-                                        checked>
-                                    <label for="day-5" class="range-label">5:</label>
-                                </th>
-                                <td>
-                                    <select id="khuvuc_l5">
-                                        <option value="1">Khu vực 1,2</option>
-                                        <option value="2">Khu vực 3,4</option>
-                                        <option value="3">Tất cả</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="mode_l5">
-                                        <option value="1">Phun mưa</option>
-                                        <option value="2">Phun sương</option>
-                                        <option value="3">Nhỏ giọt</option>
-                                        <option value="4">Tất cả</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="time" id="start_time5" name="start_time5" min="00:00" max="24:00">
-                                </td>
-                                <td>
-                                    <input type="number" id="length5" name="length5" style="width: 50px;">
-                                    <small>&nbsp;phút</small>
-                                </td>
-                            </tr>
-                            <tr id="l6-row">
-                                <th scope="row" class="text-center">
-                                    <input type="checkbox" name="day-6" id="day-6" value="1" class="range-checkbox"
-                                        checked>
-                                    <label for="day-6" class="range-label">6:</label>
-                                </th>
-                                <td>
-                                    <select id="khuvuc_l6">
-                                        <option value="1">Khu vực 1,2</option>
-                                        <option value="2">Khu vực 3,4</option>
-                                        <option value="3">Tất cả</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="mode_l6">
-                                        <option value="1">Phun mưa</option>
-                                        <option value="2">Phun sương</option>
-                                        <option value="3">Nhỏ giọt</option>
-                                        <option value="4">Tất cả</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="time" id="start_time6" name="start_time6" min="00:00" max="24:00">
-                                </td>
-                                <td>
-                                    <input type="number" id="length6" name="length6" style="width: 50px;">
-                                    <small>&nbsp;phút</small>
-                                </td>
-                            </tr> {% endcomment %}
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="text-center">
-                                    <button type="submit" class="btn btn-danger" id="submit">Xác nhận</button>
-                                </td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_1_1" min="00" max="24" value='{{Gio_bat_khu_vuc_1_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_1_1" min="00" max="59" value='{{Phut_bat_khu_vuc_1_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_1_1" min="00" max="24" value='{{Gio_tat_khu_vuc_1_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_1_1" min="00" max="59" value='{{Phut_tat_khu_vuc_1_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_1_2" name="Xac_nhan_khu_vuc_1_2" value='1'>
+                                            <label class="range-label">Lần 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_1_2" min="00" max="24" value='{{Gio_bat_khu_vuc_1_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_1_2" min="00" max="59" value='{{Phut_bat_khu_vuc_1_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_1_2" min="00" max="24" value='{{Gio_tat_khu_vuc_1_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_1_2" min="00" max="59" value='{{Phut_tat_khu_vuc_1_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_1_3" name="Xac_nhan_khu_vuc_1_3" value='1'>
+                                            <label class="range-label">Lần 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_1_3" min="00" max="24" value='{{Gio_bat_khu_vuc_1_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_1_3" min="00" max="59" value='{{Phut_bat_khu_vuc_1_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_1_3" min="00" max="24" value='{{Gio_tat_khu_vuc_1_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_1_3" min="00" max="59" value='{{Phut_tat_khu_vuc_1_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_1_4" name="Xac_nhan_khu_vuc_1_4" value='1'>
+                                            <label class="range-label">Lần 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_1_4" min="00" max="24" value='{{Gio_bat_khu_vuc_1_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_1_4" min="00" max="59" value='{{Phut_bat_khu_vuc_1_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_1_4" min="00" max="24" value='{{Gio_tat_khu_vuc_1_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_1_4" min="00" max="59" value='{{Phut_tat_khu_vuc_1_4}}'>
+                                    </td>
+                                </tr>
+
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_2" id="day-2" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">2:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_2_1" name="Xac_nhan_khu_vuc_2_1" value='1'>
+                                            <label class="range-label">Lần 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_2_1" min="00" max="24" value='{{Gio_bat_khu_vuc_2_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_2_1" min="00" max="59" value='{{Phut_bat_khu_vuc_2_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_2_1" min="00" max="24" value='{{Gio_tat_khu_vuc_2_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_2_1" min="00" max="59" value='{{Phut_tat_khu_vuc_2_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_2_2" name="Xac_nhan_khu_vuc_2_2" value='1'>
+                                            <label class="range-label">Lần 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_2_2" min="00" max="24" value='{{Gio_bat_khu_vuc_2_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_2_2" min="00" max="59" value='{{Phut_bat_khu_vuc_2_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_2_2" min="00" max="24" value='{{Gio_tat_khu_vuc_2_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_2_2" min="00" max="59" value='{{Phut_tat_khu_vuc_2_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_2_3" name="Xac_nhan_khu_vuc_2_3" value='1'>
+                                            <label class="range-label">Lần 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_2_3" min="00" max="24" value='{{Gio_bat_khu_vuc_2_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_2_3" min="00" max="59" value='{{Phut_bat_khu_vuc_2_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_2_3" min="00" max="24" value='{{Gio_tat_khu_vuc_2_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_2_3" min="00" max="59" value='{{Phut_tat_khu_vuc_2_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_2_4" name="Xac_nhan_khu_vuc_2_4" value='1'>
+                                            <label class="range-label">Lần 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_2_4" min="00" max="24" value='{{Gio_bat_khu_vuc_2_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_2_4" min="00" max="59" value='{{Phut_bat_khu_vuc_2_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_2_4" min="00" max="24" value='{{Gio_tat_khu_vuc_2_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_2_4" min="00" max="59" value='{{Phut_tat_khu_vuc_2_4}}'>
+                                    </td>
+                                </tr>
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_3" id="day-3" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">3:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_3_1" name="Xac_nhan_khu_vuc_3_1" value='1'>
+                                            <label class="range-label">Lần 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_3_1" min="00" max="24" value='{{Gio_bat_khu_vuc_3_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_3_1" min="00" max="59" value='{{Phut_bat_khu_vuc_3_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_3_1" min="00" max="24" value='{{Gio_tat_khu_vuc_3_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_3_1" min="00" max="59" value='{{Phut_tat_khu_vuc_3_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_3_2" name="Xac_nhan_khu_vuc_3_2" value='1'>
+                                            <label class="range-label">Lần 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_3_2" min="00" max="24" value='{{Gio_bat_khu_vuc_3_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_3_2" min="00" max="59" value='{{Phut_bat_khu_vuc_3_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_3_2" min="00" max="24" value='{{Gio_tat_khu_vuc_3_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_3_2" min="00" max="59" value='{{Phut_tat_khu_vuc_3_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_3_3" name="Xac_nhan_khu_vuc_3_3" value='1'>
+                                            <label class="range-label">Lần 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_3_3" min="00" max="24" value='{{Gio_bat_khu_vuc_3_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_3_3" min="00" max="59" value='{{Phut_bat_khu_vuc_3_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_3_3" min="00" max="24" value='{{Gio_tat_khu_vuc_3_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_3_3" min="00" max="59" value='{{Phut_tat_khu_vuc_3_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_3_4" name="Xac_nhan_khu_vuc_3_4" value='1'>
+                                            <label class="range-label">Lần 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_3_4" min="00" max="24" value='{{Gio_bat_khu_vuc_3_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_3_4" min="00" max="59" value='{{Phut_bat_khu_vuc_3_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_3_4" min="00" max="24" value='{{Gio_tat_khu_vuc_3_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_3_4" min="00" max="59" value='{{Phut_tat_khu_vuc_3_4}}'>
+                                    </td>
+                                </tr>
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_4" id="day-4" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">4:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_4_1" name="Xac_nhan_khu_vuc_4_1" value='1'>
+                                            <label class="range-label">Lần 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_4_1" min="00" max="24" value='{{Gio_bat_khu_vuc_4_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_4_1" min="00" max="59" value='{{Phut_bat_khu_vuc_4_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_4_1" min="00" max="24" value='{{Gio_tat_khu_vuc_4_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_4_1" min="00" max="59" value='{{Phut_tat_khu_vuc_4_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_4_2" name="Xac_nhan_khu_vuc_4_2" value='1'>
+                                            <label class="range-label">Lần 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_4_2" min="00" max="24" value='{{Gio_bat_khu_vuc_4_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_4_2" min="00" max="59" value='{{Phut_bat_khu_vuc_4_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_4_2" min="00" max="24" value='{{Gio_tat_khu_vuc_4_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_4_2" min="00" max="59" value='{{Phut_tat_khu_vuc_4_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_4_3" name="Xac_nhan_khu_vuc_4_3" value='1'>
+                                            <label class="range-label">Lần 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_4_3" min="00" max="24" value='{{Gio_bat_khu_vuc_4_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_4_3" min="00" max="59" value='{{Phut_bat_khu_vuc_4_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_4_3" min="00" max="24" value='{{Gio_tat_khu_vuc_4_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_4_3" min="00" max="59" value='{{Phut_tat_khu_vuc_4_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_4_4" name="Xac_nhan_khu_vuc_4_4" value='1'>
+                                            <label class="range-label">Lần 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_4_4" min="00" max="24" value='{{Gio_bat_khu_vuc_4_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_4_4" min="00" max="59" value='{{Phut_bat_khu_vuc_4_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_4_4" min="00" max="24" value='{{Gio_tat_khu_vuc_4_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_4_4" min="00" max="59" value='{{Phut_tat_khu_vuc_4_4}}'>
+                                    </td>
+                                </tr>
+                                {% comment %} <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_5" id="day-5" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">5:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_5_1" name="Xac_nhan_khu_vuc_5_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_5_1" min="00" max="24" value='{{Gio_bat_khu_vuc_5_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_5_1" min="00" max="59" value='{{Phut_bat_khu_vuc_5_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_5_1" min="00" max="24" value='{{Gio_tat_khu_vuc_5_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_5_1" min="00" max="59" value='{{Phut_tat_khu_vuc_5_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_5_2" name="Xac_nhan_khu_vuc_5_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_5_2" min="00" max="24" value='{{Gio_bat_khu_vuc_5_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_5_2" min="00" max="59" value='{{Phut_bat_khu_vuc_5_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_5_2" min="00" max="24" value='{{Gio_tat_khu_vuc_5_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_5_2" min="00" max="59" value='{{Phut_tat_khu_vuc_5_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_5_3" name="Xac_nhan_khu_vuc_5_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_5_3" min="00" max="24" value='{{Gio_bat_khu_vuc_5_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_5_3" min="00" max="59" value='{{Phut_bat_khu_vuc_5_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_5_3" min="00" max="24" value='{{Gio_tat_khu_vuc_5_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_5_3" min="00" max="59" value='{{Phut_tat_khu_vuc_5_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_5_4" name="Xac_nhan_khu_vuc_5_4" value='1'>
+                                            <label class="range-label">Khu vực 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_5_4" min="00" max="24" value='{{Gio_bat_khu_vuc_5_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_5_4" min="00" max="59" value='{{Phut_bat_khu_vuc_5_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_5_4" min="00" max="24" value='{{Gio_tat_khu_vuc_5_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_5_4" min="00" max="59" value='{{Phut_tat_khu_vuc_5_4}}'>
+                                    </td>
+                                </tr>
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_6" id="day-6" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">6:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_6_1" name="Xac_nhan_khu_vuc_6_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_6_1" min="00" max="24" value='{{Gio_bat_khu_vuc_6_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_6_1" min="00" max="59" value='{{Phut_bat_khu_vuc_6_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_6_1" min="00" max="24" value='{{Gio_tat_khu_vuc_6_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_6_1" min="00" max="59" value='{{Phut_tat_khu_vuc_6_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_6_2" name="Xac_nhan_khu_vuc_6_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_6_2" min="00" max="24" value='{{Gio_bat_khu_vuc_6_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_6_2" min="00" max="59" value='{{Phut_bat_khu_vuc_6_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_6_2" min="00" max="24" value='{{Gio_tat_khu_vuc_6_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_6_2" min="00" max="59" value='{{Phut_tat_khu_vuc_6_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_6_3" name="Xac_nhan_khu_vuc_6_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_6_3" min="00" max="24" value='{{Gio_bat_khu_vuc_6_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_6_3" min="00" max="59" value='{{Phut_bat_khu_vuc_6_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_6_3" min="00" max="24" value='{{Gio_tat_khu_vuc_6_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_6_3" min="00" max="59" value='{{Phut_tat_khu_vuc_6_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_6_4" name="Xac_nhan_khu_vuc_6_4" value='1'>
+                                            <label class="range-label">Khu vực 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_6_4" min="00" max="24" value='{{Gio_bat_khu_vuc_6_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_6_4" min="00" max="59" value='{{Phut_bat_khu_vuc_6_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_6_4" min="00" max="24" value='{{Gio_tat_khu_vuc_6_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_6_4" min="00" max="59" value='{{Phut_tat_khu_vuc_6_4}}'>
+                                    </td>
+                                </tr>
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_7" id="day-7" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">7:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_7_1" name="Xac_nhan_khu_vuc_7_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_7_1" min="00" max="24" value='{{Gio_bat_khu_vuc_7_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_7_1" min="00" max="59" value='{{Phut_bat_khu_vuc_7_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_7_1" min="00" max="24" value='{{Gio_tat_khu_vuc_7_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_7_1" min="00" max="59" value='{{Phut_tat_khu_vuc_7_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_7_2" name="Xac_nhan_khu_vuc_7_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_7_2" min="00" max="24" value='{{Gio_bat_khu_vuc_7_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_7_2" min="00" max="59" value='{{Phut_bat_khu_vuc_7_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_7_2" min="00" max="24" value='{{Gio_tat_khu_vuc_7_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_7_2" min="00" max="59" value='{{Phut_tat_khu_vuc_7_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_7_3" name="Xac_nhan_khu_vuc_7_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_7_3" min="00" max="24" value='{{Gio_bat_khu_vuc_7_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_7_3" min="00" max="59" value='{{Phut_bat_khu_vuc_7_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_7_3" min="00" max="24" value='{{Gio_tat_khu_vuc_7_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_7_3" min="00" max="59" value='{{Phut_tat_khu_vuc_7_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_7_4" name="Xac_nhan_khu_vuc_7_4" value='1'>
+                                            <label class="range-label">Khu vực 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_7_4" min="00" max="24" value='{{Gio_bat_khu_vuc_7_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_7_4" min="00" max="59" value='{{Phut_bat_khu_vuc_7_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_7_4" min="00" max="24" value='{{Gio_tat_khu_vuc_7_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_7_4" min="00" max="59" value='{{Phut_tat_khu_vuc_7_4}}'>
+                                    </td>
+                                </tr>
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_8" id="day-8" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">8:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_8_1" name="Xac_nhan_khu_vuc_8_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_8_1" min="00" max="24" value='{{Gio_bat_khu_vuc_8_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_8_1" min="00" max="59" value='{{Phut_bat_khu_vuc_8_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_8_1" min="00" max="24" value='{{Gio_tat_khu_vuc_8_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_8_1" min="00" max="59" value='{{Phut_tat_khu_vuc_8_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_8_2" name="Xac_nhan_khu_vuc_4_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_8_2" min="00" max="24" value='{{Gio_bat_khu_vuc_8_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_8_2" min="00" max="59" value='{{Phut_bat_khu_vuc_8_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_8_2" min="00" max="24" value='{{Gio_tat_khu_vuc_8_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_8_2" min="00" max="59" value='{{Phut_tat_khu_vuc_8_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_8_3" name="Xac_nhan_khu_vuc_8_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_8_3" min="00" max="24" value='{{Gio_bat_khu_vuc_8_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_8_3" min="00" max="59" value='{{Phut_bat_khu_vuc_8_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_8_3" min="00" max="24" value='{{Gio_tat_khu_vuc_8_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_8_3" min="00" max="59" value='{{Phut_tat_khu_vuc_8_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_8_4" name="Xac_nhan_khu_vuc_8_4" value='1'>
+                                            <label class="range-label">Khu vực 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_8_4" min="00" max="24" value='{{Gio_bat_khu_vuc_8_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_8_4" min="00" max="59" value='{{Phut_bat_khu_vuc_8_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_8_4" min="00" max="24" value='{{Gio_tat_khu_vuc_8_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_8_4" min="00" max="59" value='{{Phut_tat_khu_vuc_8_4}}'>
+                                    </td>
+                                </tr>
+                                <!--=============================================================================================-->
+                                <tr>
+                                    <td rowspan="5" class="text-center align-middle">
+                                        <input type="checkbox" name="Xac_nhan_khu_vuc_9" id="day-9" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">9:</label>
+                                    </td>
+                                    <td></td>
+                                    <td rowspan="5" class="text-center align-middle">Phun mưa</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_9_1" name="Xac_nhan_khu_vuc_9_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_bat_khu_vuc_9_1" min="00" max="24" value='{{Gio_bat_khu_vuc_9_1}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_9_1" min="00" max="59" value='{{Phut_bat_khu_vuc_9_1}}'>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <input type="number" name="Gio_tat_khu_vuc_9_1" min="00" max="24" value='{{Gio_tat_khu_vuc_9_1}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_9_1" min="00" max="59" value='{{Phut_tat_khu_vuc_9_1}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_9_2" name="Xac_nhan_khu_vuc_9_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_9_2" min="00" max="24" value='{{Gio_bat_khu_vuc_9_2}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_9_2" min="00" max="59" value='{{Phut_bat_khu_vuc_9_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_9_2" min="00" max="24" value='{{Gio_tat_khu_vuc_9_2}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_9_2" min="00" max="59" value='{{Phut_tat_khu_vuc_9_2}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_9_3" name="Xac_nhan_khu_vuc_9_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_9_3" min="00" max="24" value='{{Gio_bat_khu_vuc_9_3}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_9_3" min="00" max="59" value='{{Phut_bat_khu_vuc_9_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_9_3" min="00" max="24" value='{{Gio_tat_khu_vuc_9_3}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_9_3" min="00" max="59" value='{{Phut_tat_khu_vuc_9_3}}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox mx-2" id="Xac_nhan_khu_vuc_9_4" name="Xac_nhan_khu_vuc_9_4" value='1'>
+                                            <label class="range-label">Khu vực 4</label>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_bat_khu_vuc_9_4" min="00" max="24" value='{{Gio_bat_khu_vuc_9_4}}'>
+                                        <input type="number" name="Phut_bat_khu_vuc_9_4" min="00" max="59" value='{{Phut_bat_khu_vuc_9_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="Gio_tat_khu_vuc_9_4" min="00" max="24" value='{{Gio_tat_khu_vuc_9_4}}'>
+                                        <input type="number" name="Phut_tat_khu_vuc_9_4" min="00" max="59" value='{{Phut_tat_khu_vuc_9_4}}'>
+                                    </td>
+                                </tr> {% endcomment %}
+
+
+
+
+
+                                <tr>
+                                    <td class="text-center" colspan="5">
+                                        <button type="submit" class="btn btn-danger" id="submit">Xác nhận</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <script>
+                                {% if Xac_nhan_khu_vuc_1 == 1 %}
+                                    document.getElementById("day-1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_1 == 0 %}
+                                    document.getElementById("day-1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_2 == 1 %}
+                                    document.getElementById("day-2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_2 == 0 %}
+                                    document.getElementById("day-2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_3 == 1 %}
+                                    document.getElementById("day-3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_3 == 0 %}
+                                    document.getElementById("day-3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_4 == 1 %}
+                                    document.getElementById("day-4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_4 == 0 %}
+                                    document.getElementById("day-4").checked = false;
+                                {% endif %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_5 == 1 %}
+                                    document.getElementById("day-5").checked = true;
+                                {% elif Xac_nhan_khu_vuc_5 == 0 %}
+                                    document.getElementById("day-5").checked = false;
+                                {% endif %} {% endcomment %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_6 == 1 %}
+                                    document.getElementById("day-6").checked = true;
+                                {% elif Xac_nhan_khu_vuc_6 == 0 %}
+                                    document.getElementById("day-6").checked = false;
+                                {% endif %} {% endcomment %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_7 == 1 %}
+                                    document.getElementById("day-7").checked = true;
+                                {% elif Xac_nhan_khu_vuc_7 == 0 %}
+                                    document.getElementById("day-7").checked = false;
+                                {% endif %} {% endcomment %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_8 == 1 %}
+                                    document.getElementById("day-8").checked = true;
+                                {% elif Xac_nhan_khu_vuc_8 == 0 %}
+                                    document.getElementById("day-8").checked = false;
+                                {% endif %} {% endcomment %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_9 == 1 %}
+                                    document.getElementById("day-9").checked = true;
+                                {% elif Xac_nhan_khu_vuc_9 == 0 %}
+                                    document.getElementById("day-9").checked = false;
+                                {% endif %} {% endcomment %}
+
+                                {% if Xac_nhan_khu_vuc_1_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_1_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_1_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_1_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_1_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_1_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_1_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_1_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_1_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_2_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_2_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_2_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_2_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_2_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_2_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_2_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_2_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_2_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_3_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_3_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_3_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_3_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_3_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_3_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_3_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_3_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_3_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_4_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_4_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_4_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_4_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_4_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_4_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_4_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_4_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_4_4").checked = false;
+                                {% endif %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_5_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_5_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_1").checked = false;
+                                {% endif %} {% endcomment %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_5_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_5_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_2").checked = false;
+                                {% endif %} {% endcomment %}
+                                {% comment %} {% if Xac_nhan_khu_vuc_5_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_5_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_5_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_5_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_5_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_6_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_6_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_6_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_6_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_6_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_6_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_6_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_6_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_6_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_7_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_7_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_7_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_7_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_7_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_7_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_7_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_7_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_7_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_8_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_8_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_8_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_8_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_8_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_8_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_8_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_8_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_8_4").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_9_1 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_1").checked = true;
+                                {% elif Xac_nhan_khu_vuc_9_1 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_1").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_9_2 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_2").checked = true;
+                                {% elif Xac_nhan_khu_vuc_9_2 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_2").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_9_3 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_3").checked = true;
+                                {% elif Xac_nhan_khu_vuc_9_3 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_3").checked = false;
+                                {% endif %}
+                                {% if Xac_nhan_khu_vuc_9_4 == 1 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_4").checked = true;
+                                {% elif Xac_nhan_khu_vuc_9_4 == 0 %}
+                                    document.getElementById("Xac_nhan_khu_vuc_9_4").checked = false;
+                                {% endif %} {% endcomment %}
+                            </script>
+                        {% else %}
+                            <tbody>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Lần tưới</th>
+                                        <th class="text-center">Khu vực</th>
+                                        <th class="text-center">Chế độ</th>
+                                        <th class="text-center">Bắt đầu</th>
+                                        <th class="text-center">Thời lượng</th>
+                                    </tr>
+                                </thead>
+                                <tr id="l1-row">
+                                    <th scope="row" class="text-center">
+                                        <input type="checkbox" name="day_1" id="day-1" value="1" class="range-checkbox">
+                                        <label for="day_1" class="range-label">1:</label>
+                                    </th>
+                                    <td class="text-center">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_1_1" name="area_1_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_1_2" name="area_1_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                        
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_1_3" name="area_1_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                        {% comment %} <select id="khuvuc_l1">
+                                            <option value="1">Khu vực 1,2</option>
+                                            <option value="2">Khu vực 3,4</option>
+                                            <option value="3">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        Phun mưa
+                                        {% comment %} <select id="mode_l4">
+                                            <option value="1">Phun mưa</option>
+                                            <option value="2">Phun sương</option>
+                                            <option value="3">Nhỏ giọt</option>
+                                            <option value="4">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_1" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_1}}'>
+                                        <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_1" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_1}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" id="length1" name="che_do_hang_ngay_thoi_gian_tuoi_1" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_1}}'>
+                                        <small>phút</small>
+                                    </td>
+                                </tr>
+                                <tr id="l2-row">
+                                    <th scope="row" class="text-center">
+                                        <input type="checkbox" name="day_2" id="day-2" value="1" class="range-checkbox">
+                                        <label for="day_2" class="range-label">2:</label>
+                                    </th>
+                                    <td class="text-center">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_2_1" name="area_2_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_2_2" name="area_2_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_2_3" name="area_2_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                        {% comment %} <select id="khuvuc_l1">
+                                            <option value="1">Khu vực 1,2</option>
+                                            <option value="2">Khu vực 3,4</option>
+                                            <option value="3">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        Phun mưa
+                                        {% comment %} <select id="mode_l4">
+                                            <option value="1">Phun mưa</option>
+                                            <option value="2">Phun sương</option>
+                                            <option value="3">Nhỏ giọt</option>
+                                            <option value="4">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_2" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_2}}'>
+                                        <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_2" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_2}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" id="length2" name="che_do_hang_ngay_thoi_gian_tuoi_2" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_2}}'>
+                                        <small>phút</small>
+                                    </td>
+                                </tr>
+                                <tr id="l3-row">
+                                    <th scope="row" class="text-center">
+                                        <input type="checkbox" name="day_3" id="day-3" value="1" class="range-checkbox">
+                                        <label for="day_3" class="range-label">3:</label>
+                                    </th>
+                                    <td class="text-center">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_3_1" name="area_3_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_3_2" name="area_3_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_3_3" name="area_3_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                        {% comment %} <select id="khuvuc_l1">
+                                            <option value="1">Khu vực 1,2</option>
+                                            <option value="2">Khu vực 3,4</option>
+                                            <option value="3">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        Phun mưa
+                                        {% comment %} <select id="mode_l4">
+                                            <option value="1">Phun mưa</option>
+                                            <option value="2">Phun sương</option>
+                                            <option value="3">Nhỏ giọt</option>
+                                            <option value="4">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_3" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_3}}'>
+                                        <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_3" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_3}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" id="length3" name="che_do_hang_ngay_thoi_gian_tuoi_3" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_3}}'>
+                                        <small>phút</small>
+                                    </td>
+                                </tr>
+                                <tr id="l4-row">
+                                    <th scope="row" class="text-center">
+                                        <input type="checkbox" name="day_4" id="day-4" value="1" class="range-checkbox">
+                                        <label for="day_4" class="range-label">4:</label>
+                                    </th>
+                                    <td class="text-center">
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_4_1" name="area_4_1" value='1'>
+                                            <label class="range-label">Khu vực 1</label>
+                                        </div>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_4_2" name="area_4_2" value='1'>
+                                            <label class="range-label">Khu vực 2</label>
+                                        </div>
+                                        <div class="input-group text-center justify-content-center">
+                                            <input type="checkbox" class="range-checkbox" id="area_4_3" name="area_4_3" value='1'>
+                                            <label class="range-label">Khu vực 3</label>
+                                        </div>
+                                        {% comment %} <select id="khuvuc_l1">
+                                            <option value="1">Khu vực 1,2</option>
+                                            <option value="2">Khu vực 3,4</option>
+                                            <option value="3">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        Phun mưa
+                                        {% comment %} <select id="mode_l4">
+                                            <option value="1">Phun mưa</option>
+                                            <option value="2">Phun sương</option>
+                                            <option value="3">Nhỏ giọt</option>
+                                            <option value="4">Tất cả</option>
+                                        </select> {% endcomment %}
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" name="che_do_hang_ngay_gio_bat_dau_tuoi_4" min="00" max="24" value='{{che_do_hang_ngay_gio_bat_dau_tuoi_4}}'>
+                                        <input type="number" name="che_do_hang_ngay_phut_bat_dau_tuoi_4" min="00" max="59" value='{{che_do_hang_ngay_phut_bat_dau_tuoi_4}}'>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="number" id="length4" name="che_do_hang_ngay_thoi_gian_tuoi_4" style="width: 50px;" value='{{che_do_hang_ngay_thoi_gian_tuoi_4}}'>
+                                        <small>phút</small>
+                                    </td>
+                                </tr>
+                                {% comment %} <tr id="l5-row">
+                                    <th scope="row" class="text-center">
+                                        <input type="checkbox" name="day-5" id="day-5" value="1" class="range-checkbox"
+                                            checked>
+                                        <label for="day-5" class="range-label">5:</label>
+                                    </th>
+                                    <td>
+                                        <select id="khuvuc_l5">
+                                            <option value="1">Khu vực 1,2</option>
+                                            <option value="2">Khu vực 3,4</option>
+                                            <option value="3">Tất cả</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="mode_l5">
+                                            <option value="1">Phun mưa</option>
+                                            <option value="2">Phun sương</option>
+                                            <option value="3">Nhỏ giọt</option>
+                                            <option value="4">Tất cả</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="time" id="start_time5" name="start_time5" min="00:00" max="24:00">
+                                    </td>
+                                    <td>
+                                        <input type="number" id="length5" name="length5" style="width: 50px;">
+                                        <small>&nbsp;phút</small>
+                                    </td>
+                                </tr>
+                                <tr id="l6-row">
+                                    <th scope="row" class="text-center">
+                                        <input type="checkbox" name="day-6" id="day-6" value="1" class="range-checkbox"
+                                            checked>
+                                        <label for="day-6" class="range-label">6:</label>
+                                    </th>
+                                    <td>
+                                        <select id="khuvuc_l6">
+                                            <option value="1">Khu vực 1,2</option>
+                                            <option value="2">Khu vực 3,4</option>
+                                            <option value="3">Tất cả</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="mode_l6">
+                                            <option value="1">Phun mưa</option>
+                                            <option value="2">Phun sương</option>
+                                            <option value="3">Nhỏ giọt</option>
+                                            <option value="4">Tất cả</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="time" id="start_time6" name="start_time6" min="00:00" max="24:00">
+                                    </td>
+                                    <td>
+                                        <input type="number" id="length6" name="length6" style="width: 50px;">
+                                        <small>&nbsp;phút</small>
+                                    </td>
+                                </tr> {% endcomment %}
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <button type="submit" class="btn btn-danger" id="submit">Xác nhận</button>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <script>
+                                {% if che_do_hang_ngay_xac_nhan_lan_1 == 1 %}
+                                    document.getElementById("day-1").checked = true;
+                                {% elif che_do_hang_ngay_xac_nhan_lan_1 == 0 %}
+                                    document.getElementById("day-1").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_xac_nhan_lan_2 == 1 %}
+                                    console.log({{che_do_hang_ngay_xac_nhan_lan_2}})
+                                    document.getElementById("day-2").checked = true;
+                                {% elif che_do_hang_ngay_xac_nhan_lan_2 == 0 %}
+                                    document.getElementById("day-2").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_xac_nhan_lan_3 == 1 %}
+                                    document.getElementById("day-3").checked = true;
+                                {% elif che_do_hang_ngay_xac_nhan_lan_3 == 0 %}
+                                    document.getElementById("day-3").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_xac_nhan_lan_4 == 1 %}
+                                    document.getElementById("day-4").checked = true;
+                                {% elif che_do_hang_ngay_xac_nhan_lan_4 == 0 %}
+                                    document.getElementById("day-4").checked = false;
+                                {% endif %}
+                        
+                                {% if che_do_hang_ngay_dieu_khien_KV_1_1 == 1 %}
+                                    document.getElementById("area_1_1").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_1_1 == 0 %}
+                                    document.getElementById("area_1_1").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_1_2 == 1 %}
+                                    document.getElementById("area_1_2").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_1_2 == 0 %}
+                                    document.getElementById("area_1_2").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_1_3 == 1 %}
+                                    document.getElementById("area_1_3").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_1_3 == 0 %}
+                                    document.getElementById("area_1_3").checked = false;
+                                {% endif %}
+                        
+                                {% if che_do_hang_ngay_dieu_khien_KV_2_1 == 1 %}
+                                    document.getElementById("area_2_1").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_2_1 == 0 %}
+                                    document.getElementById("area_2_1").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_2_2 == 1 %}
+                                    document.getElementById("area_2_2").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_2_2 == 0 %}
+                                    document.getElementById("area_2_2").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_2_3 == 1 %}
+                                    document.getElementById("area_2_3").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_2_3 == 0 %}
+                                    document.getElementById("area_2_3").checked = false;
+                                {% endif %}
+                        
+                                {% if che_do_hang_ngay_dieu_khien_KV_3_1 == 1 %}
+                                    document.getElementById("area_3_1").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_3_1 == 0 %}
+                                    document.getElementById("area_3_1").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_3_2 == 1 %}
+                                    document.getElementById("area_3_2").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_3_2 == 0 %}
+                                    document.getElementById("area_3_2").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_3_3 == 1 %}
+                                    document.getElementById("area_3_3").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_3_3 == 0 %}
+                                    document.getElementById("area_3_3").checked = false;
+                                {% endif %}
+                        
+                                {% if che_do_hang_ngay_dieu_khien_KV_4_1 == 1 %}
+                                    document.getElementById("area_4_1").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_4_1 == 0 %}
+                                    document.getElementById("area_4_1").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_4_2 == 1 %}
+                                    document.getElementById("area_4_2").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_4_2 == 0 %}
+                                    document.getElementById("area_4_2").checked = false;
+                                {% endif %}
+                                {% if che_do_hang_ngay_dieu_khien_KV_4_3 == 1 %}
+                                    document.getElementById("area_4_3").checked = true;
+                                {% elif che_do_hang_ngay_dieu_khien_KV_4_3 == 0 %}
+                                    document.getElementById("area_4_3").checked = false;
+                                {% endif %}
+                            </script>
+                        {% endif %}
                     </form>
                 </table>
             </div>
@@ -274,91 +1298,4 @@
             </div>
         </div> {% endcomment %}
     </div>
-    <script>
-        {% if che_do_hang_ngay_xac_nhan_lan_1 == 1 %}
-            document.getElementById("day-1").checked = true;
-        {% elif che_do_hang_ngay_xac_nhan_lan_1 == 0 %}
-            document.getElementById("day-1").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_xac_nhan_lan_2 == 1 %}
-            console.log({{che_do_hang_ngay_xac_nhan_lan_2}})
-            document.getElementById("day-2").checked = true;
-        {% elif che_do_hang_ngay_xac_nhan_lan_2 == 0 %}
-            document.getElementById("day-2").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_xac_nhan_lan_3 == 1 %}
-            document.getElementById("day-3").checked = true;
-        {% elif che_do_hang_ngay_xac_nhan_lan_3 == 0 %}
-            document.getElementById("day-3").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_xac_nhan_lan_4 == 1 %}
-            document.getElementById("day-4").checked = true;
-        {% elif che_do_hang_ngay_xac_nhan_lan_4 == 0 %}
-            document.getElementById("day-4").checked = false;
-        {% endif %}
-
-        {% if che_do_hang_ngay_dieu_khien_KV_1_1 == 1 %}
-            document.getElementById("area_1_1").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_1_1 == 0 %}
-            document.getElementById("area_1_1").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_1_2 == 1 %}
-            document.getElementById("area_1_2").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_1_2 == 0 %}
-            document.getElementById("area_1_2").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_1_3 == 1 %}
-            document.getElementById("area_1_3").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_1_3 == 0 %}
-            document.getElementById("area_1_3").checked = false;
-        {% endif %}
-
-        {% if che_do_hang_ngay_dieu_khien_KV_2_1 == 1 %}
-            document.getElementById("area_2_1").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_2_1 == 0 %}
-            document.getElementById("area_2_1").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_2_2 == 1 %}
-            document.getElementById("area_2_2").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_2_2 == 0 %}
-            document.getElementById("area_2_2").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_2_3 == 1 %}
-            document.getElementById("area_2_3").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_2_3 == 0 %}
-            document.getElementById("area_2_3").checked = false;
-        {% endif %}
-
-        {% if che_do_hang_ngay_dieu_khien_KV_3_1 == 1 %}
-            document.getElementById("area_3_1").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_3_1 == 0 %}
-            document.getElementById("area_3_1").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_3_2 == 1 %}
-            document.getElementById("area_3_2").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_3_2 == 0 %}
-            document.getElementById("area_3_2").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_3_3 == 1 %}
-            document.getElementById("area_3_3").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_3_3 == 0 %}
-            document.getElementById("area_3_3").checked = false;
-        {% endif %}
-
-        {% if che_do_hang_ngay_dieu_khien_KV_4_1 == 1 %}
-            document.getElementById("area_4_1").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_4_1 == 0 %}
-            document.getElementById("area_4_1").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_4_2 == 1 %}
-            document.getElementById("area_4_2").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_4_2 == 0 %}
-            document.getElementById("area_4_2").checked = false;
-        {% endif %}
-        {% if che_do_hang_ngay_dieu_khien_KV_4_3 == 1 %}
-            document.getElementById("area_4_3").checked = true;
-        {% elif che_do_hang_ngay_dieu_khien_KV_4_3 == 0 %}
-            document.getElementById("area_4_3").checked = false;
-        {% endif %}
-    </script>
 {% endblock content %}

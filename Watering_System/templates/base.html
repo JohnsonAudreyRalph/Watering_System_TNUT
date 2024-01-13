@@ -77,12 +77,12 @@
                     <span>Chế độ bằng tay</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
                 <a class="nav-link" href="{% url "Stats_HTML" %}">
                     <i class="fa fa-bar-chart fa-2x"></i>
                     <span>Biểu đồ</span>
                 </a>
-            </li>
+            </li> {% endcomment %}
             <hr style="margin-top: 0" />
             <li class="nav-item">
                 <a class="nav-link" href="{% url "logout" %}" style="background-color: rgb(173, 29, 29); color: whitesmoke" id="logout">
@@ -103,7 +103,7 @@
         {% block content %}{% endblock content %}
     </main>
 
-    <footer class="text-center text-lg-start bg-light text-muted mt-1">
+    <footer class="text-center text-lg-start bg-light text-muted mt-1" style="top: 0; left: 0; z-index: 999;">
         <section class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <div class="h5 me-5 d-none d-lg-block">

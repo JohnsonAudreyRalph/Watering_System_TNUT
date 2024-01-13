@@ -22,23 +22,61 @@ urlpatterns = [
     path('Show_KheCoc_status', Show_KheCoc_status, name='Show_KheCoc_status'),
     # ======================================================
     path('Show_API_HaoDat_read', Show_API_HaoDat_read, name='Show_API_HaoDat_read'),
-    # path('Create_API_HaoDat_read', Create_API_HaoDat_read, name='Create_API_HaoDat_read'),
-    path('Update_API_Hao_Dat_read', Update_API_Hao_Dat_read, name='Update_API_Hao_Dat_read'),
+    path('Create_API_HaoDat_read', Create_API_HaoDat_read, name='Create_API_HaoDat_read'),
+    # path('Update_API_Hao_Dat_read', Update_API_Hao_Dat_read, name='Update_API_Hao_Dat_read'),
     path('Show_API_HaoDat_R_W', Show_API_HaoDat_R_W, name='Show_API_HaoDat_R_W'),
     # path('Create_API_HaoDat_R_W', Create_API_HaoDat_R_W, name='Create_API_HaoDat_R_W'),
     path('Update_API_Hao_Dat_R_W', Update_API_Hao_Dat_R_W, name='Update_API_Hao_Dat_R_W'),
     path('Show_API_KheCoc_read', Show_API_KheCoc_read, name='Show_API_KheCoc_read'),
     # path('Create_API_KheCoc_read', Create_API_KheCoc_read, name='Create_API_KheCoc_read'),
     path('Update_API_KheCoc_read', Update_API_KheCoc_read, name='Update_API_KheCoc_read'),
-    path('Show_API_KheCoc_R_W', Show_API_KheCoc_R_W, name='Show_API_KheCoc_R_W'),
-    # path('Create_API_KheCoc_R_W', Create_API_KheCoc_R_W, name='Create_API_KheCoc_R_W'),
-    path('Update_API_KheCoc_R_W', Update_API_KheCoc_R_W, name='Update_API_KheCoc_R_W'),
+
+
+
+
+    path('Show_API_KheCoc_R_W_HN_1', Show_API_KheCoc_R_W_HN_1, name='Show_API_KheCoc_R_W_HN_1'),
+    path('Create_API_KheCoc_R_W_HN_1', Create_API_KheCoc_R_W_HN_1, name='Create_API_KheCoc_R_W_HN_1'),
+    path('Update_API_KheCoc_R_W_HN_1', Update_API_KheCoc_R_W_HN_1, name='Update_API_KheCoc_R_W_HN_1'),
+
+    path('Show_API_KheCoc_R_W_HN_2', Show_API_KheCoc_R_W_HN_2, name='Show_API_KheCoc_R_W_HN_2'),
+    # path('Create_API_KheCoc_R_W_HN_2', Create_API_KheCoc_R_W_HN_2, name='Create_API_KheCoc_R_W_HN_2'),
+    path('Update_API_KheCoc_R_W_HN_2', Update_API_KheCoc_R_W_HN_2, name='Update_API_KheCoc_R_W_HN_2'),
+
+
+
+
+
+
+
+
+    path('Show_API_KheCoc_R_W_BT_TD', Show_API_KheCoc_R_W_BT_TD, name='Show_API_KheCoc_R_W_BT_TD'),
+    path('Create_API_KheCoc_R_W_BT_TD', Create_API_KheCoc_R_W_BT_TD, name='Create_API_KheCoc_R_W_BT_TD'),
+    path('Update_API_KheCoc_R_W_BT_TD', Update_API_KheCoc_R_W_BT_TD, name='Update_API_KheCoc_R_W_BT_TD'),
+
+
+
+
+
+
+
     path('Show_API_ThaiMinh_read', Show_API_ThaiMinh_read, name='Show_API_ThaiMinh_read'),
     # path('Create_API_ThaiMinh_read', Create_API_ThaiMinh_read, name='Create_API_ThaiMinh_read'),
     path('Update_API_ThaiMinh_read', Update_API_ThaiMinh_read, name='Update_API_ThaiMinh_read'),
     path('Show_API_ThaiMinh_R_W', Show_API_ThaiMinh_R_W, name='Show_API_ThaiMinh_R_W'),
     # path('Create_API_ThaiMinh_R_W', Create_API_ThaiMinh_R_W, name='Create_API_ThaiMinh_R_W'),
     path('Update_API_ThaiMinh_R_W', Update_API_ThaiMinh_R_W, name='Update_API_ThaiMinh_R_W'),
+
+
+
+
+    #============================================================
+    path('Show_API_TEST_read', Show_API_TEST_read, name='Show_API_TEST_read'),
+    path('Create_API_TEST_read', Create_API_TEST_read, name='Create_API_TEST_read'),
+    path('Update_API_TEST_read', Update_API_TEST_read, name='Update_API_TEST_read'),
+
+    path('Show_API_TEST_R_W', Show_API_TEST_R_W, name='Show_API_TEST_R_W'),
+    path('Create_API_TEST_R_W', Create_API_TEST_R_W, name='Create_API_TEST_R_W'),
+    path('Update_API_TEST_R_W', Update_API_TEST_R_W, name='Update_API_TEST_R_W'),
     
 ]
 

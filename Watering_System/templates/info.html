@@ -14,7 +14,7 @@
                         <p class="card-text text-center" style="font-size:30px; flex-direction: row; padding-left: 40px; font-weight: bold;" id="kv1_humid_data_display">{{do_am_dat}}%</p>
                     </div>
                     <span>
-                        <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Khu vực 1</p>
+                        <p class="card-text text-center" style="font-size: 20px;padding-left: 20px;;">Độ ẩm đất</p>
                     </span>
                 </div>
             </div>
@@ -154,6 +154,68 @@
                                         <input id="kv1_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
                                     </td>
                                 </tr>
+                                {% comment %} {% if KheCoc == 'KheCoc' %}
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>
+                                            <input id="kv5_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" checked>
+                                        </td>
+                                        <td>
+                                            <input id="kv5_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                        <td>
+                                            <input id="kv5_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td>
+                                            <input id="kv6_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" checked>
+                                        </td>
+                                        <td>
+                                            <input id="kv6_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                        <td>
+                                            <input id="kv6_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">7</th>
+                                        <td>
+                                            <input id="kv7_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" checked>
+                                        </td>
+                                        <td>
+                                            <input id="kv7_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                        <td>
+                                            <input id="kv7_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">8</th>
+                                        <td>
+                                            <input id="kv8_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" checked>
+                                        </td>
+                                        <td>
+                                            <input id="kv8_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                        <td>
+                                            <input id="kv8_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">9</th>
+                                        <td>
+                                            <input id="kv9_ps_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" checked>
+                                        </td>
+                                        <td>
+                                            <input id="kv9_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                        <td>
+                                            <input id="kv9_ng_status" class="dc" type="checkbox" style="width: 16px; height: 16px;" disabled>
+                                        </td>
+                                    </tr>
+                                {% endif %} {% endcomment %}
                         </tbody>
                     </table>
                 </div>
@@ -170,7 +232,7 @@
                     <table class="table table-success">
                         <tbody class="fw-bold fs-6 text">
                             <tr>
-                                <td>Máy bơm 1</td>
+                                <td>Máy bơm</td>
                                 <td id="pump1_status"></td>
                             </tr>
                             <tr>
@@ -185,11 +247,91 @@
                                 <td>Van 3</td>
                                 <td id="Valve_3_pump_1"></td>
                             </tr>
+                            {% if KheCoc == 'KheCoc' %}
+                                <tr>
+                                    <td>Van 4</td>
+                                    <td id="Valve_4_pump_1"></td>
+                                </tr>
+                                {% comment %} <tr>
+                                    <td>Van 5</td>
+                                    <td id="Valve_5_pump_1"></td>
+                                </tr>
+                                <tr>
+                                    <td>Van 6</td>
+                                    <td id="Valve_6_pump_1"></td>
+                                </tr>
+                                <tr>
+                                    <td>Van 7</td>
+                                    <td id="Valve_7_pump_1"></td>
+                                </tr>
+                                <tr>
+                                    <td>Van 8</td>
+                                    <td id="Valve_8_pump_1"></td>
+                                </tr> {% endcomment %}
+
+                                <script>
+                                    {% if trang_thai_van_khu_vuc_4 == 0 %}
+                                    document.getElementById("Valve_4_pump_1").innerHTML = "Off"
+                                    {% elif trang_thai_van_khu_vuc_4 == 1 %}
+                                        document.getElementById("Valve_4_pump_1").innerHTML = "On"
+                                    {% endif %}
+                                    {% comment %} {% if trang_thai_van_khu_vuc_5 == 0 %}
+                                    document.getElementById("Valve_5_pump_1").innerHTML = "Off"
+                                    {% elif trang_thai_van_khu_vuc_5 == 1 %}
+                                        document.getElementById("Valve_5_pump_1").innerHTML = "On"
+                                    {% endif %} {% endcomment %}
+                                    {% comment %} {% if trang_thai_van_khu_vuc_6 == 0 %}
+                                    document.getElementById("Valve_6_pump_1").innerHTML = "Off"
+                                    {% elif trang_thai_van_khu_vuc_6 == 1 %}
+                                        document.getElementById("Valve_6_pump_1").innerHTML = "On"
+                                    {% endif %} {% endcomment %}
+                                    {% comment %} {% if trang_thai_van_khu_vuc_7 == 0 %}
+                                    document.getElementById("Valve_7_pump_1").innerHTML = "Off"
+                                    {% elif trang_thai_van_khu_vuc_7 == 1 %}
+                                        document.getElementById("Valve_7_pump_1").innerHTML = "On"
+                                    {% endif %} {% endcomment %}
+                                    {% comment %} {% if trang_thai_van_khu_vuc_8 == 0 %}
+                                    document.getElementById("Valve_8_pump_1").innerHTML = "Off"
+                                    {% elif trang_thai_van_khu_vuc_8 == 1 %}
+                                        document.getElementById("Valve_8_pump_1").innerHTML = "On"
+                                    {% endif %} {% endcomment %}
+                                </script>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+        {% comment %} {% if KheCoc == 'KheCoc' %}
+            <div class="col-sm-3">
+                <div class="container">
+                    <h4 class="text-left mt-2">
+                        <i class="fas fa-faucet mx-3" aria-hidden="true"></i>Trạng thái bơm/Van
+                    </h4>
+                </div>
+                <div class="card text-center pump">
+                    <div class="card-body">
+                        <table class="table table-success">
+                            <tbody class="fw-bold fs-6 text">
+                                <tr>
+                                    <td>Máy bơm 2</td>
+                                    <td id="pump2_status">Off</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <script>
+                {% if trang_thai_bom_2 == 0 %}
+                    document.getElementById("pump2_status").innerHTML = "Off"
+                {% elif trang_thai_bom_2 == 1 %}
+                    document.getElementById("pump2_status").innerHTML = "On"
+                {% endif %}
+            </script>
+        {% endif %} {% endcomment %}
+        
 
         <div class="col-sm-3">
             <div class="container">
@@ -219,6 +361,7 @@
         {% elif che_do_hoat_dong == 3 %}
             document.getElementById("sys_mode").innerHTML = "Bằng tay"
         {% endif %}
+
         {% if trang_thai_van_khu_vuc_1 == 0 %}
             document.getElementById("Valve_1_pump_1").innerHTML = "Off"
         {% elif trang_thai_van_khu_vuc_1 == 1 %}
@@ -234,9 +377,9 @@
         {% elif trang_thai_van_khu_vuc_3 == 1 %}
             document.getElementById("Valve_3_pump_1").innerHTML = "On"
         {% endif %}
-        {% if trang_thai_bom == 0 %}
+        {% if trang_thai_bom_1 == 0 %}
             document.getElementById("pump1_status").innerHTML = "Off"
-        {% elif trang_thai_bom == 1 %}
+        {% elif trang_thai_bom_1 == 1 %}
             document.getElementById("pump1_status").innerHTML = "On"
         {% endif %}
     </script>
